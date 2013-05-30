@@ -23,22 +23,26 @@ var weights = {}; //Contains available metrics and weight setting (.50)
 
 function setupWeightTab(jTab){
     var wTab = $("<div id='tWeight'></div>");
-
+    var divTable = $("<div style=\"display:table; border-spacing:10px;\"></div>");
     for (var wMetric in weights ){
         if(weights.hasOwnProperty(wMetric)){
-            var jSlider = $("<span id='slider"+wMetric+"' style=\"width: 260px !important; margin: 15px;\"></span>").slider({
+            var divRow = $("<div style=\"display:table-row;\"></div>");
+            var jSlider = $("<div id='slider"+wMetric+"' style=\" display:table-cell; width: 260px !important; margin: 15px;\"></div>");
+            jSlider.slider({
                 value: 50,
                 range: "min",
                 animate: true,
                 orientation: "horizontal"
                 });
 
-            wTab.append(""+mapMIDtoMName[wMetric]);
-            wTab.append(jSlider);
-            wTab.append("<br/>");
+            divRow.append("<div style=\"display:table-cell;\">"+mapMIDtoMName[wMetric]+"</div>");
+            divRow.append(jSlider);
+            divRow.append("<div style=\"display:table-cell;\">50</div>");
+            divTable.append(divRow);
+            
         }
     }
-
+    wTab.append(divTable);
     jTab.append(wTab);
     jTab.tabs("add", "#tWeight", "Weights");
 }
