@@ -27,17 +27,19 @@ function setupWeightTab(jTab){
     for (var wMetric in weights ){
         if(weights.hasOwnProperty(wMetric)){
             var divRow = $("<div style=\"display:table-row;\"></div>");
-            var jSlider = $("<div id='slider"+wMetric+"' style=\" display:table-cell; width: 260px !important; margin: 15px;\"></div>");
+            var jSliderCell = $("<div style=\" display:table-cell; margin: 15px; vertical-align: middle;\"></div>");
+            var jSlider = $("<div id='slider"+wMetric+"' style=\"width: 250px !important;  height=17px;\" ></div>");
             jSlider.slider({
                 value: 50,
                 range: "min",
                 animate: true,
                 orientation: "horizontal"
-                });
-
+            });
+            jSliderCell.append(jSlider);
             divRow.append("<div style=\"display:table-cell;\">"+mapMIDtoMName[wMetric]+"</div>");
-            divRow.append(jSlider);
-            divRow.append("<div style=\"display:table-cell;\">50</div>");
+            divRow.append(jSliderCell);
+            divRow.append("<div style=\"display:table-cell; \"><input id='box' onkeypress=\"validate(event)\" /></div>");
+
             divTable.append(divRow);
             
         }
