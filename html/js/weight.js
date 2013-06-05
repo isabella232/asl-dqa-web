@@ -76,30 +76,6 @@ function setupWeightTab(jTab){
     jTab.tabs("add", "#tWeight", "Weights");
 }
 
-function setupDateTab(jTabs) {
-    var dateTab = $("<div id='tDate'></div>");
-
-    //Custom DVate Range
-    dateTab.append("<h3>Date Range</h3>");
-    var dateRangeDiv = $("<div></div>");
-    dateRangeDiv.append(createDateRangeSpan("tab"));
-    dateTab.append(dateRangeDiv);
-
-    //Year Month Combos
-    dateTab.append("<h3>Year-Month</h3>");
-    var yearMonthDiv = $("<div></div>");
-    dateTab.append(yearMonthDiv);
-
-    //Finalize and bind to tab control
-    jTabs.append(dateTab);
-    jTabs.tabs("add", "#tDate", "Dates");
-
-
-    //Bind controls as appropriate jqueryui controls
-    $("#tDate").accordion();
-    bindDateRangeSpan("tab");
-}
-
 function addPercent(rowID, metricID, value){
     if(!isNaN(row[2])){ //Uncomputable values are sent as "n"
         /* Overlaps in percents could occur if both station 
