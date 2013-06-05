@@ -22,13 +22,34 @@ metric1ID = ...
 var weights = {}; //Contains available metrics and weight setting (.50) 
 
 function setupWeightTab(jTab){
+    var maxCol = 4;
     var wTab = $("<div id='tWeight'></div>");
-    var divTable = $("<div style=\"display:table; border-spacing:10px;\"></div>");
+
+    var colWidth = 460; //The size during development was 451px. 460px gives spacing between columns.
+    var numCol = Math.floor($(document).width()/colWidth);
+    if(numCol > maxCol){  //We don't want more than 3 columns.
+        numCol = maxCol;
+    }
+    var numMetrics = 0;
     for (var wMetric in weights ){
         if(weights.hasOwnProperty(wMetric)){
-            var divRow = $("<div style=\"display:table-row;\"></div>");
+            numMetrics++;
+        }
+    }
+    var numPerCol = Math.ceil(numMetrics/numCol);
+    var curMetric = 0;
+    var curCol = -1;
+    var columns = [];
+    for (var wMetric in weights ){
+        if(weights.hasOwnProperty(wMetric)){
+            
+            if(!(curMetric % numPerCol)){
+                curCol++;
+                columns.push($("<div style=\"display:table; border-spacing:10px;\"></div>"));
+            }
+            var divRow = $("<div style=\"display:table-row; width: "+colWidth+"px !important;\"></div>");
             var jSliderCell = $("<div style=\" display:table-cell; margin: 15px; vertical-align: middle;\"></div>");
-            var jSlider = $("<div id='slider"+wMetric+"' style=\"width: 250px !important;  height=17px;\" ></div>");
+            var jSlider = $("<div id='slider"+wMetric+"' style=\"width: 200px !important;  height=17px;\" ></div>");
             jSlider.slider({
                 value: 50,
                 range: "min",
@@ -38,16 +59,23 @@ function setupWeightTab(jTab){
             jSliderCell.append(jSlider);
             divRow.append("<div style=\"display:table-cell;\">"+mapMIDtoMName[wMetric]+"</div>");
             divRow.append(jSliderCell);
-            divRow.append("<div style=\"display:table-cell; \"><input id='box' onkeypress=\"validate(event)\" /></div>");
+            divRow.append("<div style=\"display:table-cell; \"><input id='box' size='3' onkeypress=\"validate(event)\" /></div>");
 
-            divTable.append(divRow);
-            
+            columns[curCol].append(divRow);
+            curMetric++;
         }
     }
-    wTab.append(divTable);
+        var colTable = $("<div style=\"display:table; border-spacing: 9px;\"></div>");
+    for(var i = 0; i<columns.length; i++){
+        var col = $("<div style=\"display:table-cell;\"></div>");
+        col.append(columns[i]);
+        colTable.append(col);
+    }
+    wTab.append(colTable);
     jTab.append(wTab);
     jTab.tabs("add", "#tWeight", "Weights");
 }
+
 function setupDateTab(jTabs) {
     var dateTab = $("<div id='tDate'></div>");
 
