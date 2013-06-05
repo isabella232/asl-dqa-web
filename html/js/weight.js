@@ -59,7 +59,7 @@ function setupWeightTab(jTab){
             jSliderCell.append(jSlider);
             divRow.append("<div style=\"display:table-cell;\">"+mapMIDtoMName[wMetric]+"</div>");
             divRow.append(jSliderCell);
-            divRow.append("<div style=\"display:table-cell; \"><input id='box' size='3' onkeypress=\"validate(event)\" /></div>");
+            divRow.append("<div style=\"display:table-cell; \"><input id='box' size='3'/></div>");
 
             columns[curCol].append(divRow);
             curMetric++;
