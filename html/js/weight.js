@@ -56,7 +56,7 @@ function setupWeightTab(jTab){
                 animate: true,
                 orientation: "horizontal",
                 slide: function( event, ui){
-                    slideChange(this, ui.value)
+                    slideChange(this, ui.value);
                 }
             });
             jSliderCell.append(jSlider);
@@ -84,7 +84,14 @@ function setupWeightTab(jTab){
 
 function bindWeightTab(){
     $("input[id^=spin]").each(function(){
-        $(this).spinner();
+        $(this).spinner({
+            change: function(event, ui){
+                spinChange(this);
+            },
+            spin: function(event, ui){
+                spinChange(this);
+            }
+        });
     });
 }
 
@@ -92,6 +99,14 @@ function slideChange(slider, value){
     var spinID = "#spin"+$(slider).attr("id").slice(6);
     if($(spinID).spinner("value") != value){
         $(spinID).spinner("value",value);
+    }
+}
+
+function spinChange(spin){
+    var value = $(spin).spinner("value");
+    var sliderID = "#slider"+$(spin).attr("id").slice(4);
+    if($(sliderID).slider("value") != value){
+        $(sliderID).slider("value",value);
     }
 }
 
