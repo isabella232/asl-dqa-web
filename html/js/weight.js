@@ -54,7 +54,10 @@ function setupWeightTab(jTab){
                 value: 50,
                 range: "min",
                 animate: true,
-                orientation: "horizontal"
+                orientation: "horizontal",
+                change: function( event, ui){
+                    slideChange(this, ui.value)
+                }
             });
             jSliderCell.append(jSlider);
             divRow.append("<div style=\"display:table-cell;\">"+mapMIDtoMName[wMetric]+"</div>");
@@ -76,10 +79,20 @@ function setupWeightTab(jTab){
     wTab.append(colTable);
     jTab.append(wTab);
     jTab.tabs("add", "#tWeight", "Weights");
-    
+    bindWeightTab();
+}
+
+function bindWeightTab(){
     $("input[id^=spin]").each(function(){
         $(this).spinner();
     });
+}
+
+function slideChange(slider, value){
+    var spinID = "#spin"+$(slider).attr("id").slice(6);
+    if($(spinID).spinner("value") != value){
+        $(spinID).spinner("value",value);
+    }
 }
 
 function addPercent(rowID, metricID, value){
