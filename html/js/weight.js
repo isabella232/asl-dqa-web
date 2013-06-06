@@ -55,7 +55,7 @@ function setupWeightTab(jTab){
                 range: "min",
                 animate: true,
                 orientation: "horizontal",
-                change: function( event, ui){
+                slide: function( event, ui){
                     slideChange(this, ui.value)
                 }
             });
