@@ -59,8 +59,10 @@ function setupWeightTab(jTab){
             jSliderCell.append(jSlider);
             divRow.append("<div style=\"display:table-cell;\">"+mapMIDtoMName[wMetric]+"</div>");
             divRow.append(jSliderCell);
-            divRow.append("<div style=\"display:table-cell; \"><input id='box' size='3'/></div>");
-
+            var spinCell = $("<div style=\"display:table-cell; \"></div>");
+            var spin = $("<input id='spin"+wMetric+"' size='3'/>");
+            spinCell.append(spin);
+            divRow.append(spinCell);
             columns[curCol].append(divRow);
             curMetric++;
         }
@@ -74,6 +76,10 @@ function setupWeightTab(jTab){
     wTab.append(colTable);
     jTab.append(wTab);
     jTab.tabs("add", "#tWeight", "Weights");
+    
+    $("input[id^=spin]").each(function(){
+        $(this).spinner();
+    });
 }
 
 function addPercent(rowID, metricID, value){
