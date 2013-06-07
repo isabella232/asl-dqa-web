@@ -37,8 +37,5 @@ function getDayofYear(datein, delimiter){
 }
 
 function isInteger(num){
-    if(!isNaN(parseInt(num)) && isFinite(num))
-        return true;
-    else
-        return false;
+    return (!isNaN(parseInt(num)) && isFinite(num));
 }
