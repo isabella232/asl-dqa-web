@@ -106,10 +106,12 @@ function slideChange(slider, value){
 
 function spinChange(spin){
     var value = $(spin).spinner("value");
+    var metricID = $(spin).attr("id").slice(4);
+    var sliderID = "#slider"+metricID;
     if(!isInteger(value) || parseInt(value) != value){
-        value = 0
+        value = $(sliderID).slider("value"); //Slider should still have last value.
         $(spin).spinner("value",value);
-        alert("Please enter an integer from 0-100");
+        alert("Please enter an integer from 0-100.");
     }
     if(value > 100){
         value = 100;
@@ -119,12 +121,10 @@ function spinChange(spin){
         value = 0;
         $(spin).spinner("value",value);
     }
-    var metricID = $(spin).attr("id").slice(4);
-    weights[metricID] = value;
-    var sliderID = "#slider"+metricID;
     if($(sliderID).slider("value") != value){
         $(sliderID).slider("value",value);
     }
+    weights[metricID] = value;
 }
 
 function addPercent(rowID, metricID, value){
