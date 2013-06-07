@@ -85,6 +85,8 @@ function setupWeightTab(jTab){
 function bindWeightTab(){
     $("input[id^=spin]").each(function(){
         $(this).spinner({
+            max: 100,
+            min: 0,
             change: function(event, ui){
                 spinChange(this);
             },
