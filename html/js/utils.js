@@ -35,3 +35,10 @@ function getDayofYear(datein, delimiter){
     return ""+datea[0]+delimiter+((jDate.valueOf()-dayOne.valueOf())/1000/60/60/24 + 1);
 
 }
+
+function isInteger(num){
+    if(!isNaN(parseInt(num)) && isFinite(num))
+        return true;
+    else
+        return false;
+}
