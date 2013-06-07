@@ -106,9 +106,17 @@ function slideChange(slider, value){
 
 function spinChange(spin){
     var value = $(spin).spinner("value");
+    if(value > 100){
+        value = 100;
+        $(spin).spinner("value",value);
+    }
+    if(value < 0){
+        value = 0;
+        $(spin).spinner("value",value);
+    }
     var metricID = $(spin).attr("id").slice(4);
     weights[metricID] = value;
-    var sliderID = "#slider"+metricID
+    var sliderID = "#slider"+metricID;
     if($(sliderID).slider("value") != value){
         $(sliderID).slider("value",value);
     }
