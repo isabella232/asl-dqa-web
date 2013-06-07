@@ -39,9 +39,9 @@ $(document).ready(function(){
 
 $(document).ajaxStop(function(){
     $(this).unbind("ajaxStop"); //Prevents ajaxStop from being called in the future. We only need it on initial load.
+    setupTabs();
     resetWeights();
     processAllAggr();
-    setupTabs();
     //Make all buttons jqueryui buttons
     $("button").button();
 });
