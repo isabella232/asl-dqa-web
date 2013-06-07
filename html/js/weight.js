@@ -106,6 +106,11 @@ function slideChange(slider, value){
 
 function spinChange(spin){
     var value = $(spin).spinner("value");
+    if(!isInteger(value) || parseInt(value) != value){
+        value = 0
+        $(spin).spinner("value",value);
+        alert("Please enter an integer from 0-100");
+    }
     if(value > 100){
         value = 100;
         $(spin).spinner("value",value);
