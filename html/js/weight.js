@@ -51,7 +51,7 @@ function setupWeightTab(jTab){
             var jSliderCell = $("<div style=\" display:table-cell; margin: 15px; vertical-align: middle;\"></div>");
             var jSlider = $("<div id='slider"+wMetric+"' style=\"width: 200px !important;  height=17px;\" ></div>");
             jSlider.slider({
-                value: 50,
+                value: 0,
                 range: "min",
                 animate: true,
                 orientation: "horizontal",
@@ -104,7 +104,9 @@ function slideChange(slider, value){
 
 function spinChange(spin){
     var value = $(spin).spinner("value");
-    var sliderID = "#slider"+$(spin).attr("id").slice(4);
+    var metricID = $(spin).attr("id").slice(4);
+    weights[metricID] = value;
+    var sliderID = "#slider"+metricID
     if($(sliderID).slider("value") != value){
         $(sliderID).slider("value",value);
     }
@@ -127,19 +129,9 @@ function addPercent(rowID, metricID, value){
 }
 
 function resetWeights(){
-    var numMetrics = 0;
-    for (var wMetric in weights ){
-        if(weights.hasOwnProperty(wMetric)){
-            numMetrics++;
-        }
-    }
-
-    for (var mWeight in weights ){
-        if(weights.hasOwnProperty(mWeight)){
-            weights[mWeight] = 100/numMetrics;
-        }
-    }
-    return 100/numMetrics;
+    $("input[id^=spin]").each(function(){
+        $(this).spinner("value", 50);
+    });
 }
 
 function calcAggr(rowID){
