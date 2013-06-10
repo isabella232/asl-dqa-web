@@ -110,7 +110,7 @@ function spinChange(spin){
     var metricID = $(spin).attr("id").slice(4);
     var sliderID = "#slider"+metricID;
     if(!isInteger(value) || parseInt(value) != value){
-        value = $(sliderID).slider("value"); //Slider should still have last value.
+        value = $(sliderID).slider("value"); //Slider should still have last value, so we change back to that.
         $(spin).spinner("value",value);
         alert("Please enter an integer from 0-100.");
     }
