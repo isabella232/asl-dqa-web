@@ -78,6 +78,15 @@ function setupWeightTab(jTab){
         colTable.append(col);
     }
     wTab.append(colTable);
+    wTab.append(   
+        "<button type='button' id='btnWeightReset'>Reset Weights</button>"
+    );
+    wTab.append(   
+        "<button type='button' id='btnWeightSetZero'>Zero Weights</button>"
+    );
+    wTab.append(   
+        "<button type='button' id='btnWeightProcessAggr'>Recompute Aggregrate</button>"
+    );
     jTab.append(wTab);
     jTab.tabs("add", "#tWeight", "Weights");
     bindWeightTab();
@@ -95,6 +104,19 @@ function bindWeightTab(){
                 spinChange(this);
             }
         });
+    });
+    $("#btnWeightReset").on("click",function(){
+    $("input[id^=spin]").each(function(){
+        $(this).spinner("value", 50);
+    });
+    });
+    $("#btnWeightSetZero").on("click",function(){
+    $("input[id^=spin]").each(function(){
+        $(this).spinner("value", 0);
+    });
+    });
+    $("#btnWeightProcessAggr").on("click",function(){
+        processAllAggr();
     });
 }
 
