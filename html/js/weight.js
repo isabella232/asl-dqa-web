@@ -31,45 +31,49 @@ function setupWeightTab(jTab){
         numCol = maxCol;
     }
     var numMetrics = 0;
+    
+    var metricsSorted = new Array();
+    var metrics = new Array();
     for (var wMetric in weights ){
         if(weights.hasOwnProperty(wMetric)){
+            metrics.push(mapMIDtoMName[wMetric]);
             numMetrics++;
         }
     }
+    metricsSorted = metrics.sort(naturalSort);
+    alert(metricsSorted);
     var numPerCol = Math.ceil(numMetrics/numCol);
     var curMetric = 0;
     var curCol = -1;
     var columns = [];
-    for (var wMetric in weights ){
-        if(weights.hasOwnProperty(wMetric)){
-            
-            if(!(curMetric % numPerCol)){
-                curCol++;
-                columns.push($("<div style=\"display:table; border-spacing:10px;\"></div>"));
-            }
-            var divRow = $("<div style=\"display:table-row; width: "+colWidth+"px !important;\"></div>");
-            var jSliderCell = $("<div style=\" display:table-cell; margin: 15px; vertical-align: middle;\"></div>");
-            var jSlider = $("<div id='slider"+wMetric+"' style=\"width: 200px !important;  height=17px;\" ></div>");
-            jSlider.slider({
-                value: 0,
-                range: "min",
-                animate: true,
-                orientation: "horizontal",
-                slide: function( event, ui){
-                    slideChange(this, ui.value);
-                }
-            });
-            jSliderCell.append(jSlider);
-            divRow.append("<div style=\"display:table-cell;\">"+mapMIDtoMName[wMetric]+"</div>");
-            divRow.append(jSliderCell);
-            var spinCell = $("<div style=\"display:table-cell; \"></div>");
-            var spin = $("<input id='spin"+wMetric+"' size='3'/>");
-            spinCell.append(spin);
-            divRow.append(spinCell);
-            divRow.append("<div style=\"display:table-cell;\" id='perLabel"+wMetric+"'>100%</div>");
-            columns[curCol].append(divRow);
-            curMetric++;
+    for(var i = 0; i<metricsSorted.length; i++){
+        var mID = mapMNametoMID[metricsSorted[i]];
+        if(!(curMetric % numPerCol)){
+            curCol++;
+            columns.push($("<div style=\"display:table; border-spacing:10px;\"></div>"));
         }
+        var divRow = $("<div style=\"display:table-row; width: "+colWidth+"px !important;\"></div>");
+        var jSliderCell = $("<div style=\" display:table-cell; margin: 15px; vertical-align: middle;\"></div>");
+        var jSlider = $("<div id='slider"+mID+"' style=\"width: 200px !important;  height=17px;\" ></div>");
+        jSlider.slider({
+            value: 0,
+            range: "min",
+            animate: true,
+            orientation: "horizontal",
+            slide: function( event, ui){
+                slideChange(this, ui.value);
+            }
+        });
+        jSliderCell.append(jSlider);
+        divRow.append("<div style=\"display:table-cell;\">"+metricsSorted[i]+"</div>");
+        divRow.append(jSliderCell);
+        var spinCell = $("<div style=\"display:table-cell; \"></div>");
+        var spin = $("<input id='spin"+mID+"' size='3'/>");
+        spinCell.append(spin);
+        divRow.append(spinCell);
+        divRow.append("<div style=\"display:table-cell;\" id='perLabel"+mID+"'>100%</div>");
+        columns[curCol].append(divRow);
+        curMetric++;
     }
         var colTable = $("<div style=\"display:table; border-spacing: 9px;\"></div>");
     for(var i = 0; i<columns.length; i++){
