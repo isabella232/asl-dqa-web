@@ -66,6 +66,7 @@ function setupWeightTab(jTab){
             var spin = $("<input id='spin"+wMetric+"' size='3'/>");
             spinCell.append(spin);
             divRow.append(spinCell);
+            divRow.append("<div style=\"display:table-cell;\" id='perLabel"+wMetric+"'>100%</div>");
             columns[curCol].append(divRow);
             curMetric++;
         }
@@ -124,7 +125,26 @@ function spinChange(spin){
     if($(sliderID).slider("value") != value){
         $(sliderID).slider("value",value);
     }
+    calcWeightPercent();
     weights[metricID] = value;
+}
+
+function calcWeightPercent(){
+    //Calculate total value
+    var weightTotal = 0;
+    $("input[id^=spin]").each(function(){
+        weightTotal = weightTotal + parseInt($(this).spinner("value"));
+    });
+    //Calculate and display each percentage
+    $("input[id^=spin]").each(function(){
+        var value = parseFloat($(this).spinner("value"));
+        if(value <= 0){
+            $("#perLabel"+$(this).attr("id").slice(4)).text("0%");
+        }
+        else{
+            $("#perLabel"+$(this).attr("id").slice(4)).text((value/weightTotal*100).toFixed(1)+"%");
+        }
+    });
 }
 
 function addPercent(rowID, metricID, value){
