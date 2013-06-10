@@ -41,7 +41,6 @@ function setupWeightTab(jTab){
         }
     }
     metricsSorted = metrics.sort(naturalSort);
-    alert(metricsSorted);
     var numPerCol = Math.ceil(numMetrics/numCol);
     var curMetric = 0;
     var curCol = -1;
