@@ -13,8 +13,8 @@ function setupTabs() {
         collapsible: true
     });
     setupWeightTab(jtab);
+    setupExportTab(jtab);
     //setupColumnTab(jtab);
     //setupGroupTab(jtab);
-    //setupExportTab(jtab);
     jtab.tabs( "option", "selected", -1);  //Have to select -1 so that the tabs are collapsed.
 }
