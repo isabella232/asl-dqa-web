@@ -120,26 +120,6 @@ function initializeTable(){
         //,"sScrollXInner": "5200px"
         ,"bScrollCollapse": true
         //,"sDom": 'TC<"clear">lfrtip'
-        /*,"oTableTools": {
-            "aButtons": [ 
-            {
-            "sExtends":"copy",
-            "fnInit": function(node){formatTableTools(node, 'ui-icon-clipboard');}
-            },
-            {
-            "sExtends":"print",
-            "fnInit": function(node){formatTableTools(node, 'ui-icon-print');}
-            },
-            {
-            "sExtends":"csv",
-            "fnInit": function(node){formatTableTools(node, 'ui-icon-calculator');}
-            },
-            {
-            "sExtends":"pdf",
-            "fnInit": function(node){formatTableTools(node, 'ui-icon-copy');}
-            }
-            ]
-            }*/
     });
     if (pageType == "summary"){
         dTable.fnSetColumnVis(2, false);
