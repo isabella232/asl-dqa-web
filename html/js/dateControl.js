@@ -105,13 +105,22 @@ function setupLastDate(lastDate){
     var qsEndDate;
     if(qsEndDate = getQueryString("edate")){
         lastDate = qsEndDate;
-        }
+    }
     setEndDate(lastDate);
+}
+
+function setupDateType(){
+    var dateType;
+    if(dateType = getQueryString("tdate")){
+        $("[id^=dpFormat]").each(function(){
+            $(this).val(dateType).trigger("change");
+        });
+    }
 }
 
 function setStartDate(newStartDate){
     $("[id^=dpStartDate]").each(function(){
-        $(this).val(newStartDate);
+        $(this).datepicker("setDate", newStartDate);
     });
     $("[id^=dpEndDate]").each(function(){
         $(this).datepicker("option", "minDate", newStartDate);
@@ -120,7 +129,7 @@ function setStartDate(newStartDate){
 
 function setEndDate(newEndDate){
     $("[id^=dpEndDate]").each(function(){
-        $(this).val(newEndDate);
+        $(this).datepicker("setDate", newEndDate);
     });
     $("[id^=dpStartDate]").each(function(){
         $(this).datepicker("option", "maxDate", newEndDate);
@@ -149,8 +158,15 @@ function getQueryDates(){
 }
 
 function getStartDate(complex){
-    if (complex == 'simple')
-        return $("[id^=dpStartDate]").first().val();
+    if (complex == 'simple'){
+        var odate = $("[id^=dpStartDate]").first().datepicker("getDate");
+        return "" 
+        +odate.getUTCFullYear()
+        +"-"
+        +prepad((odate.getUTCMonth()+1),2,"0")
+        +"-"
+        +prepad(odate.getUTCDate(),2,"0");
+    }
     else if (complex == 'object')
         return $("[id^=dpStartDate]").first().datepicker("getDate");
     else if (complex == 'query'){
@@ -165,8 +181,15 @@ function getStartDate(complex){
 }
 
 function getEndDate(complex){
-    if (complex == 'simple')
-        return $("[id^=dpEndDate]").first().val();
+    if (complex == 'simple'){
+        var odate = $("[id^=dpEndDate]").first().datepicker("getDate");
+        return "" 
+        +odate.getUTCFullYear()
+        +"-"
+        +prepad((odate.getUTCMonth()+1),2,"0")
+        +"-"
+        +prepad(odate.getUTCDate(),2,"0");
+    }
     else if (complex == 'object')
         return $("[id^=dpEndDate]").first().datepicker("getDate");
     else if (complex == 'query'){
@@ -178,4 +201,8 @@ function getEndDate(complex){
     }
     else
         return $("#dpEndDate").val();
+}
+
+function getDateType(){
+    return $("[id^=dpFormat]").val();  
 }

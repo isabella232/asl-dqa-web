@@ -44,6 +44,7 @@ $(document).ajaxStop(function(){
     processAllAggr();
     //Make all buttons jqueryui buttons
     $("button").button();
+    setupDateType(); //Sets it to ordinal date if they were on ordinal date before.
 });
 
 function getSetupData(){

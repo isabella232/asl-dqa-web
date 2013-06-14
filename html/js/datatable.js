@@ -17,7 +17,8 @@ function bindTableActions() {
             else if(id.charAt(0) == 'l'){
                 window.location = 'dataq.html?station='+id.split('_')[1]
                 +'&sdate='+getStartDate('simple')
-                +'&edate='+getEndDate('simple');
+                +'&edate='+getEndDate('simple')
+                +'&tdate='+getDateType();
             }
         }
     });
