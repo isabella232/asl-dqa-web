@@ -48,9 +48,9 @@ SELECT fnsclGetGroups()
 SELECT fnsclGetGroupTypes()
 """
 }
+binPath = "/dataq/bin/"
 
-#database_conString = 'localhost,dev,asldev,dataq_dev,5433'
-database_conString = '136.177.121.210,dev,asldev,dataq_dev,5432'
+database_conString = open(binPath+'db.config', 'r').readline()
 database = Database.Database(database_conString)
 
 def error(message=None):
