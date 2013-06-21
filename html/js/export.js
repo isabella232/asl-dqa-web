@@ -7,11 +7,12 @@ License: Public Domain
 
 var tabTools;
 
-function setupExportTab(jTab){
+function setupExportTab(jTab, curTab){
     var eTab = $("<div id='tExport' style=\"font-size: 12px\"></div>");
     //Change the TableTool defaults prior to creating tabTools.
     //Using the method specified here datatables/extras/TableTools/alt_init.html does not work.
-    TableTools.DEFAULTS.aButtons = [ 
+    tabTools = new TableTools(dTable, {
+    "aButtons":  [ 
                 {
                     "sExtends":"copy",
                     "fnInit": function(node){formatTableTools(node, 'ui-icon-clipboard');}
@@ -28,8 +29,12 @@ function setupExportTab(jTab){
                     "sExtends":"pdf",
                     "fnInit": function(node){formatTableTools(node, 'ui-icon-copy');}
                 }
-            ];
-    tabTools = new TableTools(dTable);
+            ]
+
+    });
     jTab.tabs("add", "#tExport", "Export");
     $("#tExport").append(tabTools.dom.container);
+    jTab.on( "tabsactivate", function(event, ui){
+        tabTools.fnResizeButtons();
+    });
 }

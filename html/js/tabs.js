@@ -12,8 +12,10 @@ function setupTabs() {
     jtab.tabs({
         collapsible: true
     });
+    var curTab = 0;
     setupWeightTab(jtab);
-    setupExportTab(jtab);
+    curTab++;
+    setupExportTab(jtab, curTab);
     //setupColumnTab(jtab);
     //setupGroupTab(jtab);
     jtab.tabs( "option", "selected", -1);  //Have to select -1 so that the tabs are collapsed.
