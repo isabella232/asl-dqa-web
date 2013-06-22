@@ -16,7 +16,8 @@ function setupTabs() {
     setupWeightTab(jtab);
     curTab++;
     setupExportTab(jtab, curTab);
-    //setupColumnTab(jtab);
+    curTab++;
+    setupColumnTab(jtab);
     //setupGroupTab(jtab);
     jtab.tabs( "option", "selected", -1);  //Have to select -1 so that the tabs are collapsed.
 }
