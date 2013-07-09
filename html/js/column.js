@@ -61,12 +61,20 @@ function bindColumnTab(){
             $(this).siblings("input").trigger("click"); //Scope changed "this" now refers to label we found.
         });
         $(this).find("input").on("click",function(){
-            var colID = $(this).parent().attr("id").slice(8);
-            dTable.fnSetColumnVis( colID, !dTable.fnSettings().aoColumns[colID].bVisible);
+            setColVis(this);
         });
     });
     $("#btnCheckAll").on("click",function(){
+        $("div[id^=metricCB]").find("input[type=checkbox]").each(function(){
+            $(this).prop("checked", true);
+            setColVis(this);
+        });
     });
     $("#btnUnCheckAll").on("click",function(){
     });
+}
+
+function setColVis(checkbox){
+    var colID = $(checkbox).parent().attr("id").slice(8);
+    dTable.fnSetColumnVis( colID, $(checkbox).prop("checked")); //Element property is changed before event is fired.
 }
