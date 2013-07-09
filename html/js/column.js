@@ -27,7 +27,9 @@ function setupColumnTab(jTab){
             curCol++;
             columns.push($("<div style=\"display:table; border-spacing:10px;\"></div>"));
         }
-        columns[curCol].append(createCheckbox(metrics[curMetric], curMetric));
+        if(metrics[curMetric].bVisible){
+            columns[curCol].append(createCheckbox(metrics[curMetric], curMetric));
+        }
     }
     var colTable = $("<div style=\"display:table; border-spacing: 9px;\"></div>");
     for(var i = 0; i<columns.length; i++){
@@ -57,5 +59,6 @@ function setupColumnTab(jTab){
 function createCheckbox(metricCol, colID){
     var cbdiv = $("<div id='metricCB"+colID+"'/>");
     cbdiv.append($("<input type='checkbox'/>"));
+    cbdiv.append($("<label>"+metricCol.sTitle+"</label>"));
     return cbdiv;
 }
