@@ -27,7 +27,7 @@ function setupColumnTab(jTab){
             curCol++;
             columns.push($("<div style=\"display:table; border-spacing:10px;\"></div>"));
         }
-        if(metrics[curMetric].bVisible){
+        if(metrics[curMetric].bVisible){  //If the column is hidden by default we don't want to let users view it. This applies to the groups column which is used for filtering.
             columns[curCol].append(createCheckbox(metrics[curMetric], curMetric));
         }
     }
@@ -38,6 +38,12 @@ function setupColumnTab(jTab){
         colTable.append(col);
     }
     eTab.append(colTable);
+    eTab.append(
+        "<button type='button' id='btnCheckAll'>Show All</button>"
+    );
+    eTab.append(
+        "<button type='button' id='btnUnCheckAll'>Hide All</button>"
+    );
 //    jTab.on( "tabsactivate", function(event, ui){
     //colVis.fnRebuild();
 //    });
