@@ -71,10 +71,14 @@ function bindColumnTab(){
         });
     });
     $("#btnUnCheckAll").on("click",function(){
+        $("div[id^=metricCB]").find("input[type=checkbox]").each(function(){
+            $(this).prop("checked", false);
+            setColVis(this);
+        });
     });
 }
 
 function setColVis(checkbox){
     var colID = $(checkbox).parent().attr("id").slice(8);
-    dTable.fnSetColumnVis( colID, $(checkbox).prop("checked")); //Element property is changed before event is fired.
+    dTable.fnSetColumnVis( colID, $(checkbox).prop("checked"));
 }
