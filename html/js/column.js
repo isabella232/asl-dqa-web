@@ -45,27 +45,25 @@ function setupColumnTab(jTab){
     eTab.append(
         "<button type='button' id='btnUnCheckAll'>Hide All</button>"
     );
-//    jTab.on( "tabsactivate", function(event, ui){
-    //colVis.fnRebuild();
-//    });
+    bindColumnTab();
 }
-/*    wTab.append(colTable);
-    wTab.append(   
-        "<button type='button' id='btnWeightReset'>Reset Weights</button>"
-    );
-    wTab.append(   
-        "<button type='button' id='btnWeightSetZero'>Zero Weights</button>"
-    );
-    wTab.append(   
-        "<button type='button' id='btnWeightProcessAggr'>Recompute Aggregrate</button>"
-    );
-    jTab.append(wTab);
-    jTab.tabs("add", "#tWeight", "Weights");
-    bindWeightTab();*/
 
 function createCheckbox(metricCol, colID){
     var cbdiv = $("<div id='metricCB"+colID+"'/>");
-    cbdiv.append($("<input type='checkbox'/>"));
+    cbdiv.append($("<input type='checkbox' checked='checked'/>"));
     cbdiv.append($("<label>"+metricCol.sTitle+"</label>"));
     return cbdiv;
+}
+
+function bindColumnTab(){
+    $("div[id^=metricCB]").find("label").each(function(){
+        $(this).on("click",function(){
+            var checkbox = $(this).siblings("input");
+            checkbox.trigger("click");
+        });
+    });
+    $("#btnCheckAll").on("click",function(){
+    });
+    $("#btnUnCheckAll").on("click",function(){
+    });
 }
