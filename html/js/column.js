@@ -60,6 +60,10 @@ function bindColumnTab(){
         $(this).find("label").on("click",function(){
             $(this).siblings("input").trigger("click"); //Scope changed "this" now refers to label we found.
         });
+        $(this).find("input").on("click",function(){
+            var colID = $(this).parent().attr("id").slice(8);
+            dTable.fnSetColumnVis( colID, !dTable.fnSettings().aoColumns[colID].bVisible);
+        });
     });
     $("#btnCheckAll").on("click",function(){
     });
