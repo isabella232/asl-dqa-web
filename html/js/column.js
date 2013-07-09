@@ -56,10 +56,9 @@ function createCheckbox(metricCol, colID){
 }
 
 function bindColumnTab(){
-    $("div[id^=metricCB]").find("label").each(function(){
-        $(this).on("click",function(){
-            var checkbox = $(this).siblings("input");
-            checkbox.trigger("click");
+    $("div[id^=metricCB]").each(function(){
+        $(this).find("label").on("click",function(){
+            $(this).siblings("input").trigger("click"); //Scope changed "this" now refers to label we found.
         });
     });
     $("#btnCheckAll").on("click",function(){
