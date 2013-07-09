@@ -31,7 +31,7 @@ function setupWeightTab(jTab){
         numCol = maxCol;
     }
     var numMetrics = 0;
-    
+
     var metricsSorted = new Array();
     var metrics = new Array();
     for (var wMetric in weights ){
@@ -74,7 +74,7 @@ function setupWeightTab(jTab){
         columns[curCol].append(divRow);
         curMetric++;
     }
-        var colTable = $("<div style=\"display:table; border-spacing: 9px;\"></div>");
+    var colTable = $("<div style=\"display:table; border-spacing: 9px;\"></div>");
     for(var i = 0; i<columns.length; i++){
         var col = $("<div style=\"display:table-cell;\"></div>");
         col.append(columns[i]);
@@ -109,14 +109,14 @@ function bindWeightTab(){
         });
     });
     $("#btnWeightReset").on("click",function(){
-    $("input[id^=spin]").each(function(){
-        $(this).spinner("value", 50);
-    });
+        $("input[id^=spin]").each(function(){
+            $(this).spinner("value", 50);
+        });
     });
     $("#btnWeightSetZero").on("click",function(){
-    $("input[id^=spin]").each(function(){
-        $(this).spinner("value", 0);
-    });
+        $("input[id^=spin]").each(function(){
+            $(this).spinner("value", 0);
+        });
     });
     $("#btnWeightProcessAggr").on("click",function(){
         processAllAggr();
