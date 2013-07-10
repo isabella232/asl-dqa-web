@@ -58,9 +58,11 @@ function createCheckbox(metricCol, colID){
 function bindColumnTab(){
     $("div[id^=metricCB]").each(function(){
         $(this).find("label").on("click",function(){
-            $(this).siblings("input").trigger("click"); //Scope changed "this" now refers to label we found.
+            var checkbox = $(this).siblings("input[type=checkbox]");
+            $(checkbox).prop("checked", !checkbox.prop("checked"));
+            setColVis(checkbox);
         });
-        $(this).find("input").on("click",function(){
+        $(this).find("input[type=checkbox]").on("click",function(){
             setColVis(this);
         });
     });
