@@ -151,7 +151,7 @@ function fillTable(){
                 if(mapMNametoMID[dTable.fnSettings().aoColumns[c].sTitle]){
                     numCols++; 
                     var metricID = mapMNametoMID[dTable.fnSettings().aoColumns[c].sTitle];
-                    $.get("/cgi-bin/metrics.py", {cmd: "stationgrid", param: "station."+rowIDs+
+                    $.get("cgi-bin/metrics.py", {cmd: "stationgrid", param: "station."+rowIDs+
                         "_metric."+metricID+"_dates."+dates},
                     function(data){
                         parseDataReturn(data, metricID);
@@ -172,7 +172,7 @@ function fillTable(){
                 if(mapMNametoMID[dTable.fnSettings().aoColumns[c].sTitle]){
                     numCols++; 
                     var metricID = mapMNametoMID[dTable.fnSettings().aoColumns[c].sTitle];
-                    $.get("/cgi-bin/metrics.py", {cmd: "channelgrid", param: "channel."+rowIDs+
+                    $.get("cgi-bin/metrics.py", {cmd: "channelgrid", param: "channel."+rowIDs+
                         "_metric."+metricID+"_dates."+dates},
                     function(data){
                         parseDataReturn(data, metricID);

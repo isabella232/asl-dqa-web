@@ -50,7 +50,7 @@ $(document).ajaxStop(function(){
 function getSetupData(){
     if (pageType == "station"){
         var station = getQueryString("station");
-        $.get("/cgi-bin/metrics.py", 
+        $.get("cgi-bin/metrics.py", 
             {cmd: "groups_dates_stations_metrics_channels", param: "station."+station},
             function(data){
                 parseSetupResponse(data);
@@ -64,7 +64,7 @@ function getSetupData(){
         ); 
     }
     else if (pageType == "summary"){
-        $.get("/cgi-bin/metrics.py", 
+        $.get("cgi-bin/metrics.py", 
             {cmd: "groups_dates_stations_metrics"},
             function(data){
                 parseSetupResponse(data);
