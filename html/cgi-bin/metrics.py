@@ -13,7 +13,8 @@ import cgi
 import cgitb
 cgitb.enable()
 
-sys.path.insert(0, "/dataq/bin/")
+binPath = "/dataq/bin/"
+sys.path.insert(0, binPath)
 import Database
 
 queries = {
@@ -48,7 +49,6 @@ SELECT fnsclGetGroups()
 SELECT fnsclGetGroupTypes()
 """
 }
-binPath = "/dataq/bin/"
 
 database_conString = open(binPath+'db.config', 'r').readline()
 database = Database.Database(database_conString)
