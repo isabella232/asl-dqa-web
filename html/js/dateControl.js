@@ -63,6 +63,7 @@ function bindDateRangeSpan(id){
         changeYear: true,
         numberOfMonths: 2,
         dateFormat: "yy-mm-dd",
+        yearRange: "1940:2100",
         onClose: function(selectedDate){
             selectStartDate(selectedDate);
         }
@@ -72,6 +73,7 @@ function bindDateRangeSpan(id){
         changeYear: true,
         numberOfMonths: 2,
         dateFormat: "yy-mm-dd",
+        yearRange: "1940:2100",
         onClose: function(selectedDate){
             selectEndDate(selectedDate);
         }
