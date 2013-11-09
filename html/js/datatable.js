@@ -6,7 +6,13 @@ License: Public Domain
 */
 
 var dTable; //DataTable object used throughout
-var numCols = 0; //Used to track number of columns currently being updated.
+
+var dTableAjaxMan = $.manageAjax.create('dTableAjaxMan',
+    {
+        queue: false,
+        cacheResponse: false
+    }
+);
 
 function bindTableActions() {
     dTable.find('tbody td').click(function(){
@@ -136,7 +142,14 @@ function formatTableTools(button, icon){
 //fillTable() queries the CGI for data, parses it with parseDataReturn(), then calls processAllAggr().
 //It uses global variable numCols to track how many columns have been updated.
 function fillTable(){
-    numCols = 0;
+    dTableAjaxMan.abort();
+    /*$.manageAjax.destroy('dTableAjaxMan');
+    dTableAjaxMan = $.manageAjax.create('dTableAjaxMan',
+        {
+            queue: false,
+            cacheResponse: false
+        }
+    );*/
     var rowIDs = new String(); //Will contain a list of delimited channel/station IDs EG 20-21-22-35
     rowIDs = "";
     var dates = getQueryDates();
@@ -149,19 +162,19 @@ function fillTable(){
         $.each(dTable.fnSettings().aoColumns, function(c){
             if(dTable.fnSettings().aoColumns[c].bVisible == true){
                 if(mapMNametoMID[dTable.fnSettings().aoColumns[c].sTitle]){
-                    numCols++; 
                     var metricID = mapMNametoMID[dTable.fnSettings().aoColumns[c].sTitle];
-                    $.get("cgi-bin/metrics.py", {cmd: "stationgrid", param: "station."+rowIDs+
-                        "_metric."+metricID+"_dates."+dates},
-                    function(data){
-                        parseDataReturn(data, metricID);
-                        numCols--;
-                        if(numCols <= 0){
-                            processAllAggr();//compute aggregate This is called twice during the first load
-                            dTable.fnDraw();
-                        }
-                    }
-                    );
+                    dTableAjaxMan.add({
+                            success: function(data){
+                                parseDataReturn(data, metricID);
+                                if(dTableAjaxMan.inProgress <= 1){
+                                    processAllAggr();//compute aggregate This is called twice during the first load
+                                    dTable.fnDraw();
+                                }
+                            },
+                            url: "cgi-bin/metrics.py",
+                            data: {cmd: "stationgrid", param: "station."+rowIDs+
+                                "_metric."+metricID+"_dates."+dates}
+                        });
                 }
             }
         });
@@ -170,19 +183,19 @@ function fillTable(){
         $.each(dTable.fnSettings().aoColumns, function(c){
             if(dTable.fnSettings().aoColumns[c].bVisible == true){
                 if(mapMNametoMID[dTable.fnSettings().aoColumns[c].sTitle]){
-                    numCols++; 
                     var metricID = mapMNametoMID[dTable.fnSettings().aoColumns[c].sTitle];
-                    $.get("cgi-bin/metrics.py", {cmd: "channelgrid", param: "channel."+rowIDs+
-                        "_metric."+metricID+"_dates."+dates},
-                    function(data){
-                        parseDataReturn(data, metricID);
-                        numCols--;
-                        if(numCols <= 0){
-                            processAllAggr();//compute aggregate This is called twice during the first load
-                            dTable.fnDraw();
-                        }
-                    }
-                    );
+                    dTableAjaxMan.add({
+                            success: function(data){
+                                parseDataReturn(data, metricID);
+                                if(dTableAjaxMan.inProgress <= 1){
+                                    processAllAggr();//compute aggregate This is called twice during the first load
+                                    dTable.fnDraw();
+                                }
+                            },
+                            url: "cgi-bin/metrics.py",
+                            data: {cmd: "channelgrid", param: "channel."+rowIDs+
+                                "_metric."+metricID+"_dates."+dates}
+                        });
                 }
             }
         });
