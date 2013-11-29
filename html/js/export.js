@@ -15,19 +15,23 @@ function setupExportTab(jTab, curTab){
         "aButtons":  [ 
             {
                 "sExtends":"copy",
-                "fnInit": function(node){formatTableTools(node, 'ui-icon-clipboard');}
+                "fnInit": function(node){formatTableTools(node, 'ui-icon-clipboard');},
+                "mColumns": "visible"
             },
             {
                 "sExtends":"print",
-                "fnInit": function(node){formatTableTools(node, 'ui-icon-print');}
+                "fnInit": function(node){formatTableTools(node, 'ui-icon-print');},
+                "mColumns": "visible"
             },
             {
                 "sExtends":"csv",
-                "fnInit": function(node){formatTableTools(node, 'ui-icon-calculator');}
+                "fnInit": function(node){formatTableTools(node, 'ui-icon-calculator');},
+                "mColumns": "visible"
             },
             {
                 "sExtends":"pdf",
-                "fnInit": function(node){formatTableTools(node, 'ui-icon-copy');}
+                "fnInit": function(node){formatTableTools(node, 'ui-icon-copy');},
+                "mColumns": "visible"
             }
         ]
 
