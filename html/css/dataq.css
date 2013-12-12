@@ -2,7 +2,10 @@
 /*body{font-size:11px;}*/
 
 .ddl {position: relative; z-index:9001;}
-.ltd {color:blue;}
+.ltd {
+    color: blue;
+    text-align: center;
+}
 .ltd:hover {
     text-decoration:underline;
     cursor: hand;
