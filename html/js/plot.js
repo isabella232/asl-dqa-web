@@ -67,7 +67,8 @@ function bindPlot(pid, title){
                 },
                 yaxis: {
                     tickOptions:{
-                        fontSize: '10pt'
+                        fontSize: '10pt',
+                        formatString: '%.2f'
                     },
                     pad: 1.01
                 }
