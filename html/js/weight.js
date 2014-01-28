@@ -90,8 +90,8 @@ function setupWeightTab(jTab){
     wTab.append(   
         "<button type='button' id='btnWeightProcessAggr'>Recompute Aggregrate</button>"
     );
+jTab.find("ul").append('<li><a href="#tWeight">Weights</a></li>');
     jTab.append(wTab);
-    jTab.tabs("add", "#tWeight", "Weights");
     bindWeightTab();
 }
 

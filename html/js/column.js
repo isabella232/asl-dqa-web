@@ -8,8 +8,8 @@ License: Public Domain
 var colVis;
 function setupColumnTab(jTab){
     var eTab = $("<div id='tColumn' style=\"font-size: 12px\"></div>");
-    jTab.append(eTab);
-    jTab.tabs("add", "#tColumn", "Column");
+jTab.find("ul").append('<li><a href="#tColumn">Columns</a></li>');
+jTab.append(eTab);
 
     var maxCol = 4;
     var colWidth = 460; //This size was left over from weight columns.

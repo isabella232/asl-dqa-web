@@ -36,9 +36,10 @@ function setupExportTab(jTab, curTab){
         ]
 
     });
-    jTab.tabs("add", "#tExport", "Export");
+jTab.find("ul").append('<li><a href="#tExport">Export</a></li>');
+    jTab.append(eTab);
     $("#tExport").append(tabTools.dom.container);
-    jTab.on( "tabsactivate", function(event, ui){
+    jTab.on( "activate", function(event, ui){
         tabTools.fnResizeButtons();
     });
 }
