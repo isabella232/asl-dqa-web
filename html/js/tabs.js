@@ -17,7 +17,8 @@ function setupTabs() {
     setupColumnTab(jtab);
     //setupGroupTab(jtab);
     jtab.tabs({
-        collapsible: true
+        collapsible: true,
+        active: false
     });
     jtab.tabs( "option", "selected", -1);  //Have to select -1 so that the tabs are collapsed.
 }
