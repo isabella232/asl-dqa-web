@@ -1,7 +1,7 @@
 
 /*body{font-size:11px;}*/
 
-.ddl {position: relative; z-index:9001;}
+.ddl {position: relative;}
 .ltd {
     color: blue;
     text-align: center;
@@ -88,3 +88,23 @@ tr.odd {
     background-color: white;
 }
 
+/*Progress Bar Classes*/
+.noTitle .ui-dialog-titlebar {
+    display:none;
+}
+.noBackGround {
+    background:transparent !important;
+}
+.ui-progressbar {
+    top: 45%;
+    position: relative;
+}
+.progress-label {
+    display: table;
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    top: 4px;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #fff;
+}
