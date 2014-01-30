@@ -20,12 +20,7 @@ var progress = $("#dlgprogressbar").dialog({
 });
 progress.append($('<div id="progressbar"><div class="progress-label">Loading...</div></div>').progressbar({value: false}));
 progress.dialog("moveToTop");
-$(document)
-.ajaxStart(function () {
-    progress.dialog("open");
-    progress.dialog("moveToTop");
-})
-.ajaxStop(function () {
+$(document).ajaxStop(function () {
     progress.dialog("close");
 });
 });
