@@ -173,7 +173,8 @@ function fillTable(){
                             },
                             url: "cgi-bin/metrics.py",
                             data: {cmd: "stationgrid", param: "station."+rowIDs+
-                                "_metric."+metricID+"_dates."+dates}
+                                "_metric."+metricID+"_dates."+dates},
+                            global: false //We don't want to show the loadingdiv.
                         });
                 }
             }
@@ -194,7 +195,8 @@ function fillTable(){
                             },
                             url: "cgi-bin/metrics.py",
                             data: {cmd: "channelgrid", param: "channel."+rowIDs+
-                                "_metric."+metricID+"_dates."+dates}
+                                "_metric."+metricID+"_dates."+dates},
+                            global: false //We don't want to show the loadingdiv.
                         });
                 }
             }
