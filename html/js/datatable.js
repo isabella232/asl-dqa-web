@@ -145,10 +145,10 @@ function fillTable(){
     dTableAjaxMan.abort();
     /*$.manageAjax.destroy('dTableAjaxMan');
     dTableAjaxMan = $.manageAjax.create('dTableAjaxMan',
-        {
-            queue: false,
-            cacheResponse: false
-        }
+    {
+    queue: false,
+    cacheResponse: false
+    }
     );*/
     var rowIDs = new String(); //Will contain a list of delimited channel/station IDs EG 20-21-22-35
     rowIDs = "";
@@ -164,18 +164,18 @@ function fillTable(){
                 if(mapMNametoMID[dTable.fnSettings().aoColumns[c].sTitle]){
                     var metricID = mapMNametoMID[dTable.fnSettings().aoColumns[c].sTitle];
                     dTableAjaxMan.add({
-                            success: function(data){
-                                parseDataReturn(data, metricID);
-                                if(dTableAjaxMan.inProgress <= 1){
-                                    processAllAggr();//compute aggregate This is called twice during the first load
-                                    dTable.fnDraw();
-                                }
-                            },
-                            url: "cgi-bin/metrics.py",
-                            data: {cmd: "stationgrid", param: "station."+rowIDs+
-                                "_metric."+metricID+"_dates."+dates},
-                            global: false //We don't want to show the loadingdiv.
-                        });
+                        success: function(data){
+                            parseDataReturn(data, metricID);
+                            if(dTableAjaxMan.inProgress <= 1){
+                                processAllAggr();//compute aggregate This is called twice during the first load
+                                dTable.fnDraw();
+                            }
+                        },
+                        url: "cgi-bin/metrics.py",
+                        data: {cmd: "stationgrid", param: "station."+rowIDs+
+                            "_metric."+metricID+"_dates."+dates},
+                        global: false //We don't want to show the loadingdiv.
+                    });
                 }
             }
         });
@@ -186,18 +186,18 @@ function fillTable(){
                 if(mapMNametoMID[dTable.fnSettings().aoColumns[c].sTitle]){
                     var metricID = mapMNametoMID[dTable.fnSettings().aoColumns[c].sTitle];
                     dTableAjaxMan.add({
-                            success: function(data){
-                                parseDataReturn(data, metricID);
-                                if(dTableAjaxMan.inProgress <= 1){
-                                    processAllAggr();//compute aggregate This is called twice during the first load
-                                    dTable.fnDraw();
-                                }
-                            },
-                            url: "cgi-bin/metrics.py",
-                            data: {cmd: "channelgrid", param: "channel."+rowIDs+
-                                "_metric."+metricID+"_dates."+dates},
-                            global: false //We don't want to show the loadingdiv.
-                        });
+                        success: function(data){
+                            parseDataReturn(data, metricID);
+                            if(dTableAjaxMan.inProgress <= 1){
+                                processAllAggr();//compute aggregate This is called twice during the first load
+                                dTable.fnDraw();
+                            }
+                        },
+                        url: "cgi-bin/metrics.py",
+                        data: {cmd: "channelgrid", param: "channel."+rowIDs+
+                            "_metric."+metricID+"_dates."+dates},
+                        global: false //We don't want to show the loadingdiv.
+                    });
                 }
             }
         });
