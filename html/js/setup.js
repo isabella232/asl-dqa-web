@@ -37,7 +37,7 @@ $(document).ready(function(){
     setupHeader();
 });
 
-$(document).ajaxStop(function(){
+$(document).ajaxStop(function(){ //This may compete with ajaxStop trigger in progressbar.js
     $(this).unbind("ajaxStop"); //Prevents ajaxStop from being called in the future. We only need it on initial load.
     setupTabs();
     resetWeights();
