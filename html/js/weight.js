@@ -253,5 +253,5 @@ function setAggregateClass(cell, value){
 
 //We need to do this when we update the datatable.
 function resetPercents(){
-percents = {};
+    percents = {};
 }
