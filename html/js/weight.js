@@ -250,3 +250,8 @@ function setAggregateClass(cell, value){
     else
         jcell.addClass('aggrRed');
 }
+
+//We need to do this when we update the datatable.
+function resetPercents(){
+percents = {};
+}

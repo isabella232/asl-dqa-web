@@ -142,6 +142,7 @@ function formatTableTools(button, icon){
 //fillTable() queries the CGI for data, parses it with parseDataReturn(), then calls processAllAggr().
 //It uses global variable numCols to track how many columns have been updated.
 function fillTable(){
+    resetPercents();
     dTableAjaxMan.abort();
     /*$.manageAjax.destroy('dTableAjaxMan');
     dTableAjaxMan = $.manageAjax.create('dTableAjaxMan',
