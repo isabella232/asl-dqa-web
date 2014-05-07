@@ -108,3 +108,11 @@ tr.odd {
     font-weight: bold;
     text-shadow: 1px 1px 0 #fff;
 }
+
+tr.even.rowSelected td{
+    background-color: #A3A3FF;
+}
+
+tr.odd.rowSelected td{
+    background-color: #BFBFFF;
+}

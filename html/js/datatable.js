@@ -28,6 +28,13 @@ function bindTableActions() {
             }
         }
     });
+
+    //Highlight row
+    $('#grid tbody').on('mouseenter', 'tr', function(){
+        $(this).addClass('rowSelected');
+    }).on('mouseleave', 'tr', function(){
+        $(this).removeClass('rowSelected');
+    });
 }
 
 function clearTable(){
