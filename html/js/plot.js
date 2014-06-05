@@ -27,8 +27,11 @@ function createDialog(id){
 
     if (pageType == "summary")
         title = mapSIDtoSName[ids[2]]+" "+mapMIDtoMName[ids[1]];
-    else if (pageType == "station")
-        title = mapCIDtoCName[ids[2]]+" "+mapMIDtoMName[ids[1]];
+    else if (pageType == "station"){
+        var stationID = getQueryString("station");
+        var stationName = mapGIDtoGName[mapSIDtoNID[stationID]]+"-"+mapSIDtoSName[stationID];
+        title = stationName+" "+mapCIDtoCName[ids[2]]+" "+mapMIDtoMName[ids[1]];
+    }
     else
         title = "ERROR page type not defined";
 
