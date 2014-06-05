@@ -25,8 +25,9 @@ function createDialog(id){
     var pid = ids[1]+"_"+ids[2]; //removes the "d_" from the front of the id
     var title = undefined;
 
-    if (pageType == "summary")
-        title = mapSIDtoSName[ids[2]]+" "+mapMIDtoMName[ids[1]];
+    if (pageType == "summary"){
+        title = mapGIDtoGName[mapSIDtoNID[ids[2]]]+"-"+mapSIDtoSName[ids[2]]+" "+mapMIDtoMName[ids[1]];
+    }
     else if (pageType == "station"){
         var stationID = getQueryString("station");
         var stationName = mapGIDtoGName[mapSIDtoNID[stationID]]+"-"+mapSIDtoSName[stationID];
