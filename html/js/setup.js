@@ -80,28 +80,6 @@ function getSetupData(){
 
 }
 
-function populateGroups(){
-    var groupList = document.getElementById("ddlGroup");
-    var typesSorted = new Array();
-    var types = new Array();
-    for(var groupType in mapTNametoTID){ //puts the group types into an array that can be sorted
-        if(mapTNametoTID.hasOwnProperty(groupType)){
-            types.push(groupType);
-        }
-    }
-    typesSorted = types.sort();
-    for(var i = 0; i < typesSorted.length; i++){
-        var optGroup = document.createElement('optgroup');
-        optGroup.label = typesSorted[i];
-        groupList.appendChild(optGroup);
-        for(var t = 0; t<mapTIDtoGIDs[mapTNametoTID[typesSorted[i]]].length;t++){
-            var option = document.createElement("option")
-            option.value = mapTIDtoGIDs[mapTNametoTID[typesSorted[i]]][t];
-            option.innerHTML = mapGIDtoGName[mapTIDtoGIDs[mapTNametoTID[typesSorted[i]]][t]];
-            optGroup.appendChild(option);
-        }
-    }
-}
 
 
 function parseSetupResponse(response){
