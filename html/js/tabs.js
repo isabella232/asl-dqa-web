@@ -15,7 +15,8 @@ function setupTabs() {
     setupExportTab(jtab, curTab);
     curTab++;
     setupColumnTab(jtab);
-    //setupGroupTab(jtab);
+
+    setupGroups(jtab);
     jtab.tabs({
         collapsible: true,
         active: false
