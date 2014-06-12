@@ -32,7 +32,9 @@ function setupHeader(){
     }
     //Adding span for dateRange now, but the dates and their controls will be added in the dateselection code.
     var rightSide = $("<span class='right'></span>");
-
+    if(pageType == "summary"){
+        rightSide.append(createGroupSelect("header"));
+    }
     rightSide.append(createDateRangeSpan("header"));
     rightSide.append(
         "<button type='button' id='btnRefresh'>Update</button>"
