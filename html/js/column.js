@@ -28,7 +28,7 @@ function setupColumnTab(jTab){
             columns.push($("<div style=\"display:table; border-spacing:10px;\"></div>"));
         }
         if(metrics[curMetric].bVisible){  //If the column is hidden by default we don't want to let users view it. This applies to the groups column which is used for filtering.
-            columns[curCol].append(createCheckbox(metrics[curMetric], curMetric));
+            columns[curCol].append(createColumnCheckbox(metrics[curMetric], curMetric));
             usedMetrics++;
         }
     }
@@ -48,7 +48,7 @@ function setupColumnTab(jTab){
     bindColumnTab();
 }
 
-function createCheckbox(metricCol, colID){
+function createColumnCheckbox(metricCol, colID){
     var cbdiv = $("<div id='metricCB"+colID+"'/>");
     cbdiv.append($("<input type='checkbox' checked='checked'/>"));
     cbdiv.append($("<label>"+metricCol.sTitle+"</label>"));
