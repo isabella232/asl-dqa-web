@@ -106,8 +106,8 @@ function filterGroups(command){
         return;
     }
     else if(!isNaN(command)){
-       dTable.fnFilter(command, 2, true, false);
-       return;
+        dTable.fnFilter(command, 2, true, false);
+        return;
     }
 
 }
