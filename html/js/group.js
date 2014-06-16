@@ -52,12 +52,12 @@ function setupGroupTab(jTab, typesSorted){
     eTab.append(
         "<button type='button' id='btnFilterGroups'>Filter Table</button>"
     );
-    bindColumnTab();
+    bindGroupTab();
 }
 
 function createGroupCheckbox(label, groupID){
     var cbdiv = $("<div id='groupCB"+groupID+"'/>");
-    cbdiv.append($("<input type='checkbox' checked='checked'/>"));
+    cbdiv.append($("<input type='checkbox'/>"));
     cbdiv.append($("<label>"+label+"</label>"));
     return cbdiv;
 }
@@ -81,18 +81,35 @@ function bindGroupTab(){
             $(this).prop("checked", false);
         });
     });
+    $("#btnFilterGroups").on("click",function(){
+        filterGroups("TAB");
+    });
+
+    $("#ddlGroup").on("change",function(){
+        filterGroups($(this).val());
+    });
 }
 
-function filterGroups(){
-    var filterString = "" 
-    $("div[id^=groupCB]").each(function(){
-        $(this).find("label").on("click",function(){
-            var checkbox = $(this).siblings("input[type=checkbox]");
-            $(checkbox).prop("checked", !checkbox.prop("checked"));
+function filterGroups(command){
+    if(command == "ALL"){
+        dTable.fnFilter("");
+        return;
+    }
+    else if (command == "TAB"){
+        var filterString = "," 
+        $("div[id^=groupCB]").each(function(){
+            if($(this).find("input[type=checkbox]").prop("checked")){
+                filterString += $(this).prop("id").slice(7)+",|,";
+            }
         });
-        $(this).find("input[type=checkbox]").on("click",function(){
-        });
-    });
+        dTable.fnFilter(filterString.slice(0,-2), 2, true, false);
+        return;
+    }
+    else if(!isNaN(command)){
+       dTable.fnFilter(command, 2, true, false);
+       return;
+    }
+
 }
 
 function createGroupSelect(id){
@@ -104,7 +121,7 @@ function fillGroupSelects(typesSorted){
 
     $("[id^=spanGroup]").each(function(){
         var groupList = $("<select id='ddlGroup'></select>");
-        groupList.append($("<option value=0>All</option>"));
+        groupList.append($("<option value='ALL'>All</option>"));
         for(var i = 0; i < typesSorted.length; i++){
             var optGroup = document.createElement('optgroup');
             optGroup.label = typesSorted[i];
