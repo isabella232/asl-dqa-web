@@ -81,6 +81,6 @@ function bindColumnTab(){
 }
 
 function setColVis(checkbox){
-    var colID = $(checkbox).parent().attr("id").slice(8);
+    var colID = $(checkbox).parent().prop("id").slice(8);
     dTable.fnSetColumnVis(colID, $(checkbox).prop("checked"));
 }
