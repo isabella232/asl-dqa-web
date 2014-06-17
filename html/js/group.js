@@ -91,8 +91,8 @@ function bindGroupTab(){
 }
 
 function filterGroups(command){
-    if(command == "ALL"){
-        dTable.fnFilter("");
+    if(String(command) == "ALL"){
+        dTable.fnFilter("", 2, true, false);
         return;
     }
     else if (command == "TAB"){
