@@ -196,7 +196,7 @@ function resetWeights(){
 
 function calcAggr(rowID){
     var numMetrics = 0;
-    var weightSum = 0;
+    var weightSum = 0; //This will be the total of all weights
     var aggr = 0;
     //Build sums and counts before computing aggregates
     for (var metric in percents[rowID] ){ //
@@ -211,8 +211,9 @@ function calcAggr(rowID){
     for (var metric in percents[rowID] ){ //
         if(percents[rowID].hasOwnProperty(metric)){
             //Doesn't need to be multiplied by 100 because the weight already is
-            var trueWeight = weights[metric] / weightSum;
-            aggr += percents[rowID][metric] * trueWeight; 
+            //trueWeight is the ratio of the user selected weight to the weightSum otherwise percentages will be greater/less than 100%
+            var trueWeight = weights[metric] / weightSum;  
+            aggr += percents[rowID][metric] * trueWeight; //Add the weighted portion to the total aggregate.
         }
     }
     return aggr;
