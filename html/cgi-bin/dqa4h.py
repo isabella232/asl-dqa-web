@@ -13,7 +13,7 @@ import Database
 
 queries = {
     "metrics" : """
-SELECT name FROM tblmetric
+SELECT name FROM tblmetric ORDER BY name
 """,
     "data" : """
 SELECT
