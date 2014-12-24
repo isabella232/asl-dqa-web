@@ -53,6 +53,10 @@ ORDER BY
 database_conString = open(binPath+'db.config', 'r').readline()
 database = Database.Database(database_conString)
 
+#Http header
+print "Content-Type: text/plain"
+print ""
+
 def error(message=None):
     if message is None:
         print "ERROR"
@@ -98,7 +102,7 @@ if "sdate" in form:
     sdate = form["sdate"].value
 else:
     sdate = "%"
-if "sdate" in form:
+if "edate" in form:
     edate = form["edate"].value
 else:
     edate = "%"
