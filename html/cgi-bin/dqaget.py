@@ -101,11 +101,11 @@ else:
 if "sdate" in form:
     sdate = form["sdate"].value
 else:
-    sdate = "%"
+    sdate = (time.strftime("%Y-%m-%d"))
 if "edate" in form:
     edate = form["edate"].value
 else:
-    edate = "%"
+    edate = (time.strftime("%Y-%m-%d"))
 
 db_args = (network, station, metric, location, channel, sdate, edate) 
 if cmd_str == "metrics":
