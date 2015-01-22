@@ -8,7 +8,6 @@ psycopg2 module must be installed.
 
 html/cgi-bin/metrics.py line 16 must point to the location of bin/
 
-
 Only the html folder needs to be exposed via the web server.
 
 ###License
