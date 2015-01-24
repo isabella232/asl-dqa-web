@@ -22,7 +22,7 @@ SELECT name FROM tblmetric ORDER BY name
 """,
     "data" : """
 SELECT
-    d1.date AS date,
+    to_date(md.date::text, 'J') AS date,
     grp.name AS network,
     sta.name AS station,
     sen.location AS Location,
@@ -36,19 +36,18 @@ FROM
     JOIN "tblGroup" grp ON sta.fknetworkid = grp.pkgroupid
     JOIN tblMetricdata md ON md.fkChannelid = cha.pkChannelID
     JOIN tblMetric m ON md.fkmetricid = m.pkmetricid
-    JOIN tbldate d1 ON d1.pkdateid = md.date
 WHERE
     grp.name LIKE %s
     AND sta.name LIKE %s
     AND m.name LIKE %s
     AND sen.location LIKE %s
     AND cha.name LIKE %s
-    AND d1.date BETWEEN %s
-    AND %s
+    AND md.date BETWEEN (to_char(%s::date, 'J')::INT)
+    AND (to_char(%s::date, 'J')::INT)
 ORDER BY
     grp.name,
     sta.name,
-    d1.date,
+    md.date,
     sen.location,
     cha.name,
     Value
