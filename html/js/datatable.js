@@ -40,16 +40,17 @@ function bindTableActions() {
 function clearTable(){
     var rows = dTable.fnGetNodes();
     for( var i = 0; i<rows.length; i++){
-        $(rows[i]).find("td").each(function(){
-            var pos = dTable.fnGetPosition(this);
-            if(String($(this).attr("id")).charAt(0) == "d"){ //only clear data cells 
-                dTable.fnUpdate("", pos[0], pos[2], false, false); 
+        var cellTds = dTable.fnGetTds(rows[i]);
+        //fnGetTds returns according to the internal data structure the j increment should match the column index.
+        for( var j = 0; j<cellTds.length; j++){
+            if(String($(cellTds[j]).attr("id")).charAt(0) == "d"){ //only clear data cells 
+                dTable.fnUpdate("", rows[i], j, false, false); 
             }
             if(String($(this).attr("id")).charAt(0) == "a"){
-                dTable.fnUpdate(parseFloat(0), pos[0],pos[2], false, false);
+                dTable.fnUpdate(parseFloat(0), rows[i], j, false, false);
             }
 
-        });
+        }
     }
 }
 
