@@ -51,6 +51,43 @@ ORDER BY
     sen.location,
     cha.name,
     Value
+""",
+    "md5" : """
+SELECT date, md5(string_agg(string, ''))
+FROM (
+    SELECT
+        to_date(md.date::text, 'J') AS date,
+        grp.name::TEXT ||
+        sta.name::TEXT ||
+        sen.location::TEXT ||
+        cha.name::TEXT ||
+        m.name::TEXT ||
+        md.value::TEXT as string
+    FROM
+        tblchannel cha
+        JOIN tblsensor sen ON cha.fksensorid = sen.pksensorid
+        JOIN tblstation sta ON sen.fkstationid = sta.pkstationid
+        JOIN "tblGroup" grp ON sta.fknetworkid = grp.pkgroupid
+        JOIN tblMetricdata md ON md.fkChannelid = cha.pkChannelID
+        JOIN tblMetric m ON md.fkmetricid = m.pkmetricid
+    WHERE
+        grp.name LIKE %s
+        AND sta.name LIKE %s
+        AND m.name LIKE %s
+        AND sen.location LIKE %s
+        AND cha.name LIKE %s
+        AND md.date BETWEEN (to_char(%s::date, 'J')::INT)
+        AND (to_char(%s::date, 'J')::INT)
+    ORDER BY
+        grp.name,
+        sta.name,
+        md.date,
+        sen.location,
+        cha.name,
+        Value
+    ) s1
+GROUP BY date
+ORDER BY date
 """
 }
 
@@ -74,6 +111,13 @@ def printData(records, fmt):
     if(fmt == "Human"):
         for row in records:
             print "%10s %3s %6s %3s %4s %20s %lf" % row
+    elif(fmt == "CSV"):
+        print "\r\n".join(map(", ".join, map( partial(map, str),records))) +"\r\n",
+
+def printMd5(records, fmt):
+    if(fmt == "Human"):
+        for row in records:
+            print "%10s %32s" % row
     elif(fmt == "CSV"):
         print "\r\n".join(map(", ".join, map( partial(map, str),records))) +"\r\n",
 
@@ -128,3 +172,7 @@ if cmd_str == "metrics":
     printMetrics(database.select(queries["metrics"]), fmt)
 elif cmd_str == "data":
     printData(database.select(queries["data"],db_args), fmt)
+elif cmd_str == "md5":
+    printMd5(database.select(queries["md5"],db_args), fmt)
+
+
