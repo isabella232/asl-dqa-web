@@ -52,6 +52,40 @@ ORDER BY
     cha.name,
     Value
 """,
+    "hash" : """
+SELECT
+    to_date(md.date::text, 'J') AS date,
+    grp.name AS network,
+    sta.name AS station,
+    sen.location AS Location,
+    cha.name AS Channel,
+    m.name AS Metric,
+    md.value AS Value,
+    encode(h.hash, 'hex') as Hash
+FROM
+    tblchannel cha
+    JOIN tblsensor sen ON cha.fksensorid = sen.pksensorid
+    JOIN tblstation sta ON sen.fkstationid = sta.pkstationid
+    JOIN "tblGroup" grp ON sta.fknetworkid = grp.pkgroupid
+    JOIN tblMetricdata md ON md.fkChannelid = cha.pkChannelID
+    JOIN tblMetric m ON md.fkmetricid = m.pkmetricid
+    JOIN tblhash h ON md."fkHashID" = h."pkHashID"
+WHERE
+    grp.name LIKE %s
+    AND sta.name LIKE %s
+    AND m.name LIKE %s
+    AND sen.location LIKE %s
+    AND cha.name LIKE %s
+    AND md.date BETWEEN (to_char(%s::date, 'J')::INT)
+    AND (to_char(%s::date, 'J')::INT)
+ORDER BY
+    grp.name,
+    sta.name,
+    md.date,
+    sen.location,
+    cha.name,
+    Value
+""",
     "md5" : """
 SELECT date, md5(string_agg(string, ''))
 FROM (
@@ -111,6 +145,13 @@ def printData(records, fmt):
     if(fmt == "Human"):
         for row in records:
             print "%10s %3s %6s %3s %4s %20s %lf" % row
+    elif(fmt == "CSV"):
+        print "\r\n".join(map(", ".join, map( partial(map, str),records))) +"\r\n",
+
+def printHash(records, fmt):
+    if(fmt == "Human"):
+        for row in records:
+            print "%10s %3s %6s %3s %4s %20s %15lf %32s" % row
     elif(fmt == "CSV"):
         print "\r\n".join(map(", ".join, map( partial(map, str),records))) +"\r\n",
 
@@ -174,5 +215,6 @@ elif cmd_str == "data":
     printData(database.select(queries["data"],db_args), fmt)
 elif cmd_str == "md5":
     printMd5(database.select(queries["md5"],db_args), fmt)
-
+elif cmd_str == "hash":
+    printHash(database.select(queries["hash"],db_args), fmt)
 
