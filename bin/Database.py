@@ -23,7 +23,11 @@ class Database:
     def select_database(self, conString):
         self.close()
         host, user, pwd, db, port = conString.split(',')
-        self.db = psycopg2.connect(host=host, user=user, password=pwd, database=db, port=port)
+        try:
+            self.db = psycopg2.connect(host=host, user=user, password=pwd, database=db, port=port)
+        except psycopg2.Error as e:
+            print "Error in Database.py"
+            sys.exit(1)
         self.cur = self.db.cursor()
 
     def close(self):
@@ -56,8 +60,6 @@ class Database:
             self.db.commit()
 
     def insert_many(self, query, iterator, commit=True):
-        print query
-	#print iterator
         self.cur.executemany(query, iterator)
         if commit:
             self.db.commit()
