@@ -6,6 +6,7 @@ License: Public Domain
 */
 
 var dTable; //DataTable object used throughout
+var doFilter = true; //Boolean that controls whether to apply filters or not
 
 var dTableAjaxMan = $.manageAjax.create('dTableAjaxMan',
     {
@@ -65,13 +66,13 @@ function buildTable(){
         }
     }
     metricsSorted = metrics.sort(naturalSort);
-    if(pageType =="summary"){
+    if(pageType == "summary"){
 
         gridhead.append('<th id="network">Network</th>');
         gridhead.append('<th id="Station">Station</th>');
         gridhead.append('<th id="groups">Groups</th>');
         for( var i = 0; i<metricsSorted.length; i++){
-            gridhead. append('<th id="'+mapMNametoMID[metricsSorted[i]]+'">'+metricsSorted[i]+'</th>');
+            gridhead.append('<th id="'+mapMNametoMID[metricsSorted[i]]+'">'+metricsSorted[i]+'</th>');
         }
         gridhead.append('<th id="aggregate">Aggregate</th>');
 
@@ -93,8 +94,7 @@ function buildTable(){
             }
         }
 
-    }
-    else if(pageType == "station"){
+    }else if(pageType == "station"){
         gridhead.append('<th id="location">Location</th>');
         gridhead.append('<th id="channel">Channel</th>');
         for( var i = 0; i<metricsSorted.length; i++){
@@ -121,12 +121,32 @@ function buildTable(){
     }
 }
 
+//Adds a filtering method that removes empty rows
+$.fn.dataTableExt.afnFiltering.push(
+    function(oSettings, aData, iDataIndex){
+        if (!doFilter) return true;
+        var rowlen = aData.length;
+
+        dTable = $('#grid').dataTable();
+        var rows = dTable.fnGetNodes();
+        var cellTds = dTable.fnGetTds(rows[iDataIndex]);
+
+        for (var c = 0; c < rowlen; c++){
+            if (isNaN(parseFloat(aData[c])) == false && String($(cellTds[c]).attr("id")).charAt(0) == "d"){ //only look at data columns
+                return true;
+            }
+        }
+
+        return false;
+    }
+);
+
 //Basic initialization and setup for datatable
 function initializeTable(){
 
-    dTable = $('#grid').dataTable( {
-        "bJQueryUI":true
-        ,"bPaginate":false
+    dTable = $('#grid').dataTable({
+        "bJQueryUI": true,
+        "bPaginate": false
         //        ,"sScrollY":"300px"
         ,"sScrollY": (window.innerHeight - 220)+"px"
         // ,"sScrollYInner": "110%"
@@ -138,7 +158,10 @@ function initializeTable(){
     if (pageType == "summary"){
         dTable.fnSetColumnVis(2, false);
     }
-    dTable.fnSort([[0,'asc'],[1,'asc']]);
+    dTable.fnSort([
+        [0, 'asc'],
+        [1, 'asc']
+    ]);
 }
 
 function formatTableTools(button, icon){
@@ -159,15 +182,19 @@ function fillTable(){
     cacheResponse: false
     }
     );*/
-    var rowIDs = new String(); //Will contain a list of delimited channel/station IDs EG 20-21-22-35
-    rowIDs = "";
-    var dates = getQueryDates();
-    var visibleRows = $('tbody tr', dTable.fnSettings().nTable);
-    $.each(visibleRows, function(c){
-        rowIDs= rowIDs+"-"+$(visibleRows[c]).closest('tr').attr('id');
-    });
-    rowIDs = rowIDs.substr(1); //trims initial "-" from the string
+
     if (pageType == "summary"){
+
+        var rowIDs = new String(); //Will contain a list of delimited channel/station IDs EG 20-21-22-35
+        rowIDs = "";
+        var dates = getQueryDates();
+        var oldSearch = dTable.fnSettings().oPreviousSearch.sSearch;
+        for (var SID in mapSIDtoSName){
+            if (mapSIDtoSName[SID].toUpperCase().indexOf(oldSearch.toUpperCase()) > -1){
+                rowIDs = rowIDs + "-" + SID;
+            }
+        }
+        rowIDs = rowIDs.substr(1); //trims initial "-" from the string
         $.each(dTable.fnSettings().aoColumns, function(c){
             if(dTable.fnSettings().aoColumns[c].bVisible == true){
                 if(mapMNametoMID[dTable.fnSettings().aoColumns[c].sTitle]){
@@ -177,6 +204,7 @@ function fillTable(){
                             parseDataReturn(data, metricID);
                             if(dTableAjaxMan.inProgress <= 1){
                                 processAllAggr();//compute aggregate This is called twice during the first load
+                                doFilter = true;
                                 dTable.fnDraw();
                             }
                         },
@@ -187,8 +215,17 @@ function fillTable(){
                 }
             }
         });
-    }
-    else if (pageType == "station"){
+    } else if (pageType == "station"){
+        var rowIDs = new String(); //Will contain a list of delimited channel/station IDs EG 20-21-22-35
+        rowIDs = "";
+        var dates = getQueryDates();
+        var oldSearch = dTable.fnSettings().oPreviousSearch.sSearch;
+        for (var CID in mapCIDtoCName){
+            if (mapCIDtoCName[CID].toUpperCase().indexOf(oldSearch.toUpperCase()) > -1){
+                rowIDs = rowIDs + "-" + CID;
+            }
+        }
+        rowIDs = rowIDs.substr(1); //trims initial "-" from the string
         $.each(dTable.fnSettings().aoColumns, function(c){
             if(dTable.fnSettings().aoColumns[c].bVisible == true){
                 if(mapMNametoMID[dTable.fnSettings().aoColumns[c].sTitle]){
@@ -198,6 +235,7 @@ function fillTable(){
                             parseDataReturn(data, metricID);
                             if(dTableAjaxMan.inProgress <= 1){
                                 processAllAggr();//compute aggregate This is called twice during the first load
+                                doFilter = true;
                                 dTable.fnDraw();
                             }
                         },
@@ -223,7 +261,7 @@ function parseDataReturn(data,mid){
                 var pos = dTable.fnGetPosition(cell);
                 $("#d_"+mid+"_"+row[0]).addClass("ltd");
                 //Double parseFloat() drops excess 0's
-                dTable.fnUpdate(parseFloat(parseFloat(row[1]).toFixed(2)), pos[0], pos[2], false, false );
+                dTable.fnUpdate(parseFloat(parseFloat(row[1]).toFixed(2)), pos[0], pos[2], false, false);
             }
         }
     }
@@ -231,8 +269,9 @@ function parseDataReturn(data,mid){
 
 //Called in by btnRefresh created in header.js.  Calling refresh will clear and repull data on a built table.
 function refreshTable(){
+    doFilter = false;
+    dTable.fnDraw();
     clearTable();
     fillTable();
 }
-
 
