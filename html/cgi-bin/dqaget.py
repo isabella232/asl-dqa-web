@@ -20,6 +20,15 @@ queries = {
     "metrics" : """
 SELECT name FROM tblmetric ORDER BY name
 """,
+    "networks" : """
+SELECT DISTINCT "tblGroup".name
+  FROM tblstation
+  JOIN "tblGroup" on tblstation.fkNetworkID = "tblGroup".pkGroupID
+  ORDER BY "tblGroup".name
+""",
+    "stations" : """
+SELECT name FROM tblstation ORDER BY name
+""",
     "data" : """
 SELECT
     to_date(md.date::text, 'J') AS date,
@@ -211,6 +220,10 @@ print ""
 db_args = (network, station, metric, location, channel, sdate, edate) 
 if cmd_str == "metrics":
     printMetrics(database.select(queries["metrics"]), fmt)
+elif cmd_str == "stations":
+    printMetrics(database.select(queries["stations"]), fmt)
+elif cmd_str == "networks":
+    printMetrics(database.select(queries["networks"]), fmt)
 elif cmd_str == "data":
     printData(database.select(queries["data"],db_args), fmt)
 elif cmd_str == "md5":
