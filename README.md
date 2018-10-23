@@ -5,6 +5,9 @@ This is the frontend that displays data found in a DQA database.
 Python CGI must be enabled on the web server
 psycopg2 module must be installed.
 
+###### Python
+Run setup.bash in the correct folder to set the bin directory for database access
+
 ###### Example Apache conf using mod_wsgi
 LoadModule wsgi_module modules/mod_wsgi.so
 <Directory /var/www/html/dqa>
