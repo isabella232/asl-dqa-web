@@ -13,8 +13,9 @@ import cgi
 import cgitb
 cgitb.enable()
 
-binPath = "/dataq/bin/"
+binPath = str(open("settings.txt", 'r').readline()).rstrip()
 sys.path.insert(0, binPath)
+
 import Database
 
 queries = {

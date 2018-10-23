@@ -2,3 +2,7 @@
 *.swp
 bin/db.config
 *~
+settings.txt
+db.config.prod
+db.config.dev
+.idea
