@@ -9,6 +9,7 @@ psycopg2 module must be installed.
 Run setup.bash in the correct folder to set the bin directory for database access
 
 ###### Example Apache conf using mod_wsgi
+```xml
 LoadModule wsgi_module modules/mod_wsgi.so  
 
 <Directory /var/www/html/dqa>  
@@ -16,7 +17,7 @@ LoadModule wsgi_module modules/mod_wsgi.so
   AddHandler cgi-script .py  
   Require all granted  
 </Directory>  
-
+```
 
 
 Only the html folder needs to be exposed via the web server.  
