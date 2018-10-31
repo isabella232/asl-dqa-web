@@ -17,7 +17,7 @@ function plotTemplate(id, title){
 
     dialog.append(plotTarget);
     dialog.append("<button class='button' id='btn"+id+"' value='"+id+"'>Zoom out</button>");
-    dialog.append("<button class='button' style='margin-left:10px;' id='imagebtn"+id+"' value='"+id+"'>View Plot Image</button>");
+    dialog.append("<button class='button' style='margin-left:10px;' id='imagebtn"+id+"' value='"+id+"'>Save Plot Image</button>");
 
     return dialog;
 }
@@ -121,7 +121,7 @@ function bindPlot(pid, title){
             plots[pid].replot( { resetAxes: true } );
         });
         // Bind plot image dialog to view plot image button
-        $("#imagebtn"+pid).click(function(){createImageDialog(pid, title);});
+        $("#imagebtn"+pid).click(function(){saveImageToFile(pid, title);});
     }
 
 }
@@ -160,7 +160,7 @@ function parsePlotReturn(data,pid){
     var rows = new Array();
     rows = data.split("\n");
     for(var i = 0; i <rows.length; i++){
-        row = rows[i].split(",");   //row[0] is date, row[1] is value
+        var row = rows[i].split(",");   //row[0] is date, row[1] is value
         if(row[1] && row[0]){
             var rdate = parseDate(row[0],'-');
             var rval = parseFloat(parseFloat(row[1]).toFixed(2)); //Second parseFloat loses trailing 0s and lets us not have to parseFloat on every comparison and store.
@@ -179,17 +179,23 @@ function parsePlotReturn(data,pid){
     }
 }
 
-// Create and display an image plot dialog where user can right click and save to file or new tab and print
-function createImageDialog(pid, title){
-    var imageDialog = $("<div id='diaImage"+pid+"' title='Image for "+title+"'></div>").dialog({
-        width: 800,
-        height: 550,
-        close: function(event, ui){
-            $("#diaImage"+pid).remove();
-        }
-    });
-    var imagediv = $("<div id='image"+pid+"'></div>");
-    imageDialog.append(imagediv);
-    var image = $('#plot'+pid).jqplotToImageElem();
-    imagediv.append(image);
+function saveImageToFile(pid, title){
+    var imgData = $('#plot'+pid).jqplotToImageStr({});
+    if (imgData) {
+
+        //Create a link to file data and then click it programmatically.
+        //I couldn't find a simpler method that works universally.
+
+        var imgDownload = document.createElement('a');
+        var filename = title + ".png";
+        filename = filename.replace(/[^a-z0-9 \-.]/gi, '');
+        imgDownload.download = filename;
+        imgDownload.href = imgData.replace("image/png", "image/octet-stream");
+        //Firefox requires the link to be added to the page.
+        document.body.appendChild(imgDownload);
+        imgDownload.click();
+        //Cleanup the added link
+        imgDownload.remove();
+    }
+
 }
