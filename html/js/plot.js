@@ -52,6 +52,14 @@ function bindPlot(pid, title){
         var data = [];
         $.each(plotdata[pid], function(index, item){data.push(item[1])});
         // jqplot does some strange things with scaling so fix those areas, mainly if max = min
+        var maxDate = getEndDate("object");
+        maxDate.setDate(maxDate.getUTCDate() + 1);
+        var xmax = formatDate(maxDate);
+
+        var minDate = getStartDate("object");
+        minDate.setDate(minDate.getUTCDate() - 1);
+        var xmin = formatDate(minDate);
+
         var ymax = Math.max(...data);
         var ymin = Math.min(...data);
         var ydelta = ymax - ymin;
@@ -87,10 +95,12 @@ function bindPlot(pid, title){
             axes: {
                 xaxis: {
                     tickOptions:{
-                        formatString:'%b %#d %Y',
+                        formatString:'%Y-%m-%#d', //This needs to match util.formatDate
                         fontSize: '10pt',
                         angle: -30
                     },
+                    max: xmax,
+                    min: xmin,
                     renderer: $.jqplot.DateAxisRenderer,
                     tickRenderer: $.jqplot.CanvasAxisTickRenderer,
                     labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
@@ -108,7 +118,7 @@ function bindPlot(pid, title){
             series:[
               {
                 showLine:false,
-                markerOptions: { size: 4, style:'circle' }
+                markerOptions: { size: 4, style:'filledCircle' }
               },
             ]
         });
