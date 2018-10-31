@@ -30,6 +30,7 @@ function setupHeader(){
         header.append("<span class='headerTitle'>Station Summary</span>");
 
     }
+    header.append("<span class='headerVersion'>" + version + "</span>");
     //Adding span for dateRange now, but the dates and their controls will be added in the dateselection code.
     var rightSide = $("<span class='right'></span>");
     if(pageType == "summary"){
