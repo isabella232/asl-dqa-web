@@ -9,8 +9,14 @@ psycopg2 module must be installed.
 Run setup.bash in the correct folder to set the bin directory for database access
 
 ###### Example Apache conf using mod_wsgi
+
+Enable cgid by executing:
+```
+sudo a2enmod cgid
+```
+Use the below apache conf, also found in examples/dqa.conf
 ```xml
-LoadModule wsgi_module modules/mod_wsgi.so  
+LoadModule cgid_module modules/mod_cgid.so
 
 <Directory /var/www/html/dqa>  
   Options Indexes FollowSymLinks MultiViews ExecCGI  
