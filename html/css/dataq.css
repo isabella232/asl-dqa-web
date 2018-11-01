@@ -51,6 +51,13 @@
     vertical-align: middle;
 }
 
+.headerVersion {
+    position: relative;
+    left:20px;
+    font-size: 12px;
+    vertical-align: bottom;
+}
+
 .headerDateRange {
     font-size: 16px;
     vertical-align: middle;
