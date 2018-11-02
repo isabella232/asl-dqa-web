@@ -77,6 +77,12 @@ function bindPlot(pid, title){
             yprecision = '%.3f';
         else if(ydelta < 10.0)
             yprecision = '%.2f';
+
+        var dateDiff = Math.round((maxDate - minDate) / (1000*60*60*24));
+        // Max size 8 at 3 months Min size 3 at 2 years.
+        var dotSize = -0.0078125*dateDiff +8.70313;
+
+        dotSize = Math.min(Math.max(3, dotSize), 8);
         // Build plot element
         plots[pid] = $.jqplot('plot'+pid, [plotdata[pid]], {
             title: title,
@@ -118,7 +124,7 @@ function bindPlot(pid, title){
             series:[
               {
                 showLine:false,
-                markerOptions: { size: 4, style:'filledCircle' }
+                markerOptions: { size: dotSize, style:'filledCircle' }
               },
             ]
         });
