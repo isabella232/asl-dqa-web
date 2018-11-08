@@ -7,7 +7,8 @@ License: Public Domain
 
 function plotTemplate(id, title){
     var dialog = $("<div id='dia"+id+"' title='"+title+"'></div>").dialog({
-        width: 500,
+        width: 800,
+        height: 550,
         close: function(event, ui){
             $("#dia"+id).remove();
         }
@@ -16,6 +17,7 @@ function plotTemplate(id, title){
 
     dialog.append(plotTarget);
     dialog.append("<button class='button' id='btn"+id+"' value='"+id+"'>Zoom out</button>");
+    dialog.append("<button class='button' style='margin-left:10px;' id='imagebtn"+id+"' value='"+id+"'>Save Plot Image</button>");
 
     return dialog;
 }
@@ -46,8 +48,46 @@ function createDialog(id){
 function bindPlot(pid, title){
     if (plotdata[pid].length > 0){ //Check if data was returned, if none was returned don't plot anything.
         $('#html').append(plotTemplate(pid, title));
+        // If max === min then jqplot does strange scaling so force the issue by getting the max and min and manually setting max and min
+        var data = [];
+        $.each(plotdata[pid], function(index, item){data.push(item[1])});
+        // jqplot does some strange things with scaling so fix those areas, mainly if max = min
+        var maxDate = getEndDate("object");
+        maxDate.setDate(maxDate.getUTCDate() + 1);
+        var xmax = formatDate(maxDate);
+
+        var minDate = getStartDate("object");
+        minDate.setDate(minDate.getUTCDate() - 1);
+        var xmin = formatDate(minDate);
+
+        var ymax = Math.max(...data);
+        var ymin = Math.min(...data);
+        var ydelta = ymax - ymin;
+        if(ymax === ymin) {
+            ymax = ymax + 1.0;
+            ymin = ymin - 1.0;
+        }
+        else{
+            ymax = null;
+            ymin = null;
+        }
+        // Set precision of y axis labels dynamically
+        var yprecision = '%.1f';
+        if(ydelta < 1.0)
+            yprecision = '%.3f';
+        else if(ydelta < 10.0)
+            yprecision = '%.2f';
+
+        var dateDiff = Math.round((maxDate - minDate) / (1000*60*60*24));
+        // Max size 8 at 3 months Min size 3 at 2 years.
+        var dotSize = -0.0078125*dateDiff +8.70313;
+
+        dotSize = Math.min(Math.max(3, dotSize), 8);
+        // Build plot element
         plots[pid] = $.jqplot('plot'+pid, [plotdata[pid]], {
-            //title: title,  //Title is on the dialog window
+            title: title,
+            width: 800,
+            height: 420,
             cursor: {
                 show: true,
                 zoom: true,
@@ -56,27 +96,37 @@ function bindPlot(pid, title){
 
             highlighter: {
                 show: true,
-                sizeAdjust: 7.5
+                sizeAdjust: 3.0
             },
             axes: {
                 xaxis: {
-                    autoscale:true,
-                    min: (getStartDate('object')+1),
-                    max: (getEndDate('object')+1),
                     tickOptions:{
-                        formatString:'%b %#d, %y',
-                        fontSize: '10pt'
+                        formatString:'%Y-%m-%#d', //This needs to match util.formatDate
+                        fontSize: '10pt',
+                        angle: -30
                     },
-                    renderer: $.jqplot.DateAxisRenderer
+                    max: xmax,
+                    min: xmin,
+                    renderer: $.jqplot.DateAxisRenderer,
+                    tickRenderer: $.jqplot.CanvasAxisTickRenderer,
+                    labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
                 },
                 yaxis: {
                     tickOptions:{
                         fontSize: '10pt',
-                        formatString: '%.2f'
+                        formatString: yprecision
                     },
-                    pad: 1.01
+                    pad: 1.05,
+                    min: ymin,
+                    max: ymax
                 }
-            }
+            },
+            series:[
+              {
+                showLine:false,
+                markerOptions: { size: dotSize, style:'filledCircle' }
+              },
+            ]
         });
 
         //Bind the zoom out button
@@ -86,6 +136,8 @@ function bindPlot(pid, title){
         $('#dia'+pid).bind('dialogresize', function(event, ui) {
             plots[pid].replot( { resetAxes: true } );
         });
+        // Bind plot image dialog to view plot image button
+        $("#imagebtn"+pid).click(function(){saveImageToFile(pid, title);});
     }
 
 }
@@ -124,7 +176,7 @@ function parsePlotReturn(data,pid){
     var rows = new Array();
     rows = data.split("\n");
     for(var i = 0; i <rows.length; i++){
-        row = rows[i].split(",");   //row[0] is date, row[1] is value
+        var row = rows[i].split(",");   //row[0] is date, row[1] is value
         if(row[1] && row[0]){
             var rdate = parseDate(row[0],'-');
             var rval = parseFloat(parseFloat(row[1]).toFixed(2)); //Second parseFloat loses trailing 0s and lets us not have to parseFloat on every comparison and store.
@@ -141,4 +193,25 @@ function parsePlotReturn(data,pid){
             */
         }
     }
+}
+
+function saveImageToFile(pid, title){
+    var imgData = $('#plot'+pid).jqplotToImageStr({});
+    if (imgData) {
+
+        //Create a link to file data and then click it programmatically.
+        //I couldn't find a simpler method that works universally.
+
+        var imgDownload = document.createElement('a');
+        var filename = title + ".png";
+        filename = filename.replace(/[^a-z0-9 \-.]/gi, '');
+        imgDownload.download = filename;
+        imgDownload.href = imgData.replace("image/png", "image/octet-stream");
+        //Firefox requires the link to be added to the page.
+        document.body.appendChild(imgDownload);
+        imgDownload.click();
+        //Cleanup the added link
+        imgDownload.remove();
+    }
+
 }

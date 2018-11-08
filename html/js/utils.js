@@ -23,6 +23,12 @@ function getQueryString(key) {
     return null;
 }
 
+function formatDate(datein){
+    return datein.getUTCFullYear()+"-"
+            +prepad((datein.getUTCMonth()+1),2,"0")+"-"
+            +prepad(datein.getUTCDate(),2,"0");
+}
+
 function parseDate(datein, delimiter){
     var datea = datein.split(""+delimiter);
     return new Date(datea[0],(datea[1]-1),datea[2]);
