@@ -1,56 +1,32 @@
 # asl-dqa-web
 This is the frontend that displays data found in a DQA database.
 
-### Updating to Latest Release from pre 1.3.0 releases
-```bash
-# As the website owner, NOT root (internally this is asluser)
-# cd into installation directory
-# Remove previous custom configurations
-git stash
-git stash drop
-git checkout master
-git pull
+### Project Installation
 
-# Configure the settings file in html/cgi-bin to point to correct Database.py
-bash setup.bash
+#####Django Project
+1. log into server as asluser ```sudo su - asluser```  
+2. CD to /data/www the main directory for projects  ```cd /data/www```
+3. Clone asl-dqa-web repo to server ```git clone git@code.usgs.gov:asl/asl-dqa-web.git```
+4. CD to newly created dqa directory ```cd /data/www/asl-dqa-web```
+5. Make sure you are on master branch ```git checkout master```
+6. Execute installServer.bash
+7. Edit local_setting.py file under /data/www/asl-dqa-web/dqa:
+   * Update SECRET_KEY to production secret key as in other projects.
+   * Update ALLOWED_HOSTS list to include production server dns names, etc.
+   * Check 'USER' under DATABASES section "default" is set to 'dqa_read', this is the default dqa DB user.
+   * Update 'PASSWORD' under DATABASES section "default" with proper password for 'dqa_read' user.
+   * Update 'HOST' under DATABASES section "default" with the server name running the production data base.
+   * Update 'NAME' under DATABASES section "default" with the name of the production data base schema in POSTGRES. 
 
-#Restart apache
-sudo apachectl restart
-```
+#####Apache
 
-### Initial Setup
-- Python CGI must be enabled on the web server
-- psycopg2-binary module must be installed.
+1. Log into server as root ```sudo su -```
+2. Run script apacheConf.bash under /data/www/asl-dqa-web to install Apache conf and restart service.  
+3. DQA should now be accessible under ```hostname/dqa```  
 
-###### Python
-Run setup.bash in the correct folder to set the bin directory for database access
+### Project Update
 
-###### Example Apache conf using cgid
-Other modules besides cgid could be used, but this example is limited to cgid.
-Enable cgid by executing:
-```
-sudo a2enmod cgid
-```
-Use the below apache conf, also found in examples/dqa.conf
-```xml
-LoadModule cgid_module modules/mod_cgid.so
+1. log into server as asluser ```sudo su - asluser```
+2. Execute updateServer.bash located in /data/www/asl-dqa-web directory.
+3. Restart the Apache server `sudo apachectl restart`.
 
-<Directory /var/www/html/dqa>  
-  Options Indexes FollowSymLinks MultiViews ExecCGI  
-  AddHandler cgi-script .py  
-  Require all granted  
-</Directory>  
-```
-
-
-Only the html folder needs to be exposed via the web server.  
-This is done by a soft link.  
-sudo ln -s /data/www/dqa/html /var/www/html/dqa  
-
-###### Database Setup
-Create a file named db.config in the bin directory modeled after examples/sampledb.config
-```bash
-cp examples/db.config bin/db.config
-# Change the file match correct authentication
-vim bin/db.config
-```

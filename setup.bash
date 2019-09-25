@@ -1,8 +1,17 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-chmod +x html/cgi-bin/*.py
-chmod 755 html/cgi-bin/*.py
+# This sets up the project virtual environment
 
-cd bin
-pwd | tr -d '\n' > ../html/cgi-bin/settings.txt
-echo "/" >> ../html/cgi-bin/settings.txt
+VENV=venv
+
+echo "Removing any old virtual environment"
+rm -rf ${VENV}
+
+echo "Setting up virtualenv"
+virtualenv -p python3 ${VENV}
+
+# Update PYTHON modules from requirements.txt, make sure PIP is up-to-date
+source ${VENV}/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
+deactivate

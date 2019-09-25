@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+        <meta http-equiv="pragma" content="no-cache" />
+        <meta charset="utf-8">
+        <title>DQA Station Summary</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/dataq.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.jqplot.min.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/redmond/jquery-ui-1.10.4.custom.css' %}"/>
+    </head>
+    <body>
+        <div id='top' class='ui-widget-header ui-corner-all'>
+            <div id='header' class='headerMain'></div>
+            <br>
+            <div id='tabs'></div>
+        </div>
+        <br>
+        <div id='container'>
+            <table id='grid'>
+                <thead>
+                    <tr id='dheader'></tr>
+                </thead>
+                <tbody id='body'>
+                </tbody>
+            </table>
+        </div>
+        <div id='dlgprogressbar'>
+        </div>
+        <script type="text/javascript" src="{% static 'js/datatables/media/js/jquery.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery-ui-1.10.4.custom.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/datatables/media/js/jquery.dataTables.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery.ajaxmanager.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/datatables/extras/FixedHeader/js/FixedHeader.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/datatables/extras/FixedColumns/media/js/FixedColumns.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/datatables/extras/ColVis/media/js/ColVis.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/datatables/extras/TableTools/media/js/TableTools.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/datatables/extras/TableTools/media/js/ZeroClipboard.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/dataTables.fnGetTds.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jqplot/jquery.jqplot.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jqplot/plugins/jqplot.toImage.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jqplot/plugins/jqplot.cursor.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jqplot/plugins/jqplot.canvasTextRenderer.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jqplot/plugins/jqplot.canvasAxisLabelRenderer.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jqplot/plugins/jqplot.canvasAxisTickRenderer.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jqplot/plugins/jqplot.categoryAxisRenderer.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jqplot/plugins/jqplot.dateAxisRenderer.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jqplot/plugins/jqplot.highlighter.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/progressbar.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/utils.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/plot.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/datatable.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/weight.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/export.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/column.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/naturalSort.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/group.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/header.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/tabs.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/dateControl.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/setup.js' %}"></script>
+    </body>
+</html>
