@@ -16,7 +16,7 @@ cd $SRCDIR
 ./setup.bash
 
 # Copy local_settings.py file to proper location, this file must be modified
-cp examples/local_settings.py metadata/local_settings.py
+cp examples/local_settings.py dqa/local_settings.py
 
 echo "Please modify your local_settings.py and install your apache config file!"
 echo "Then run ./updateServer.bash"
