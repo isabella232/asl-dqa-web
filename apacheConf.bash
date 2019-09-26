@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-# Setup dqa project in Apache
+# Setup production dqa project in Apache
 
-httpd_location=/etc/httpd/conf.d
-conf_file=dqa.conf
+httpd_location=/etc/apache2/sites-available
+conf_file=dqa_prod.conf
 
 set -e
 
