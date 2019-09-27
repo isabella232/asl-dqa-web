@@ -72,6 +72,8 @@ def metrics(request):
             output.append(cursor.fetchone()[0])
     if not output:
         output_string = 'ERROR: Database queries empty'
+    elif output[0] is None:
+        output_string = ''
     else:
         output_string = '\n'.join(output)
 

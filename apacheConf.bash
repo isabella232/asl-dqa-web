@@ -16,4 +16,8 @@ rm -rf  ${httpd_location}/${conf_file}
 # Copy file from dqa project
 cp examples/${conf_file}  ${httpd_location}/${conf_file}
 
-apachectl restart
+# Enable site on Apache2
+a2ensite ${conf_file}
+
+# Restart Apache2
+systemctl reload apache2
