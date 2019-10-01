@@ -1,4 +1,6 @@
 
+import re
+
 from django.http import HttpResponse
 from django.db import connection
 
@@ -23,19 +25,40 @@ def metrics(request):
             if param == '':
                 output.append("No parameters provided")
             else:
-                for part in param.split('_'):
+                network_code = ''
+                parameter_list = param.split('_')
+                for part in parameter_list:
                     parts = part.split('.')
                     if parts[0].lower() == "dates":
                         start_date = parts[1]
                         end_date = parts[2]
                     elif parts[0].lower() == "station":
-                        station_id = parts[1]
-                        station_ids = "{" + parts[1].replace("-", ",") + "}"
+                        # Just pass through station id(s) if it is a number or dash separated list of station ids
+                        # Otherwise query using network and station names for station id (only a single station)
+                        if re.match(r'^[0-9\-]+$', parts[1]) is not None:
+                            station_id = parts[1]
+                            station_ids = "{" + parts[1].replace("-", ",") + "}"
+                        else:
+                            if not network_code:
+                                network_code = next((s for s in parameter_list if 'network' in s), None).split('.')[1]
+                            sql = """SELECT sta.pkstationid
+                                     FROM tblstation sta
+                                     JOIN \"tblGroup\" net on sta.fkNetworkID = net.pkGroupID
+                                     WHERE net.name='{0}' AND sta.name='{1}';""".format(network_code, parts[1])
+                            cursor.execute(sql)
+                            result = cursor.fetchone()
+                            if result is not None:
+                                station_id = result[0]
+                                station_ids = '{{{0}}}'.format(station_id)
+                            else:
+                                return HttpResponse("Error: Empty query for Network = {0} and Station = {1}".format(network_code, parts[1]))
                     elif parts[0].lower() == "channel":
                         channel_id = parts[1]
                         channel_ids = "{" + parts[1].replace("-", ",") + "}"
                     elif parts[0].lower() == "metric":
                         metric_id = parts[1]
+                    elif parts[0].lower() == "network":
+                        network_code = parts[1]
                     else:
                         output.append("Improper command string: {0}".format(parts[0]))
 

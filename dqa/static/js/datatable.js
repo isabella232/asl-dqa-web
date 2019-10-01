@@ -17,15 +17,18 @@ var dTableAjaxMan = $.manageAjax.create('dTableAjaxMan',
 
 function bindTableActions() {
     dTable.find('tbody td').click(function(){
-        var id = $(this).attr('id');
+        let id = $(this).attr('id');
         if(id != undefined){
-            if(id != undefined && id.charAt(0) == 'd')
+            if(id.charAt(0) == 'd')
                 createDialog(id);
             else if(id.charAt(0) == 'l'){
-                window.location = 'dataq.html?station='+id.split('_')[1]
-                +'&sdate='+getStartDate('simple')
-                +'&edate='+getEndDate('simple')
-                +'&tdate='+getDateType();
+                let station_id = id.split('_')[1]
+                window.location = 'dataq.html'
+                + '?network=' + mapGIDtoGName[mapSIDtoNID[station_id]]
+                + '&station=' + mapSIDtoSName[station_id]
+                + '&sdate=' + getStartDate('simple')
+                + '&edate=' + getEndDate('simple')
+                + '&tdate=' + getDateType();
             }
         }
     });

@@ -51,7 +51,8 @@ function setupHeader(){
 //Must be called after setup data is parsed to get the station name
 function setStationTitle(){
     var stationID = getQueryString("station");
-    var newTitle = mapGIDtoGName[mapSIDtoNID[stationID]]+"-"+mapSIDtoSName[stationID];
+    var networkID = getQueryString("network");
+    var newTitle = networkID + "-" + stationID;
     $("#spnTitle").text(newTitle);
     document.title = "DQA "+newTitle;
 }

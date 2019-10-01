@@ -32,7 +32,8 @@ function createDialog(id){
     }
     else if (pageType == "station"){
         var stationID = getQueryString("station");
-        var stationName = mapGIDtoGName[mapSIDtoNID[stationID]]+"-"+mapSIDtoSName[stationID];
+        var networkID = getQueryString("network");
+        var stationName = networkID + "-" + stationID;
         title = stationName+" "+mapCIDtoLoc[ids[2]]+"-"+mapCIDtoCName[ids[2]]+" "+mapMIDtoMName[ids[1]];
     }
     else
