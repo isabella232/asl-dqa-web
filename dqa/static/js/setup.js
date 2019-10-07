@@ -54,7 +54,7 @@ function getSetupData(){
         var station = getQueryString("station");
         var network = getQueryString( "network");
         network = (network != null) ? "_network." + network : ''
-        $.get("cgi-bin/metrics.py",
+        $.get(metrics_url,
             {cmd: "groups_dates_stations_metrics_channels", param: "station." + station + network},
             function(data){
                 parseSetupResponse(data);
@@ -68,7 +68,7 @@ function getSetupData(){
         ); 
     }
     else if (pageType == "summary"){
-        $.get("cgi-bin/metrics.py", 
+        $.get(metrics_url,
             {cmd: "groups_dates_stations_metrics"},
             function(data){
                 parseSetupResponse(data);

@@ -211,7 +211,7 @@ function fillTable(){
                                 dTable.fnDraw();
                             }
                         },
-                        url: "cgi-bin/metrics.py",
+                        url: metrics_url,
                         data: {cmd: "stationgrid", param: "station."+rowIDs+
                             "_metric."+metricID+"_dates."+dates}
                     });
@@ -242,7 +242,7 @@ function fillTable(){
                                 dTable.fnDraw();
                             }
                         },
-                        url: "cgi-bin/metrics.py",
+                        url: metrics_url,
                         data: {cmd: "channelgrid", param: "channel."+rowIDs+
                             "_metric."+metricID+"_dates."+dates}
                     });
