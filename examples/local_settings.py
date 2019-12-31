@@ -12,10 +12,10 @@ ALLOWED_HOSTS = ['vmdevwb.cr.usgs.gov',
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dqa_prod_clone',
-        'USER': 'user',
+        'NAME': 'dqa_prod',
+        'USER': 'dqa_read',
         'PASSWORD': 'password',
-        'HOST': 'vmdevdb.cr.usgs.gov',
+        'HOST': 'vmdb001.cr.usgs.gov',
         'PORT': '5432',
     },
 }
@@ -23,7 +23,7 @@ DATABASES = {
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/static/assays/'
+STATIC_URL = '/static/dqa/'
 
 # Comment out if running using manage.py runserver
-STATIC_ROOT = '/var/www/html/static/assays/'
+STATIC_ROOT = '/var/www/html/static/dqa/'
