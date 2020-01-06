@@ -19,7 +19,7 @@ function setupHeader(){
             "<button type='button' id='btnSummary'>Summary</button>"
         );
         $("#btnSummary").on("click",function(){
-            window.location = "dataq.html?&sdate="+getStartDate("simple")+"&edate="+getEndDate("simple")+'&tdate='+getDateType();;
+            window.location = summary_url + "?&sdate=" + getStartDate("simple") + "&edate=" + getEndDate("simple") + "&tdate=" + getDateType();
         });
 
         header.append(

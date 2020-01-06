@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+        <meta http-equiv="pragma" content="no-cache" />
+        <meta charset="utf-8">
+        <title>DQA Station Summary</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/dataq.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.jqplot.min.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/redmond/jquery-ui-1.10.4.custom.css' %}"/>
+    </head>
+    <body>
+        <script>
+            <!-- metrics_url is used in the static javascript files to determine the location of the metrics view -->
+            var metrics_url = "{% url 'metrics' %}";
+        </script>
+        New Index List coming soon.
+    </body>
+</html>

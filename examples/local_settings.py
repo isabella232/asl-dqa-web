@@ -27,3 +27,6 @@ STATIC_URL = '/static/dqa/'
 
 # Comment out if running using manage.py runserver
 STATIC_ROOT = '/var/www/html/static/dqa/'
+
+# Exclude the following groups from the default DQA
+EXCLUDE_FROM_DEFAULT_GROUPS = []

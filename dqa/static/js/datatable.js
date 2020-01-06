@@ -23,7 +23,7 @@ function bindTableActions() {
                 createDialog(id);
             else if(id.charAt(0) == 'l'){
                 let station_id = id.split('_')[1]
-                window.location = 'dataq.html'
+                window.location = summary_url
                 + '?network=' + mapGIDtoGName[mapSIDtoNID[station_id]]
                 + '&station=' + mapSIDtoSName[station_id]
                 + '&sdate=' + getStartDate('simple')
@@ -141,6 +141,22 @@ $.fn.dataTableExt.afnFiltering.push(
         }
 
         return false;
+    }
+);
+
+//Adds a filtering method that removes empty rows
+$.fn.dataTableExt.afnFiltering.push(
+    function(oSettings, aData, iDataIndex){
+        if (!doFilter || pageType != "summary") return true;
+        if (!exclude_groups.includes(group) && exclude_groups.includes(aData[0]))
+            return false;
+        if(group == "")
+            return true;
+        if (aData[0] == group) {
+            return true;
+        } else {
+            return false;
+        }
     }
 );
 
