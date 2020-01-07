@@ -93,15 +93,22 @@ def metrics(request):
             groups_list = ''
             group_id = None
             exclude_ids = []
+            group_master_list = {}
             for id, name, group_type_id in cursor.fetchall():
-                if group is not None:
-                    if name == group:
-                        groups_list += 'G,{0},{1},{2}\n'.format(id, name, group_type_id)
-                        group_id = id
-                elif name not in settings.EXCLUDE_FROM_DEFAULT_GROUPS:
-                    groups_list += 'G,{0},{1},{2}\n'.format(id, name, group_type_id)
-                else:
-                    exclude_ids.append(id)
+                group_master_list[name] = (id, group_type_id)
+            if group is not None:
+                groups_list += 'G,{0},{1},{2}\n'.format(group_master_list[group][0], group, group_master_list[group][1])
+                group_id = group_master_list[group][0]
+                if group_master_list[group][1] != 1:
+                    for name, values in group_master_list.items():
+                        if values[1] == 1:
+                            groups_list += 'G,{0},{1},{2}\n'.format(values[0], name, values[1])
+            else:
+                for name, values in group_master_list.items():
+                    if name not in settings.EXCLUDE_FROM_DEFAULT_GROUPS:
+                        groups_list += 'G,{0},{1},{2}\n'.format(values[0], name, values[1])
+                    else:
+                        exclude_ids.append(values[0])
             output.append(groups_list)
             sql = """SELECT "pkGroupTypeID", name, pkgroupid FROM grouptypeview"""
             cursor.execute(sql)
