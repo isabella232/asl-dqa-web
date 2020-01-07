@@ -15,8 +15,8 @@
         <script>
             <!-- metrics_url is used in the static javascript files to determine the location of the metrics api view -->
             var metrics_url = "{% url 'metrics' %}" + {% if group %}"?group=" + "{{ group }}"{% else %}""{% endif %};
-            <!-- summary_url is used in the static javascript files to determine the location of the summary page view -->
-            var summary_url = "{% url 'summary' group %}";
+            <!-- summary_url links back to summary page, special case if group in URL -->
+            {% if group %} var summary_url = "{% url 'summary' group %}"; {% else %} var summary_url = "{% url 'summary_nogroup' %}";{% endif %}
         </script>
         <div id='top' class='ui-widget-header ui-corner-all'>
             <div id='header' class='headerMain'></div>
