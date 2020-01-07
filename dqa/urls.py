@@ -11,7 +11,8 @@ urlpatterns = [
     url(r'^api/metrics$', metrics.metrics, name="metrics"),
     url(r'^cgi-bin/dqaget.py$', dqaget.dqaget, name="dqaget"),
     url(r'index.html', index.index, name="index"),
-    url(r'(?P<group>[^/]*)/?summary/$', summary.summary, name="summary"),
+    url(r'(?P<group>[^/]*)/summary/$', summary.summary, name="summary"),
+    url(r'summary/$', summary.summary),
     url(r'(?P<group>[^/]*)/$', summary.summary),
     url(r'^$', RedirectView.as_view(pattern_name='index'))
 ]
