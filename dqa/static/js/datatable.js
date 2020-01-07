@@ -144,22 +144,6 @@ $.fn.dataTableExt.afnFiltering.push(
     }
 );
 
-//Adds a filtering method that removes empty rows
-$.fn.dataTableExt.afnFiltering.push(
-    function(oSettings, aData, iDataIndex){
-        if (!doFilter || pageType != "summary") return true;
-        if (!exclude_groups.includes(group) && exclude_groups.includes(aData[0]))
-            return false;
-        if(group == "")
-            return true;
-        if (aData[0] == group) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-);
-
 //Basic initialization and setup for datatable
 function initializeTable(){
 

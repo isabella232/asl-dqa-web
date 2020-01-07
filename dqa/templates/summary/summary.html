@@ -13,11 +13,10 @@
     </head>
     <body>
         <script>
-            <!-- metrics_url is used in the static javascript files to determine the location of the metrics view -->
-            var metrics_url = "{% url 'metrics' %}";
+            <!-- metrics_url is used in the static javascript files to determine the location of the metrics api view -->
+            var metrics_url = "{% url 'metrics' %}" + {% if group %}"?group=" + "{{ group }}"{% else %}""{% endif %};
+            <!-- summary_url is used in the static javascript files to determine the location of the summary page view -->
             var summary_url = "{% url 'summary' group %}";
-            var group = "{{ group }}";
-            var exclude_groups = [{{ exclude_from_default|safe }}];
         </script>
         <div id='top' class='ui-widget-header ui-corner-all'>
             <div id='header' class='headerMain'></div>

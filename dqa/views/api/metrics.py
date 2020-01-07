@@ -3,6 +3,7 @@ import re
 
 from django.http import HttpResponse
 from django.db import connection
+from django.conf import settings
 
 
 def metrics(request):
@@ -14,6 +15,7 @@ def metrics(request):
 
     cmd = request.GET.get('cmd', None)
     param = request.GET.get('param', None)
+    group = request.GET.get('group', None)
 
     if cmd is None or cmd == '':
         return HttpResponse("Error: No command string")
@@ -82,17 +84,64 @@ def metrics(request):
         if "dates" in cmd_parts:
             cursor.execute('SELECT fnsclGetDates()')
             output.append(cursor.fetchone()[0])
-        if "stations" in cmd_parts:
-            cursor.execute('SELECT fnsclGetStations()')
-            output.append(cursor.fetchone()[0])
         if "metrics" in cmd_parts:
             cursor.execute('SELECT fnsclGetMetrics()')
             output.append(cursor.fetchone()[0])
-        if "groups" in cmd_parts:  # Group types need to be queried before groups
-            cursor.execute('SELECT fnsclGetGroupTypes()')
-            output.append(cursor.fetchone()[0])
-            cursor.execute('SELECT fnsclGetGroups()')
-            output.append(cursor.fetchone()[0])
+        if "groups" in cmd_parts:
+            sql = """SELECT pkgroupid, name, "fkGroupTypeID" FROM groupview"""
+            cursor.execute(sql)
+            groups_list = ''
+            group_id = None
+            exclude_ids = []
+            for id, name, group_type_id in cursor.fetchall():
+                if group is not None:
+                    if name == group:
+                        groups_list += 'G,{0},{1},{2}\n'.format(id, name, group_type_id)
+                        group_id = id
+                elif name not in settings.EXCLUDE_FROM_DEFAULT_GROUPS:
+                    groups_list += 'G,{0},{1},{2}\n'.format(id, name, group_type_id)
+                else:
+                    exclude_ids.append(id)
+            output.append(groups_list)
+            sql = """SELECT "pkGroupTypeID", name, pkgroupid FROM grouptypeview"""
+            cursor.execute(sql)
+            group_type_networks = {}
+            group_type_names = {}
+            for result in cursor.fetchall():
+                group_type_networks.setdefault(result[0], []).append(result[2])
+                group_type_names[result[0]] = result[1]
+            types_list = ''
+            for id, network_ids in group_type_networks.items():
+                if group_id is not None:
+                    for net_id in network_ids:
+                        if net_id == group_id:
+                            types_list += 'T,{0},{1},{2}\n'.format(id, group_type_names[id], net_id)
+                elif exclude_ids:
+                    for exclude_id in exclude_ids:
+                        if exclude_id in network_ids:
+                            network_ids.remove(exclude_id)
+                    types_list += 'T,{0},{1},{2}\n'.format(id, group_type_names[id], ','.join([str(id) for id in network_ids]))
+                else:
+                    types_list += 'T,{0},{1},{2}\n'.format(id, group_type_names[id], ','.join([str(id) for id in network_ids]))
+            output.append(types_list)
+        if "stations" in cmd_parts:
+            sql = """SELECT pkstationid, fknetworkid, name, "fkGroupID" FROM stationview"""
+            if group_id is not None:
+                sql += ' WHERE "fkGroupID" = ' + str(group_id)
+            else:
+                exclude_list_sql = ','.join([str(id) for id in exclude_ids])
+                sql += ' WHERE "fkGroupID" NOT IN ({0}) AND fknetworkid NOT IN ({0})'.format(exclude_list_sql)
+            cursor.execute(sql)
+            stations_groups = {}
+            stations_raw = {}
+            for id, network_id, name, group_id in cursor.fetchall():
+                stations_groups.setdefault(id, []).append(group_id)
+                stations_raw[id] = (network_id, name)
+            stations_list = ''
+            for id, group_ids in stations_groups.items():
+                stations_list += 'S,{0},{1},{2},{3}\n'.format(id, stations_raw[id][0], stations_raw[id][1], ','.join([str(id) for id in group_ids]))
+            output.append(stations_list)
+
     if not output:
         output_string = 'ERROR: Database queries empty'
     elif output[0] is None:
