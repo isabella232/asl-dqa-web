@@ -96,13 +96,15 @@ def metrics(request):
             group_master_list = {}
             for id, name, group_type_id in cursor.fetchall():
                 group_master_list[name] = (id, group_type_id)
-            if group is not None:
+            if group is not None and group in group_master_list:
                 groups_list += 'G,{0},{1},{2}\n'.format(group_master_list[group][0], group, group_master_list[group][1])
                 group_id = group_master_list[group][0]
                 if group_master_list[group][1] != 1:
                     for name, values in group_master_list.items():
                         if values[1] == 1:
                             groups_list += 'G,{0},{1},{2}\n'.format(values[0], name, values[1])
+            elif group is not None and group not in group_master_list:
+                return HttpResponse('Error: Group {0} does not exist.'.format(group))
             else:
                 for name, values in group_master_list.items():
                     if name not in settings.EXCLUDE_FROM_DEFAULT_GROUPS:
@@ -135,7 +137,7 @@ def metrics(request):
             sql = """SELECT pkstationid, fknetworkid, name, "fkGroupID" FROM stationview"""
             if group_id is not None:
                 sql += ' WHERE "fkGroupID" = ' + str(group_id)
-            else:
+            elif exclude_ids:
                 exclude_list_sql = ','.join([str(id) for id in exclude_ids])
                 sql += ' WHERE "fkGroupID" NOT IN ({0}) AND fknetworkid NOT IN ({0})'.format(exclude_list_sql)
             cursor.execute(sql)
