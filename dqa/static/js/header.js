@@ -19,7 +19,7 @@ function setupHeader(){
             "<button type='button' id='btnSummary'>Summary</button>"
         );
         $("#btnSummary").on("click",function(){
-            window.location = "dataq.html?&sdate="+getStartDate("simple")+"&edate="+getEndDate("simple")+'&tdate='+getDateType();;
+            window.location = summary_url + "?&sdate=" + getStartDate("simple") + "&edate=" + getEndDate("simple") + "&tdate=" + getDateType();
         });
 
         header.append(
@@ -51,7 +51,8 @@ function setupHeader(){
 //Must be called after setup data is parsed to get the station name
 function setStationTitle(){
     var stationID = getQueryString("station");
-    var newTitle = mapGIDtoGName[mapSIDtoNID[stationID]]+"-"+mapSIDtoSName[stationID];
+    var networkID = getQueryString("network");
+    var newTitle = networkID + "-" + stationID;
     $("#spnTitle").text(newTitle);
     document.title = "DQA "+newTitle;
 }

@@ -17,15 +17,18 @@ var dTableAjaxMan = $.manageAjax.create('dTableAjaxMan',
 
 function bindTableActions() {
     dTable.find('tbody td').click(function(){
-        var id = $(this).attr('id');
+        let id = $(this).attr('id');
         if(id != undefined){
-            if(id != undefined && id.charAt(0) == 'd')
+            if(id.charAt(0) == 'd')
                 createDialog(id);
             else if(id.charAt(0) == 'l'){
-                window.location = 'dataq.html?station='+id.split('_')[1]
-                +'&sdate='+getStartDate('simple')
-                +'&edate='+getEndDate('simple')
-                +'&tdate='+getDateType();
+                let station_id = id.split('_')[1]
+                window.location = summary_url
+                + '?network=' + mapGIDtoGName[mapSIDtoNID[station_id]]
+                + '&station=' + mapSIDtoSName[station_id]
+                + '&sdate=' + getStartDate('simple')
+                + '&edate=' + getEndDate('simple')
+                + '&tdate=' + getDateType();
             }
         }
     });
@@ -208,7 +211,7 @@ function fillTable(){
                                 dTable.fnDraw();
                             }
                         },
-                        url: "cgi-bin/metrics.py",
+                        url: metrics_url,
                         data: {cmd: "stationgrid", param: "station."+rowIDs+
                             "_metric."+metricID+"_dates."+dates}
                     });
@@ -239,7 +242,7 @@ function fillTable(){
                                 dTable.fnDraw();
                             }
                         },
-                        url: "cgi-bin/metrics.py",
+                        url: metrics_url,
                         data: {cmd: "channelgrid", param: "channel."+rowIDs+
                             "_metric."+metricID+"_dates."+dates}
                     });

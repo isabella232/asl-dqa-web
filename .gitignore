@@ -1,9 +1,33 @@
-*.pyc
-*.swp
-bin/db.config
+
+#Jar files
+*.jar
+
+#Temp files
+#vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-v][a-z]
+[._]sw[a-p]
+
+#General
 *~
-settings.txt
-db.config.prod
-db.config.dev
+
+*.log
+
+#settings
+local_settings.py
+
+#liquibase files
+liquibase.properties
+
+#Python ignores
+#Virtual Environment
+/venv/
+
+#Binaries
+__pycache__/
+*.py[cod]
+*$py.class
+
+#IDEs
 .idea
-venv

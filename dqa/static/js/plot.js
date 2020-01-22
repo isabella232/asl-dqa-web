@@ -32,7 +32,8 @@ function createDialog(id){
     }
     else if (pageType == "station"){
         var stationID = getQueryString("station");
-        var stationName = mapGIDtoGName[mapSIDtoNID[stationID]]+"-"+mapSIDtoSName[stationID];
+        var networkID = getQueryString("network");
+        var stationName = networkID + "-" + stationID;
         title = stationName+" "+mapCIDtoLoc[ids[2]]+"-"+mapCIDtoCName[ids[2]]+" "+mapMIDtoMName[ids[1]];
     }
     else
@@ -145,7 +146,7 @@ function bindPlot(pid, title){
 function getPlotData(ids, pid, title){
     var daterange = getQueryDates();
     if (pageType == "station"){
-        $.get("cgi-bin/metrics.py", 
+        $.get(metrics_url,
             {cmd: "channelplot", param: "channel."+ids[2]+"_metric."+ids[1]+"_dates."+daterange},
             function(data){
                 parsePlotReturn(data, pid);
@@ -156,7 +157,7 @@ function getPlotData(ids, pid, title){
 
     }
     else if (pageType == "summary"){
-        $.get("cgi-bin/metrics.py", 
+        $.get(metrics_url,
             {cmd: "stationplot", param: "station."+ids[2]+"_metric."+ids[1]+"_dates."+daterange},
             function(data){
                 parsePlotReturn(data, pid);

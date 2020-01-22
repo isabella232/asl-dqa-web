@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+        <meta http-equiv="pragma" content="no-cache" />
+        <meta charset="utf-8">
+        <title>DQA Station Index</title>
+    </head>
+    <body>
+    <div style="margin-left: 50px; margin-top: 50px;"><h3><a href="{% url 'summary_nogroup' %}">All Stations:</a> <span style="color: gray">(Excludes groups = {{ exclude_list }})</span></h3><hr/></div>
+    <div style="margin-left: 50px;">
+        <ul>
+        {% for name, url in groups %}
+            <li><a href="{{ url }}">{{ name }} Stations</a></li>
+        {% endfor %}
+        </ul>
+    </div>
+    </body>
+</html>

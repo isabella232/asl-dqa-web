@@ -24,7 +24,7 @@ var plots = {};
 var plotdata = {};
 var pageType = undefined; //Allows rest of functions to check page type without passing type around. It is only changed in getSetupData.
 
-var version = "v1.3.0";
+var version = "v2.0.0";
 
 $(document).ready(function(){
     //Detect which type of page we are loading. If a stationID was passed in the query string it is station.
@@ -52,8 +52,10 @@ $(document).ajaxStop(function(){ //This may compete with ajaxStop trigger in pro
 function getSetupData(){
     if (pageType == "station"){
         var station = getQueryString("station");
-        $.get("cgi-bin/metrics.py", 
-            {cmd: "groups_dates_stations_metrics_channels", param: "station."+station},
+        var network = getQueryString( "network");
+        network = (network != null) ? "_network." + network : ''
+        $.get(metrics_url,
+            {cmd: "groups_dates_stations_metrics_channels", param: "station." + station + network},
             function(data){
                 parseSetupResponse(data);
                 setStationTitle(); //Sets the Title in the header like so "IU-ANMO" and changes document title to "DQA IU-ANMO"
@@ -66,7 +68,7 @@ function getSetupData(){
         ); 
     }
     else if (pageType == "summary"){
-        $.get("cgi-bin/metrics.py", 
+        $.get(metrics_url,
             {cmd: "groups_dates_stations_metrics"},
             function(data){
                 parseSetupResponse(data);
