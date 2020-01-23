@@ -2,7 +2,7 @@
 
 # Setup production dqa project in Apache
 
-httpd_location=/etc/apache2/sites-available
+httpd_location=/etc/apache2/conf-available
 conf_file=dqa_prod.conf
 
 set -e
@@ -17,7 +17,7 @@ rm -rf  ${httpd_location}/${conf_file}
 cp examples/${conf_file}  ${httpd_location}/${conf_file}
 
 # Enable site on Apache2
-a2ensite ${conf_file}
+a2enconf ${conf_file}
 
 # Restart Apache2
 systemctl reload apache2
