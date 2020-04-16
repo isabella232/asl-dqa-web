@@ -1,5 +1,7 @@
 
 import time
+import json
+import datetime
 
 from django.http import HttpResponse
 from django.db import connection
@@ -26,7 +28,11 @@ def dqaget(request):
         return HttpResponse("Error: No command string")
 
     # Set HTTP header based on response type
-    content_type = 'text/csv' if output_format == 'csv' else 'text/plain'
+    content_type = 'text/plain'
+    if output_format == 'csv':
+        content_type = 'text/csv'
+    elif 'json' in output_format:
+        content_type = 'application/json'
 
     with connection.cursor() as cursor:
         if command == "metrics":
@@ -193,12 +199,25 @@ def format_output(records, command, output_format):
         elif output_format == 'csv':
             output = ','.join(records)
         elif output_format == 'json':
-            output = 'Under construction'
+            output = json.dumps({command: records, 'count': len(records)})
     elif command in ['data', 'hash', 'md5']:
         if output_format == 'csv':
             output = '\n'.join([', '.join(map(str, list(row))) for row in records])
         elif output_format == 'json':
-            output = 'Under construction'
+            if command == 'data' or command == 'hash':
+                json_output = {'records': [], 'count': len(records)}
+                for record in records:
+                    json_record = {'date': record[0].strftime('%Y-%m-%d'),
+                                   'network': record[1],
+                                   'station': record[2],
+                                   'location': record[3],
+                                   'channel': record[4],
+                                   'metric': record[5],
+                                   'value': record[6]}
+                    json_output['records'].append(json_record)
+            elif command == 'md5':
+                json_output = {'date': records[0][0].strftime('%Y-%m-%d'), 'hash': records[0][1]}
+            output = json.dumps(json_output)
         elif command == 'data':
             output = ["%10s %3s %6s %3s %4s %20s %lf\n" % row for row in records]
         elif command == 'hash':
