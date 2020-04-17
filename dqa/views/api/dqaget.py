@@ -23,6 +23,7 @@ def dqaget(request):
     start_date = request.GET.get('sdate', (time.strftime("%Y-%m-%d")))
     end_date = request.GET.get('edate', (time.strftime("%Y-%m-%d")))
     output_format = request.GET.get('format', 'human').lower()
+    julian_date = request.GET.get('julian', 'False')
 
     if command is None or command == '':
         return HttpResponse("Error: No command string")
@@ -185,12 +186,12 @@ def dqaget(request):
         records = cursor.fetchall()
 
     if records:
-        return HttpResponse(format_output(records=records, command=command, output_format=output_format), content_type=content_type)
+        return HttpResponse(format_output(records=records, command=command, output_format=output_format, julian_date=julian_date), content_type=content_type)
     else:
         return HttpResponse('Error: Database Query did not return data for these parameters: {0}'.format(request.GET.dict()))
 
 
-def format_output(records, command, output_format):
+def format_output(records, command, output_format, julian_date=False):
     output = ''
     if command in ['metrics', 'networks', 'stations']:
         records = [r[0] for r in records]
@@ -201,13 +202,23 @@ def format_output(records, command, output_format):
         elif output_format == 'json':
             output = json.dumps({command: records, 'count': len(records)})
     elif command in ['data', 'hash', 'md5']:
+        if julian_date == 'True':
+            date_format = '%Y-%j'
+        else:
+            date_format = '%Y-%m-%d'
+        output_records = []
+        for record in records:
+            rec = list(record)
+            rec[0] = rec[0].strftime(date_format)
+            output_records.append(tuple(r for r in rec))
+
         if output_format == 'csv':
-            output = '\n'.join([', '.join(map(str, list(row))) for row in records])
+            output = '\n'.join([', '.join(map(str, list(row))) for row in output_records])
         elif output_format == 'json':
             if command == 'data' or command == 'hash':
-                json_output = {'records': [], 'count': len(records)}
-                for record in records:
-                    json_record = {'date': record[0].strftime('%Y-%m-%d'),
+                json_output = {'records': [], 'count': len(output_records)}
+                for record in output_records:
+                    json_record = {'date': record[0],
                                    'network': record[1],
                                    'station': record[2],
                                    'location': record[3],
@@ -216,12 +227,12 @@ def format_output(records, command, output_format):
                                    'value': record[6]}
                     json_output['records'].append(json_record)
             elif command == 'md5':
-                json_output = {'date': records[0][0].strftime('%Y-%m-%d'), 'hash': records[0][1]}
+                json_output = {'date': output_records[0][0], 'hash': output_records[0][1]}
             output = json.dumps(json_output)
         elif command == 'data':
-            output = ["%10s %3s %6s %3s %4s %20s %lf\n" % row for row in records]
+            output = ["%10s %3s %6s %3s %4s %20s %lf\n" % row for row in output_records]
         elif command == 'hash':
-            output = ["%10s %3s %6s %3s %4s %20s %15lf %32s\n" % row for row in records]
+            output = ["%10s %3s %6s %3s %4s %20s %15lf %32s\n" % row for row in output_records]
         elif command == 'md5':
-            output = ["%10s %32s\n" % row for row in records]
+            output = ["%10s %32s\n" % row for row in output_records]
     return output
