@@ -134,7 +134,7 @@ def metrics(request):
                     types_list += 'T,{0},{1},{2}\n'.format(id, group_type_names[id], ','.join([str(id) for id in network_ids]))
             output.append(types_list)
         if "stations" in cmd_parts:
-            sql = """SELECT pkstationid, fknetworkid, name, "fkGroupID" FROM stationview"""
+            sql = """SELECT pkstationid, fknetworkid, name, \"fkGroupID\" FROM stationview"""
             if group_id is not None:
                 sql += ' WHERE "fkGroupID" = ' + str(group_id)
             elif exclude_ids:
