@@ -191,7 +191,7 @@ def dqaget(request):
         return HttpResponse('Error: Database Query did not return data for these parameters: {0}'.format(request.GET.dict()))
 
 
-def format_output(records, command, output_format, julian_date=False):
+def format_output(records, command, output_format, julian_date='False'):
     output = ''
     if command in ['metrics', 'networks', 'stations']:
         records = [r[0] for r in records]
@@ -202,7 +202,7 @@ def format_output(records, command, output_format, julian_date=False):
         elif output_format == 'json':
             output = json.dumps({command: records, 'count': len(records)})
     elif command in ['data', 'hash', 'md5']:
-        if julian_date == 'True':
+        if julian_date.lower() == 'true':
             date_format = '%Y-%j'
         else:
             date_format = '%Y-%m-%d'
@@ -225,6 +225,8 @@ def format_output(records, command, output_format, julian_date=False):
                                    'channel': record[4],
                                    'metric': record[5],
                                    'value': record[6]}
+                    if command == 'hash':
+                        json_record['hash'] = record[7]
                     json_output['records'].append(json_record)
             elif command == 'md5':
                 json_output = {'date': output_records[0][0], 'hash': output_records[0][1]}
