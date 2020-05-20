@@ -4570,7 +4570,7 @@ GRANT ALL ON FUNCTION public.fnfinishscan(scanid uuid) TO postgres;
 -- Name: FUNCTION fnsclgetchanneldata(integer[], integer, date, date); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.fnsclgetchanneldata(integer[], integer, date, date) TO dqa_write;
+GRANT ALL ON FUNCTION public.fnsclgetchanneldata(integer[], integer, date, date) TO postgres;
 GRANT ALL ON FUNCTION public.fnsclgetchanneldata(integer[], integer, date, date) TO postgres;
 
 
@@ -4578,7 +4578,7 @@ GRANT ALL ON FUNCTION public.fnsclgetchanneldata(integer[], integer, date, date)
 -- Name: FUNCTION fnsclgetchannelplotdata(integer, integer, date, date); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.fnsclgetchannelplotdata(integer, integer, date, date) TO dqa_write;
+GRANT ALL ON FUNCTION public.fnsclgetchannelplotdata(integer, integer, date, date) TO postgres;
 GRANT ALL ON FUNCTION public.fnsclgetchannelplotdata(integer, integer, date, date) TO postgres;
 
 
@@ -4586,7 +4586,7 @@ GRANT ALL ON FUNCTION public.fnsclgetchannelplotdata(integer, integer, date, dat
 -- Name: FUNCTION fnsclgetchannels(integer[]); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.fnsclgetchannels(integer[]) TO dqa_write;
+GRANT ALL ON FUNCTION public.fnsclgetchannels(integer[]) TO postgres;
 GRANT ALL ON FUNCTION public.fnsclgetchannels(integer[]) TO postgres;
 
 
@@ -4594,7 +4594,7 @@ GRANT ALL ON FUNCTION public.fnsclgetchannels(integer[]) TO postgres;
 -- Name: FUNCTION fnsclgetdates(); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.fnsclgetdates() TO dqa_write;
+GRANT ALL ON FUNCTION public.fnsclgetdates() TO postgres;
 GRANT ALL ON FUNCTION public.fnsclgetdates() TO postgres;
 
 
@@ -4602,7 +4602,7 @@ GRANT ALL ON FUNCTION public.fnsclgetdates() TO postgres;
 -- Name: FUNCTION fnsclgetgroups(); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.fnsclgetgroups() TO dqa_write;
+GRANT ALL ON FUNCTION public.fnsclgetgroups() TO postgres;
 GRANT ALL ON FUNCTION public.fnsclgetgroups() TO postgres;
 
 
@@ -4610,7 +4610,7 @@ GRANT ALL ON FUNCTION public.fnsclgetgroups() TO postgres;
 -- Name: FUNCTION fnsclgetgrouptypes(); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.fnsclgetgrouptypes() TO dqa_write;
+GRANT ALL ON FUNCTION public.fnsclgetgrouptypes() TO postgres;
 GRANT ALL ON FUNCTION public.fnsclgetgrouptypes() TO postgres;
 
 
@@ -4618,7 +4618,7 @@ GRANT ALL ON FUNCTION public.fnsclgetgrouptypes() TO postgres;
 -- Name: FUNCTION fnsclgetmetrics(); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.fnsclgetmetrics() TO dqa_write;
+GRANT ALL ON FUNCTION public.fnsclgetmetrics() TO postgres;
 GRANT ALL ON FUNCTION public.fnsclgetmetrics() TO postgres;
 
 
@@ -4626,7 +4626,7 @@ GRANT ALL ON FUNCTION public.fnsclgetmetrics() TO postgres;
 -- Name: FUNCTION fnsclgetpercentage(double precision, character varying); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.fnsclgetpercentage(double precision, character varying) TO dqa_write;
+GRANT ALL ON FUNCTION public.fnsclgetpercentage(double precision, character varying) TO postgres;
 GRANT ALL ON FUNCTION public.fnsclgetpercentage(double precision, character varying) TO postgres;
 
 
@@ -4634,7 +4634,7 @@ GRANT ALL ON FUNCTION public.fnsclgetpercentage(double precision, character vary
 -- Name: FUNCTION fnsclgetstationdata(integer[], integer, date, date); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.fnsclgetstationdata(integer[], integer, date, date) TO dqa_write;
+GRANT ALL ON FUNCTION public.fnsclgetstationdata(integer[], integer, date, date) TO postgres;
 GRANT ALL ON FUNCTION public.fnsclgetstationdata(integer[], integer, date, date) TO postgres;
 
 
@@ -4642,7 +4642,7 @@ GRANT ALL ON FUNCTION public.fnsclgetstationdata(integer[], integer, date, date)
 -- Name: FUNCTION fnsclgetstationplotdata(integer, integer, date, date); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.fnsclgetstationplotdata(integer, integer, date, date) TO dqa_write;
+GRANT ALL ON FUNCTION public.fnsclgetstationplotdata(integer, integer, date, date) TO postgres;
 GRANT ALL ON FUNCTION public.fnsclgetstationplotdata(integer, integer, date, date) TO postgres;
 
 
@@ -4650,7 +4650,7 @@ GRANT ALL ON FUNCTION public.fnsclgetstationplotdata(integer, integer, date, dat
 -- Name: FUNCTION fnsclgetstations(); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.fnsclgetstations() TO dqa_write;
+GRANT ALL ON FUNCTION public.fnsclgetstations() TO postgres;
 GRANT ALL ON FUNCTION public.fnsclgetstations() TO postgres;
 
 
@@ -4658,7 +4658,7 @@ GRANT ALL ON FUNCTION public.fnsclgetstations() TO postgres;
 -- Name: FUNCTION fnsclisnumeric("inputText" text); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.fnsclisnumeric("inputText" text) TO dqa_write;
+GRANT ALL ON FUNCTION public.fnsclisnumeric("inputText" text) TO postgres;
 GRANT ALL ON FUNCTION public.fnsclisnumeric("inputText" text) TO postgres;
 
 
@@ -4666,7 +4666,7 @@ GRANT ALL ON FUNCTION public.fnsclisnumeric("inputText" text) TO postgres;
 -- Name: FUNCTION uuid_generate_v1mc(); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.uuid_generate_v1mc() TO dqa_write;
+GRANT ALL ON FUNCTION public.uuid_generate_v1mc() TO postgres;
 GRANT ALL ON FUNCTION public.uuid_generate_v1mc() TO postgres;
 
 
@@ -4675,7 +4675,7 @@ GRANT ALL ON FUNCTION public.uuid_generate_v1mc() TO postgres;
 --
 
 GRANT SELECT,REFERENCES ON TABLE public.tblscan TO PUBLIC;
-GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblscan TO dqa_write;
+GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblscan TO postgres;
 GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblscan TO postgres;
 
 
@@ -4683,7 +4683,7 @@ GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblscan TO postgres;
 -- Name: FUNCTION fntakenextscan(); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.fntakenextscan() TO dqa_write;
+GRANT ALL ON FUNCTION public.fntakenextscan() TO postgres;
 GRANT ALL ON FUNCTION public.fntakenextscan() TO postgres;
 
 
@@ -4691,7 +4691,7 @@ GRANT ALL ON FUNCTION public.fntakenextscan() TO postgres;
 -- Name: FUNCTION spcomparehash(date, character varying, character varying, character varying, character varying, character varying, bytea); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.spcomparehash(date, character varying, character varying, character varying, character varying, character varying, bytea) TO dqa_write;
+GRANT ALL ON FUNCTION public.spcomparehash(date, character varying, character varying, character varying, character varying, character varying, bytea) TO postgres;
 GRANT ALL ON FUNCTION public.spcomparehash(date, character varying, character varying, character varying, character varying, character varying, bytea) TO postgres;
 
 
@@ -4699,7 +4699,7 @@ GRANT ALL ON FUNCTION public.spcomparehash(date, character varying, character va
 -- Name: FUNCTION spgetmetricvalue(date, character varying, character varying, character varying, character varying, character varying); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.spgetmetricvalue(date, character varying, character varying, character varying, character varying, character varying) TO dqa_write;
+GRANT ALL ON FUNCTION public.spgetmetricvalue(date, character varying, character varying, character varying, character varying, character varying) TO postgres;
 GRANT ALL ON FUNCTION public.spgetmetricvalue(date, character varying, character varying, character varying, character varying, character varying) TO postgres;
 
 
@@ -4707,7 +4707,7 @@ GRANT ALL ON FUNCTION public.spgetmetricvalue(date, character varying, character
 -- Name: FUNCTION spgetmetricvaluedigest(date, character varying, character varying, character varying, character varying, character varying, OUT bytea); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.spgetmetricvaluedigest(date, character varying, character varying, character varying, character varying, character varying, OUT bytea) TO dqa_write;
+GRANT ALL ON FUNCTION public.spgetmetricvaluedigest(date, character varying, character varying, character varying, character varying, character varying, OUT bytea) TO postgres;
 GRANT ALL ON FUNCTION public.spgetmetricvaluedigest(date, character varying, character varying, character varying, character varying, character varying, OUT bytea) TO postgres;
 
 
@@ -4715,7 +4715,7 @@ GRANT ALL ON FUNCTION public.spgetmetricvaluedigest(date, character varying, cha
 -- Name: FUNCTION spinsertmetricdata(date, character varying, character varying, character varying, character varying, character varying, double precision, bytea); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.spinsertmetricdata(date, character varying, character varying, character varying, character varying, character varying, double precision, bytea) TO dqa_write;
+GRANT ALL ON FUNCTION public.spinsertmetricdata(date, character varying, character varying, character varying, character varying, character varying, double precision, bytea) TO postgres;
 GRANT ALL ON FUNCTION public.spinsertmetricdata(date, character varying, character varying, character varying, character varying, character varying, double precision, bytea) TO postgres;
 
 
@@ -4723,7 +4723,7 @@ GRANT ALL ON FUNCTION public.spinsertmetricdata(date, character varying, charact
 -- Name: FUNCTION spinsertmetricdata(date, character varying, character varying, character varying, character varying, character varying, text, bytea); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.spinsertmetricdata(date, character varying, character varying, character varying, character varying, character varying, text, bytea) TO dqa_write;
+GRANT ALL ON FUNCTION public.spinsertmetricdata(date, character varying, character varying, character varying, character varying, character varying, text, bytea) TO postgres;
 GRANT ALL ON FUNCTION public.spinsertmetricdata(date, character varying, character varying, character varying, character varying, character varying, text, bytea) TO postgres;
 
 
@@ -4731,7 +4731,7 @@ GRANT ALL ON FUNCTION public.spinsertmetricdata(date, character varying, charact
 -- Name: FUNCTION spinsertmetricstringdata(date, character varying, character varying, character varying, character varying, character varying, text, bytea); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.spinsertmetricstringdata(date, character varying, character varying, character varying, character varying, character varying, text, bytea) TO dqa_write;
+GRANT ALL ON FUNCTION public.spinsertmetricstringdata(date, character varying, character varying, character varying, character varying, character varying, text, bytea) TO postgres;
 GRANT ALL ON FUNCTION public.spinsertmetricstringdata(date, character varying, character varying, character varying, character varying, character varying, text, bytea) TO postgres;
 
 
@@ -4739,7 +4739,7 @@ GRANT ALL ON FUNCTION public.spinsertmetricstringdata(date, character varying, c
 -- Name: FUNCTION uuid_generate_v1(); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.uuid_generate_v1() TO dqa_write;
+GRANT ALL ON FUNCTION public.uuid_generate_v1() TO postgres;
 GRANT ALL ON FUNCTION public.uuid_generate_v1() TO postgres;
 
 
@@ -4747,7 +4747,7 @@ GRANT ALL ON FUNCTION public.uuid_generate_v1() TO postgres;
 -- Name: FUNCTION uuid_generate_v3(namespace uuid, name text); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.uuid_generate_v3(namespace uuid, name text) TO dqa_write;
+GRANT ALL ON FUNCTION public.uuid_generate_v3(namespace uuid, name text) TO postgres;
 GRANT ALL ON FUNCTION public.uuid_generate_v3(namespace uuid, name text) TO postgres;
 
 
@@ -4755,7 +4755,7 @@ GRANT ALL ON FUNCTION public.uuid_generate_v3(namespace uuid, name text) TO post
 -- Name: FUNCTION uuid_generate_v4(); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.uuid_generate_v4() TO dqa_write;
+GRANT ALL ON FUNCTION public.uuid_generate_v4() TO postgres;
 GRANT ALL ON FUNCTION public.uuid_generate_v4() TO postgres;
 
 
@@ -4763,7 +4763,7 @@ GRANT ALL ON FUNCTION public.uuid_generate_v4() TO postgres;
 -- Name: FUNCTION uuid_generate_v5(namespace uuid, name text); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.uuid_generate_v5(namespace uuid, name text) TO dqa_write;
+GRANT ALL ON FUNCTION public.uuid_generate_v5(namespace uuid, name text) TO postgres;
 GRANT ALL ON FUNCTION public.uuid_generate_v5(namespace uuid, name text) TO postgres;
 
 
@@ -4771,7 +4771,7 @@ GRANT ALL ON FUNCTION public.uuid_generate_v5(namespace uuid, name text) TO post
 -- Name: FUNCTION uuid_nil(); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.uuid_nil() TO dqa_write;
+GRANT ALL ON FUNCTION public.uuid_nil() TO postgres;
 GRANT ALL ON FUNCTION public.uuid_nil() TO postgres;
 
 
@@ -4779,7 +4779,7 @@ GRANT ALL ON FUNCTION public.uuid_nil() TO postgres;
 -- Name: FUNCTION uuid_ns_dns(); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.uuid_ns_dns() TO dqa_write;
+GRANT ALL ON FUNCTION public.uuid_ns_dns() TO postgres;
 GRANT ALL ON FUNCTION public.uuid_ns_dns() TO postgres;
 
 
@@ -4787,7 +4787,7 @@ GRANT ALL ON FUNCTION public.uuid_ns_dns() TO postgres;
 -- Name: FUNCTION uuid_ns_oid(); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.uuid_ns_oid() TO dqa_write;
+GRANT ALL ON FUNCTION public.uuid_ns_oid() TO postgres;
 GRANT ALL ON FUNCTION public.uuid_ns_oid() TO postgres;
 
 
@@ -4795,7 +4795,7 @@ GRANT ALL ON FUNCTION public.uuid_ns_oid() TO postgres;
 -- Name: FUNCTION uuid_ns_url(); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.uuid_ns_url() TO dqa_write;
+GRANT ALL ON FUNCTION public.uuid_ns_url() TO postgres;
 GRANT ALL ON FUNCTION public.uuid_ns_url() TO postgres;
 
 
@@ -4803,7 +4803,7 @@ GRANT ALL ON FUNCTION public.uuid_ns_url() TO postgres;
 -- Name: FUNCTION uuid_ns_x500(); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.uuid_ns_x500() TO dqa_write;
+GRANT ALL ON FUNCTION public.uuid_ns_x500() TO postgres;
 GRANT ALL ON FUNCTION public.uuid_ns_x500() TO postgres;
 
 
@@ -4812,7 +4812,7 @@ GRANT ALL ON FUNCTION public.uuid_ns_x500() TO postgres;
 --
 
 GRANT SELECT,REFERENCES ON TABLE public."tblGroup" TO PUBLIC;
-GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public."tblGroup" TO dqa_write;
+GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public."tblGroup" TO postgres;
 GRANT SELECT,REFERENCES,TRIGGER ON TABLE public."tblGroup" TO postgres;
 
 
@@ -4821,7 +4821,7 @@ GRANT SELECT,REFERENCES,TRIGGER ON TABLE public."tblGroup" TO postgres;
 --
 
 GRANT SELECT,REFERENCES ON TABLE public."tblGroupType" TO PUBLIC;
-GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public."tblGroupType" TO dqa_write;
+GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public."tblGroupType" TO postgres;
 GRANT SELECT,REFERENCES,TRIGGER ON TABLE public."tblGroupType" TO postgres;
 
 
@@ -4831,7 +4831,7 @@ GRANT SELECT,REFERENCES,TRIGGER ON TABLE public."tblGroupType" TO postgres;
 
 GRANT SELECT ON TABLE public.grouptypeview TO postgres;
 GRANT ALL ON TABLE public.grouptypeview TO postgres;
-GRANT ALL ON TABLE public.grouptypeview TO dqa_write;
+GRANT ALL ON TABLE public.grouptypeview TO postgres;
 
 
 --
@@ -4840,7 +4840,7 @@ GRANT ALL ON TABLE public.grouptypeview TO dqa_write;
 
 GRANT SELECT ON TABLE public.groupview TO postgres;
 GRANT ALL ON TABLE public.groupview TO postgres;
-GRANT ALL ON TABLE public.groupview TO dqa_write;
+GRANT ALL ON TABLE public.groupview TO postgres;
 
 
 --
@@ -4848,7 +4848,7 @@ GRANT ALL ON TABLE public.groupview TO dqa_write;
 --
 
 GRANT SELECT,REFERENCES ON TABLE public."tblStationGroupTie" TO PUBLIC;
-GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public."tblStationGroupTie" TO dqa_write;
+GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public."tblStationGroupTie" TO postgres;
 GRANT SELECT,REFERENCES,TRIGGER ON TABLE public."tblStationGroupTie" TO postgres;
 
 
@@ -4857,7 +4857,7 @@ GRANT SELECT,REFERENCES,TRIGGER ON TABLE public."tblStationGroupTie" TO postgres
 --
 
 GRANT SELECT,REFERENCES ON TABLE public.tblstation TO PUBLIC;
-GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblstation TO dqa_write;
+GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblstation TO postgres;
 GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblstation TO postgres;
 
 
@@ -4867,7 +4867,7 @@ GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblstation TO postgres;
 
 GRANT SELECT ON TABLE public.stationview TO postgres;
 GRANT ALL ON TABLE public.stationview TO postgres;
-GRANT ALL ON TABLE public.stationview TO dqa_write;
+GRANT ALL ON TABLE public.stationview TO postgres;
 
 
 --
@@ -4875,7 +4875,7 @@ GRANT ALL ON TABLE public.stationview TO dqa_write;
 --
 
 GRANT SELECT ON SEQUENCE public."tblGroupType_pkGroupTypeID_seq" TO PUBLIC;
-GRANT ALL ON SEQUENCE public."tblGroupType_pkGroupTypeID_seq" TO dqa_write;
+GRANT ALL ON SEQUENCE public."tblGroupType_pkGroupTypeID_seq" TO postgres;
 GRANT SELECT,USAGE ON SEQUENCE public."tblGroupType_pkGroupTypeID_seq" TO postgres;
 
 
@@ -4884,7 +4884,7 @@ GRANT SELECT,USAGE ON SEQUENCE public."tblGroupType_pkGroupTypeID_seq" TO postgr
 --
 
 GRANT SELECT ON SEQUENCE public."tblGroup_pkgroupid_seq" TO PUBLIC;
-GRANT ALL ON SEQUENCE public."tblGroup_pkgroupid_seq" TO dqa_write;
+GRANT ALL ON SEQUENCE public."tblGroup_pkgroupid_seq" TO postgres;
 GRANT SELECT,USAGE ON SEQUENCE public."tblGroup_pkgroupid_seq" TO postgres;
 
 
@@ -4893,7 +4893,7 @@ GRANT SELECT,USAGE ON SEQUENCE public."tblGroup_pkgroupid_seq" TO postgres;
 --
 
 GRANT SELECT,REFERENCES ON TABLE public.tblcalibrationdata TO PUBLIC;
-GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblcalibrationdata TO dqa_write;
+GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblcalibrationdata TO postgres;
 GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblcalibrationdata TO postgres;
 
 
@@ -4902,7 +4902,7 @@ GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblcalibrationdata TO postgres;
 --
 
 GRANT SELECT ON SEQUENCE public.tblcalibrationdata_pkcalibrationdataid_seq TO PUBLIC;
-GRANT ALL ON SEQUENCE public.tblcalibrationdata_pkcalibrationdataid_seq TO dqa_write;
+GRANT ALL ON SEQUENCE public.tblcalibrationdata_pkcalibrationdataid_seq TO postgres;
 GRANT SELECT,USAGE ON SEQUENCE public.tblcalibrationdata_pkcalibrationdataid_seq TO postgres;
 
 
@@ -4911,7 +4911,7 @@ GRANT SELECT,USAGE ON SEQUENCE public.tblcalibrationdata_pkcalibrationdataid_seq
 --
 
 GRANT SELECT,REFERENCES ON TABLE public.tblchannel TO PUBLIC;
-GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblchannel TO dqa_write;
+GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblchannel TO postgres;
 GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblchannel TO postgres;
 
 
@@ -4920,7 +4920,7 @@ GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblchannel TO postgres;
 --
 
 GRANT SELECT ON SEQUENCE public.tblchannel_pkchannelid_seq TO PUBLIC;
-GRANT ALL ON SEQUENCE public.tblchannel_pkchannelid_seq TO dqa_write;
+GRANT ALL ON SEQUENCE public.tblchannel_pkchannelid_seq TO postgres;
 GRANT SELECT,USAGE ON SEQUENCE public.tblchannel_pkchannelid_seq TO postgres;
 
 
@@ -4929,7 +4929,7 @@ GRANT SELECT,USAGE ON SEQUENCE public.tblchannel_pkchannelid_seq TO postgres;
 --
 
 GRANT SELECT,REFERENCES ON TABLE public.tblcomputetype TO PUBLIC;
-GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblcomputetype TO dqa_write;
+GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblcomputetype TO postgres;
 GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblcomputetype TO postgres;
 
 
@@ -4938,7 +4938,7 @@ GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblcomputetype TO postgres;
 --
 
 GRANT SELECT ON SEQUENCE public.tblcomputetype_pkcomputetypeid_seq TO PUBLIC;
-GRANT ALL ON SEQUENCE public.tblcomputetype_pkcomputetypeid_seq TO dqa_write;
+GRANT ALL ON SEQUENCE public.tblcomputetype_pkcomputetypeid_seq TO postgres;
 GRANT SELECT,USAGE ON SEQUENCE public.tblcomputetype_pkcomputetypeid_seq TO postgres;
 
 
@@ -4947,7 +4947,7 @@ GRANT SELECT,USAGE ON SEQUENCE public.tblcomputetype_pkcomputetypeid_seq TO post
 --
 
 GRANT SELECT,REFERENCES ON TABLE public.tbldate TO PUBLIC;
-GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tbldate TO dqa_write;
+GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tbldate TO postgres;
 GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tbldate TO postgres;
 
 
@@ -4956,7 +4956,7 @@ GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tbldate TO postgres;
 --
 
 GRANT SELECT,REFERENCES ON TABLE public.tblerrorlog TO PUBLIC;
-GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblerrorlog TO dqa_write;
+GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblerrorlog TO postgres;
 GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblerrorlog TO postgres;
 
 
@@ -4965,7 +4965,7 @@ GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblerrorlog TO postgres;
 --
 
 GRANT SELECT ON SEQUENCE public.tblerrorlog_pkerrorlogid_seq TO PUBLIC;
-GRANT ALL ON SEQUENCE public.tblerrorlog_pkerrorlogid_seq TO dqa_write;
+GRANT ALL ON SEQUENCE public.tblerrorlog_pkerrorlogid_seq TO postgres;
 GRANT SELECT,USAGE ON SEQUENCE public.tblerrorlog_pkerrorlogid_seq TO postgres;
 
 
@@ -4974,7 +4974,7 @@ GRANT SELECT,USAGE ON SEQUENCE public.tblerrorlog_pkerrorlogid_seq TO postgres;
 --
 
 GRANT SELECT,REFERENCES ON TABLE public.tblhash TO PUBLIC;
-GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblhash TO dqa_write;
+GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblhash TO postgres;
 GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblhash TO postgres;
 
 
@@ -4983,7 +4983,7 @@ GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblhash TO postgres;
 --
 
 GRANT SELECT ON SEQUENCE public."tblhash_pkHashID_seq" TO PUBLIC;
-GRANT ALL ON SEQUENCE public."tblhash_pkHashID_seq" TO dqa_write;
+GRANT ALL ON SEQUENCE public."tblhash_pkHashID_seq" TO postgres;
 GRANT SELECT,USAGE ON SEQUENCE public."tblhash_pkHashID_seq" TO postgres;
 
 
@@ -4992,7 +4992,7 @@ GRANT SELECT,USAGE ON SEQUENCE public."tblhash_pkHashID_seq" TO postgres;
 --
 
 GRANT SELECT,REFERENCES ON TABLE public.tblmetadata TO PUBLIC;
-GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblmetadata TO dqa_write;
+GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblmetadata TO postgres;
 GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblmetadata TO postgres;
 
 
@@ -5001,7 +5001,7 @@ GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblmetadata TO postgres;
 --
 
 GRANT SELECT,REFERENCES ON TABLE public.tblmetric TO PUBLIC;
-GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblmetric TO dqa_write;
+GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblmetric TO postgres;
 GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblmetric TO postgres;
 
 
@@ -5010,7 +5010,7 @@ GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblmetric TO postgres;
 --
 
 GRANT SELECT ON SEQUENCE public.tblmetric_pkmetricid_seq TO PUBLIC;
-GRANT ALL ON SEQUENCE public.tblmetric_pkmetricid_seq TO dqa_write;
+GRANT ALL ON SEQUENCE public.tblmetric_pkmetricid_seq TO postgres;
 GRANT SELECT,USAGE ON SEQUENCE public.tblmetric_pkmetricid_seq TO postgres;
 
 
@@ -5019,7 +5019,7 @@ GRANT SELECT,USAGE ON SEQUENCE public.tblmetric_pkmetricid_seq TO postgres;
 --
 
 GRANT SELECT,REFERENCES ON TABLE public.tblmetricdata TO PUBLIC;
-GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblmetricdata TO dqa_write;
+GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblmetricdata TO postgres;
 GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblmetricdata TO postgres;
 
 
@@ -5028,7 +5028,7 @@ GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblmetricdata TO postgres;
 --
 
 GRANT SELECT,REFERENCES ON TABLE public.tblmetricstringdata TO PUBLIC;
-GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblmetricstringdata TO dqa_write;
+GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblmetricstringdata TO postgres;
 GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblmetricstringdata TO postgres;
 
 
@@ -5037,7 +5037,7 @@ GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblmetricstringdata TO postgres;
 --
 
 GRANT SELECT,REFERENCES ON TABLE public.tblscanmessage TO PUBLIC;
-GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblscanmessage TO dqa_write;
+GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblscanmessage TO postgres;
 GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblscanmessage TO postgres;
 
 
@@ -5046,7 +5046,7 @@ GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblscanmessage TO postgres;
 --
 
 GRANT SELECT ON SEQUENCE public.tblscanmessage_pkmessageid_seq TO PUBLIC;
-GRANT ALL ON SEQUENCE public.tblscanmessage_pkmessageid_seq TO dqa_write;
+GRANT ALL ON SEQUENCE public.tblscanmessage_pkmessageid_seq TO postgres;
 GRANT SELECT,USAGE ON SEQUENCE public.tblscanmessage_pkmessageid_seq TO postgres;
 
 
@@ -5055,7 +5055,7 @@ GRANT SELECT,USAGE ON SEQUENCE public.tblscanmessage_pkmessageid_seq TO postgres
 --
 
 GRANT SELECT,REFERENCES ON TABLE public.tblsensor TO PUBLIC;
-GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblsensor TO dqa_write;
+GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblsensor TO postgres;
 GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblsensor TO postgres;
 
 
@@ -5064,7 +5064,7 @@ GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblsensor TO postgres;
 --
 
 GRANT SELECT ON SEQUENCE public.tblsensor_pksensorid_seq TO PUBLIC;
-GRANT ALL ON SEQUENCE public.tblsensor_pksensorid_seq TO dqa_write;
+GRANT ALL ON SEQUENCE public.tblsensor_pksensorid_seq TO postgres;
 GRANT SELECT,USAGE ON SEQUENCE public.tblsensor_pksensorid_seq TO postgres;
 
 
@@ -5073,7 +5073,7 @@ GRANT SELECT,USAGE ON SEQUENCE public.tblsensor_pksensorid_seq TO postgres;
 --
 
 GRANT SELECT ON SEQUENCE public.tblstation_pkstationid_seq TO PUBLIC;
-GRANT ALL ON SEQUENCE public.tblstation_pkstationid_seq TO dqa_write;
+GRANT ALL ON SEQUENCE public.tblstation_pkstationid_seq TO postgres;
 GRANT SELECT,USAGE ON SEQUENCE public.tblstation_pkstationid_seq TO postgres;
 
 
