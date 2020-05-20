@@ -31,7 +31,7 @@ COMMENT ON EXTENSION "uuid-ossp" IS 'generate universally unique identifiers (UU
 
 
 --
--- Name: fnfinishscan(uuid); Type: FUNCTION; Schema: public; Owner: dqa_owner
+-- Name: fnfinishscan(uuid); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
 CREATE FUNCTION public.fnfinishscan(scanid uuid) RETURNS void
@@ -83,10 +83,10 @@ END
 $$;
 
 
-ALTER FUNCTION public.fnfinishscan(scanid uuid) OWNER TO dqa_owner;
+ALTER FUNCTION public.fnfinishscan(scanid uuid) OWNER TO postgres;
 
 --
--- Name: fnsclgetchanneldata(integer[], integer, date, date); Type: FUNCTION; Schema: public; Owner: dqa_owner
+-- Name: fnsclgetchanneldata(integer[], integer, date, date); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
 CREATE FUNCTION public.fnsclgetchanneldata(integer[], integer, date, date) RETURNS text
@@ -153,10 +153,10 @@ END;
 $_$;
 
 
-ALTER FUNCTION public.fnsclgetchanneldata(integer[], integer, date, date) OWNER TO dqa_owner;
+ALTER FUNCTION public.fnsclgetchanneldata(integer[], integer, date, date) OWNER TO postgres;
 
 --
--- Name: fnsclgetchannelplotdata(integer, integer, date, date); Type: FUNCTION; Schema: public; Owner: dqa_owner
+-- Name: fnsclgetchannelplotdata(integer, integer, date, date); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
 CREATE FUNCTION public.fnsclgetchannelplotdata(integer, integer, date, date) RETURNS text
@@ -217,10 +217,10 @@ END;
 $_$;
 
 
-ALTER FUNCTION public.fnsclgetchannelplotdata(integer, integer, date, date) OWNER TO dqa_owner;
+ALTER FUNCTION public.fnsclgetchannelplotdata(integer, integer, date, date) OWNER TO postgres;
 
 --
--- Name: fnsclgetchannels(integer[]); Type: FUNCTION; Schema: public; Owner: dqa_owner
+-- Name: fnsclgetchannels(integer[]); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
 CREATE FUNCTION public.fnsclgetchannels(integer[]) RETURNS text
@@ -257,10 +257,10 @@ END;
 $_$;
 
 
-ALTER FUNCTION public.fnsclgetchannels(integer[]) OWNER TO dqa_owner;
+ALTER FUNCTION public.fnsclgetchannels(integer[]) OWNER TO postgres;
 
 --
--- Name: fnsclgetdates(); Type: FUNCTION; Schema: public; Owner: dqa_owner
+-- Name: fnsclgetdates(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
 CREATE FUNCTION public.fnsclgetdates() RETURNS text
@@ -289,10 +289,10 @@ END;
 $$;
 
 
-ALTER FUNCTION public.fnsclgetdates() OWNER TO dqa_owner;
+ALTER FUNCTION public.fnsclgetdates() OWNER TO postgres;
 
 --
--- Name: fnsclgetgroups(); Type: FUNCTION; Schema: public; Owner: dqa_owner
+-- Name: fnsclgetgroups(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
 CREATE FUNCTION public.fnsclgetgroups() RETURNS text
@@ -328,10 +328,10 @@ END;
 $$;
 
 
-ALTER FUNCTION public.fnsclgetgroups() OWNER TO dqa_owner;
+ALTER FUNCTION public.fnsclgetgroups() OWNER TO postgres;
 
 --
--- Name: fnsclgetgrouptypes(); Type: FUNCTION; Schema: public; Owner: dqa_owner
+-- Name: fnsclgetgrouptypes(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
 CREATE FUNCTION public.fnsclgetgrouptypes() RETURNS text
@@ -373,10 +373,10 @@ END;
 $$;
 
 
-ALTER FUNCTION public.fnsclgetgrouptypes() OWNER TO dqa_owner;
+ALTER FUNCTION public.fnsclgetgrouptypes() OWNER TO postgres;
 
 --
--- Name: fnsclgetmetrics(); Type: FUNCTION; Schema: public; Owner: dqa_owner
+-- Name: fnsclgetmetrics(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
 CREATE FUNCTION public.fnsclgetmetrics() RETURNS text
@@ -409,10 +409,10 @@ END;
 $$;
 
 
-ALTER FUNCTION public.fnsclgetmetrics() OWNER TO dqa_owner;
+ALTER FUNCTION public.fnsclgetmetrics() OWNER TO postgres;
 
 --
--- Name: fnsclgetpercentage(double precision, character varying); Type: FUNCTION; Schema: public; Owner: dqa_owner
+-- Name: fnsclgetpercentage(double precision, character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
 CREATE FUNCTION public.fnsclgetpercentage(double precision, character varying) RETURNS text
@@ -504,10 +504,10 @@ END;
 $_$;
 
 
-ALTER FUNCTION public.fnsclgetpercentage(double precision, character varying) OWNER TO dqa_owner;
+ALTER FUNCTION public.fnsclgetpercentage(double precision, character varying) OWNER TO postgres;
 
 --
--- Name: fnsclgetstationdata(integer[], integer, date, date); Type: FUNCTION; Schema: public; Owner: dqa_owner
+-- Name: fnsclgetstationdata(integer[], integer, date, date); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
 CREATE FUNCTION public.fnsclgetstationdata(integer[], integer, date, date) RETURNS text
@@ -631,10 +631,10 @@ END;
 $_$;
 
 
-ALTER FUNCTION public.fnsclgetstationdata(integer[], integer, date, date) OWNER TO dqa_owner;
+ALTER FUNCTION public.fnsclgetstationdata(integer[], integer, date, date) OWNER TO postgres;
 
 --
--- Name: fnsclgetstationplotdata(integer, integer, date, date); Type: FUNCTION; Schema: public; Owner: dqa_owner
+-- Name: fnsclgetstationplotdata(integer, integer, date, date); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
 CREATE FUNCTION public.fnsclgetstationplotdata(integer, integer, date, date) RETURNS text
@@ -705,10 +705,10 @@ END;
 $_$;
 
 
-ALTER FUNCTION public.fnsclgetstationplotdata(integer, integer, date, date) OWNER TO dqa_owner;
+ALTER FUNCTION public.fnsclgetstationplotdata(integer, integer, date, date) OWNER TO postgres;
 
 --
--- Name: fnsclgetstations(); Type: FUNCTION; Schema: public; Owner: dqa_owner
+-- Name: fnsclgetstations(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
 CREATE FUNCTION public.fnsclgetstations() RETURNS text
@@ -751,10 +751,10 @@ END;
 $$;
 
 
-ALTER FUNCTION public.fnsclgetstations() OWNER TO dqa_owner;
+ALTER FUNCTION public.fnsclgetstations() OWNER TO postgres;
 
 --
--- Name: fnsclisnumeric(text); Type: FUNCTION; Schema: public; Owner: dqa_owner
+-- Name: fnsclisnumeric(text); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
 CREATE FUNCTION public.fnsclisnumeric("inputText" text) RETURNS boolean
@@ -775,14 +775,14 @@ END;
 $$;
 
 
-ALTER FUNCTION public.fnsclisnumeric("inputText" text) OWNER TO dqa_owner;
+ALTER FUNCTION public.fnsclisnumeric("inputText" text) OWNER TO postgres;
 
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
 --
--- Name: tblscan; Type: TABLE; Schema: public; Owner: dqa_owner
+-- Name: tblscan; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.tblscan (
@@ -804,24 +804,24 @@ CREATE TABLE public.tblscan (
 );
 
 
-ALTER TABLE public.tblscan OWNER TO dqa_owner;
+ALTER TABLE public.tblscan OWNER TO postgres;
 
 --
--- Name: COLUMN tblscan.pkscanid; Type: COMMENT; Schema: public; Owner: dqa_owner
+-- Name: COLUMN tblscan.pkscanid; Type: COMMENT; Schema: public; Owner: postgres
 --
 
 COMMENT ON COLUMN public.tblscan.pkscanid IS 'Uses uuid_generate_v1mc() to generate the default value.';
 
 
 --
--- Name: COLUMN tblscan.scheduledrun; Type: COMMENT; Schema: public; Owner: dqa_owner
+-- Name: COLUMN tblscan.scheduledrun; Type: COMMENT; Schema: public; Owner: postgres
 --
 
 COMMENT ON COLUMN public.tblscan.scheduledrun IS 'Future date when this scan can be run.';
 
 
 --
--- Name: fntakenextscan(); Type: FUNCTION; Schema: public; Owner: dqa_owner
+-- Name: fntakenextscan(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
 CREATE FUNCTION public.fntakenextscan() RETURNS SETOF public.tblscan
@@ -873,10 +873,10 @@ END
 $$;
 
 
-ALTER FUNCTION public.fntakenextscan() OWNER TO dqa_owner;
+ALTER FUNCTION public.fntakenextscan() OWNER TO postgres;
 
 --
--- Name: spcomparehash(date, character varying, character varying, character varying, character varying, character varying, bytea); Type: FUNCTION; Schema: public; Owner: dqa_owner
+-- Name: spcomparehash(date, character varying, character varying, character varying, character varying, character varying, bytea); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
 CREATE FUNCTION public.spcomparehash(date, character varying, character varying, character varying, character varying, character varying, bytea) RETURNS boolean
@@ -934,10 +934,10 @@ BEGIN
 $_$;
 
 
-ALTER FUNCTION public.spcomparehash(date, character varying, character varying, character varying, character varying, character varying, bytea) OWNER TO dqa_owner;
+ALTER FUNCTION public.spcomparehash(date, character varying, character varying, character varying, character varying, character varying, bytea) OWNER TO postgres;
 
 --
--- Name: spgetmetricvalue(date, character varying, character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: dqa_owner
+-- Name: spgetmetricvalue(date, character varying, character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
 CREATE FUNCTION public.spgetmetricvalue(date, character varying, character varying, character varying, character varying, character varying) RETURNS double precision
@@ -988,10 +988,10 @@ BEGIN
 $_$;
 
 
-ALTER FUNCTION public.spgetmetricvalue(date, character varying, character varying, character varying, character varying, character varying) OWNER TO dqa_owner;
+ALTER FUNCTION public.spgetmetricvalue(date, character varying, character varying, character varying, character varying, character varying) OWNER TO postgres;
 
 --
--- Name: spgetmetricvaluedigest(date, character varying, character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: dqa_owner
+-- Name: spgetmetricvaluedigest(date, character varying, character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
 CREATE FUNCTION public.spgetmetricvaluedigest(date, character varying, character varying, character varying, character varying, character varying, OUT bytea) RETURNS bytea
@@ -1046,10 +1046,10 @@ BEGIN
 $_$;
 
 
-ALTER FUNCTION public.spgetmetricvaluedigest(date, character varying, character varying, character varying, character varying, character varying, OUT bytea) OWNER TO dqa_owner;
+ALTER FUNCTION public.spgetmetricvaluedigest(date, character varying, character varying, character varying, character varying, character varying, OUT bytea) OWNER TO postgres;
 
 --
--- Name: spinsertmetricdata(date, character varying, character varying, character varying, character varying, character varying, double precision, bytea); Type: FUNCTION; Schema: public; Owner: dqa_owner
+-- Name: spinsertmetricdata(date, character varying, character varying, character varying, character varying, character varying, double precision, bytea); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
 CREATE FUNCTION public.spinsertmetricdata(date, character varying, character varying, character varying, character varying, character varying, double precision, bytea) RETURNS void
@@ -1208,10 +1208,10 @@ BEGIN
 $_$;
 
 
-ALTER FUNCTION public.spinsertmetricdata(date, character varying, character varying, character varying, character varying, character varying, double precision, bytea) OWNER TO dqa_owner;
+ALTER FUNCTION public.spinsertmetricdata(date, character varying, character varying, character varying, character varying, character varying, double precision, bytea) OWNER TO postgres;
 
 --
--- Name: spinsertmetricdata(date, character varying, character varying, character varying, character varying, character varying, text, bytea); Type: FUNCTION; Schema: public; Owner: dqa_owner
+-- Name: spinsertmetricdata(date, character varying, character varying, character varying, character varying, character varying, text, bytea); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
 CREATE FUNCTION public.spinsertmetricdata(date, character varying, character varying, character varying, character varying, character varying, text, bytea) RETURNS void
@@ -1337,10 +1337,10 @@ INSERT INTO tblerrorlog (errortime, errormessage) values (CURRENT_TIMESTAMP,'It 
 $_$;
 
 
-ALTER FUNCTION public.spinsertmetricdata(date, character varying, character varying, character varying, character varying, character varying, text, bytea) OWNER TO dqa_owner;
+ALTER FUNCTION public.spinsertmetricdata(date, character varying, character varying, character varying, character varying, character varying, text, bytea) OWNER TO postgres;
 
 --
--- Name: spinsertmetricstringdata(date, character varying, character varying, character varying, character varying, character varying, text, bytea); Type: FUNCTION; Schema: public; Owner: dqa_owner
+-- Name: spinsertmetricstringdata(date, character varying, character varying, character varying, character varying, character varying, text, bytea); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
 CREATE FUNCTION public.spinsertmetricstringdata(date, character varying, character varying, character varying, character varying, character varying, text, bytea) RETURNS void
@@ -1466,10 +1466,10 @@ INSERT INTO tblerrorlog (errortime, errormessage) values (CURRENT_TIMESTAMP,'It 
 $_$;
 
 
-ALTER FUNCTION public.spinsertmetricstringdata(date, character varying, character varying, character varying, character varying, character varying, text, bytea) OWNER TO dqa_owner;
+ALTER FUNCTION public.spinsertmetricstringdata(date, character varying, character varying, character varying, character varying, character varying, text, bytea) OWNER TO postgres;
 
 --
--- Name: tblGroup; Type: TABLE; Schema: public; Owner: dqa_owner
+-- Name: tblGroup; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public."tblGroup" (
@@ -1480,10 +1480,10 @@ CREATE TABLE public."tblGroup" (
 );
 
 
-ALTER TABLE public."tblGroup" OWNER TO dqa_owner;
+ALTER TABLE public."tblGroup" OWNER TO postgres;
 
 --
--- Name: tblGroupType; Type: TABLE; Schema: public; Owner: dqa_owner
+-- Name: tblGroupType; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public."tblGroupType" (
@@ -1492,10 +1492,10 @@ CREATE TABLE public."tblGroupType" (
 );
 
 
-ALTER TABLE public."tblGroupType" OWNER TO dqa_owner;
+ALTER TABLE public."tblGroupType" OWNER TO postgres;
 
 --
--- Name: grouptypeview; Type: VIEW; Schema: public; Owner: jholland
+-- Name: grouptypeview; Type: VIEW; Schema: public; Owner: postgres
 --
 
 CREATE VIEW public.grouptypeview AS
@@ -1507,10 +1507,10 @@ CREATE VIEW public.grouptypeview AS
   ORDER BY grpt."pkGroupTypeID", grp.pkgroupid;
 
 
-ALTER TABLE public.grouptypeview OWNER TO jholland;
+ALTER TABLE public.grouptypeview OWNER TO postgres;
 
 --
--- Name: groupview; Type: VIEW; Schema: public; Owner: jholland
+-- Name: groupview; Type: VIEW; Schema: public; Owner: postgres
 --
 
 CREATE VIEW public.groupview AS
@@ -1521,10 +1521,10 @@ CREATE VIEW public.groupview AS
   ORDER BY "tblGroup".pkgroupid;
 
 
-ALTER TABLE public.groupview OWNER TO jholland;
+ALTER TABLE public.groupview OWNER TO postgres;
 
 --
--- Name: tblStationGroupTie; Type: TABLE; Schema: public; Owner: dqa_owner
+-- Name: tblStationGroupTie; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public."tblStationGroupTie" (
@@ -1533,10 +1533,10 @@ CREATE TABLE public."tblStationGroupTie" (
 );
 
 
-ALTER TABLE public."tblStationGroupTie" OWNER TO dqa_owner;
+ALTER TABLE public."tblStationGroupTie" OWNER TO postgres;
 
 --
--- Name: tblstation; Type: TABLE; Schema: public; Owner: dqa_owner
+-- Name: tblstation; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.tblstation (
@@ -1546,10 +1546,10 @@ CREATE TABLE public.tblstation (
 );
 
 
-ALTER TABLE public.tblstation OWNER TO dqa_owner;
+ALTER TABLE public.tblstation OWNER TO postgres;
 
 --
--- Name: stationview; Type: VIEW; Schema: public; Owner: jholland
+-- Name: stationview; Type: VIEW; Schema: public; Owner: postgres
 --
 
 CREATE VIEW public.stationview AS
@@ -1562,10 +1562,10 @@ CREATE VIEW public.stationview AS
   ORDER BY sta.pkstationid, sgt."fkGroupID";
 
 
-ALTER TABLE public.stationview OWNER TO jholland;
+ALTER TABLE public.stationview OWNER TO postgres;
 
 --
--- Name: tblGroupType_pkGroupTypeID_seq; Type: SEQUENCE; Schema: public; Owner: dqa_owner
+-- Name: tblGroupType_pkGroupTypeID_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public."tblGroupType_pkGroupTypeID_seq"
@@ -1576,17 +1576,17 @@ CREATE SEQUENCE public."tblGroupType_pkGroupTypeID_seq"
     CACHE 1;
 
 
-ALTER TABLE public."tblGroupType_pkGroupTypeID_seq" OWNER TO dqa_owner;
+ALTER TABLE public."tblGroupType_pkGroupTypeID_seq" OWNER TO postgres;
 
 --
--- Name: tblGroupType_pkGroupTypeID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dqa_owner
+-- Name: tblGroupType_pkGroupTypeID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public."tblGroupType_pkGroupTypeID_seq" OWNED BY public."tblGroupType"."pkGroupTypeID";
 
 
 --
--- Name: tblGroup_pkgroupid_seq; Type: SEQUENCE; Schema: public; Owner: dqa_owner
+-- Name: tblGroup_pkgroupid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public."tblGroup_pkgroupid_seq"
@@ -1597,17 +1597,17 @@ CREATE SEQUENCE public."tblGroup_pkgroupid_seq"
     CACHE 1;
 
 
-ALTER TABLE public."tblGroup_pkgroupid_seq" OWNER TO dqa_owner;
+ALTER TABLE public."tblGroup_pkgroupid_seq" OWNER TO postgres;
 
 --
--- Name: tblGroup_pkgroupid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dqa_owner
+-- Name: tblGroup_pkgroupid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public."tblGroup_pkgroupid_seq" OWNED BY public."tblGroup".pkgroupid;
 
 
 --
--- Name: tblcalibrationdata; Type: TABLE; Schema: public; Owner: dqa_owner
+-- Name: tblcalibrationdata; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.tblcalibrationdata (
@@ -1627,10 +1627,10 @@ CREATE TABLE public.tblcalibrationdata (
 );
 
 
-ALTER TABLE public.tblcalibrationdata OWNER TO dqa_owner;
+ALTER TABLE public.tblcalibrationdata OWNER TO postgres;
 
 --
--- Name: tblcalibrationdata_pkcalibrationdataid_seq; Type: SEQUENCE; Schema: public; Owner: dqa_owner
+-- Name: tblcalibrationdata_pkcalibrationdataid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.tblcalibrationdata_pkcalibrationdataid_seq
@@ -1641,17 +1641,17 @@ CREATE SEQUENCE public.tblcalibrationdata_pkcalibrationdataid_seq
     CACHE 1;
 
 
-ALTER TABLE public.tblcalibrationdata_pkcalibrationdataid_seq OWNER TO dqa_owner;
+ALTER TABLE public.tblcalibrationdata_pkcalibrationdataid_seq OWNER TO postgres;
 
 --
--- Name: tblcalibrationdata_pkcalibrationdataid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dqa_owner
+-- Name: tblcalibrationdata_pkcalibrationdataid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.tblcalibrationdata_pkcalibrationdataid_seq OWNED BY public.tblcalibrationdata.pkcalibrationdataid;
 
 
 --
--- Name: tblchannel; Type: TABLE; Schema: public; Owner: dqa_owner
+-- Name: tblchannel; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.tblchannel (
@@ -1663,10 +1663,10 @@ CREATE TABLE public.tblchannel (
 );
 
 
-ALTER TABLE public.tblchannel OWNER TO dqa_owner;
+ALTER TABLE public.tblchannel OWNER TO postgres;
 
 --
--- Name: tblchannel_pkchannelid_seq; Type: SEQUENCE; Schema: public; Owner: dqa_owner
+-- Name: tblchannel_pkchannelid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.tblchannel_pkchannelid_seq
@@ -1677,17 +1677,17 @@ CREATE SEQUENCE public.tblchannel_pkchannelid_seq
     CACHE 1;
 
 
-ALTER TABLE public.tblchannel_pkchannelid_seq OWNER TO dqa_owner;
+ALTER TABLE public.tblchannel_pkchannelid_seq OWNER TO postgres;
 
 --
--- Name: tblchannel_pkchannelid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dqa_owner
+-- Name: tblchannel_pkchannelid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.tblchannel_pkchannelid_seq OWNED BY public.tblchannel.pkchannelid;
 
 
 --
--- Name: tblcomputetype; Type: TABLE; Schema: public; Owner: dqa_owner
+-- Name: tblcomputetype; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.tblcomputetype (
@@ -1698,10 +1698,10 @@ CREATE TABLE public.tblcomputetype (
 );
 
 
-ALTER TABLE public.tblcomputetype OWNER TO dqa_owner;
+ALTER TABLE public.tblcomputetype OWNER TO postgres;
 
 --
--- Name: tblcomputetype_pkcomputetypeid_seq; Type: SEQUENCE; Schema: public; Owner: dqa_owner
+-- Name: tblcomputetype_pkcomputetypeid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.tblcomputetype_pkcomputetypeid_seq
@@ -1712,17 +1712,17 @@ CREATE SEQUENCE public.tblcomputetype_pkcomputetypeid_seq
     CACHE 1;
 
 
-ALTER TABLE public.tblcomputetype_pkcomputetypeid_seq OWNER TO dqa_owner;
+ALTER TABLE public.tblcomputetype_pkcomputetypeid_seq OWNER TO postgres;
 
 --
--- Name: tblcomputetype_pkcomputetypeid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dqa_owner
+-- Name: tblcomputetype_pkcomputetypeid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.tblcomputetype_pkcomputetypeid_seq OWNED BY public.tblcomputetype.pkcomputetypeid;
 
 
 --
--- Name: tbldate; Type: TABLE; Schema: public; Owner: dqa_owner
+-- Name: tbldate; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.tbldate (
@@ -1731,10 +1731,10 @@ CREATE TABLE public.tbldate (
 );
 
 
-ALTER TABLE public.tbldate OWNER TO dqa_owner;
+ALTER TABLE public.tbldate OWNER TO postgres;
 
 --
--- Name: tblerrorlog; Type: TABLE; Schema: public; Owner: dqa_owner
+-- Name: tblerrorlog; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.tblerrorlog (
@@ -1744,10 +1744,10 @@ CREATE TABLE public.tblerrorlog (
 );
 
 
-ALTER TABLE public.tblerrorlog OWNER TO dqa_owner;
+ALTER TABLE public.tblerrorlog OWNER TO postgres;
 
 --
--- Name: tblerrorlog_pkerrorlogid_seq; Type: SEQUENCE; Schema: public; Owner: dqa_owner
+-- Name: tblerrorlog_pkerrorlogid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.tblerrorlog_pkerrorlogid_seq
@@ -1758,17 +1758,17 @@ CREATE SEQUENCE public.tblerrorlog_pkerrorlogid_seq
     CACHE 1;
 
 
-ALTER TABLE public.tblerrorlog_pkerrorlogid_seq OWNER TO dqa_owner;
+ALTER TABLE public.tblerrorlog_pkerrorlogid_seq OWNER TO postgres;
 
 --
--- Name: tblerrorlog_pkerrorlogid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dqa_owner
+-- Name: tblerrorlog_pkerrorlogid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.tblerrorlog_pkerrorlogid_seq OWNED BY public.tblerrorlog.pkerrorlogid;
 
 
 --
--- Name: tblhash; Type: TABLE; Schema: public; Owner: dqa_owner
+-- Name: tblhash; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.tblhash (
@@ -1777,10 +1777,10 @@ CREATE TABLE public.tblhash (
 );
 
 
-ALTER TABLE public.tblhash OWNER TO dqa_owner;
+ALTER TABLE public.tblhash OWNER TO postgres;
 
 --
--- Name: tblhash_pkHashID_seq; Type: SEQUENCE; Schema: public; Owner: dqa_owner
+-- Name: tblhash_pkHashID_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public."tblhash_pkHashID_seq"
@@ -1791,17 +1791,17 @@ CREATE SEQUENCE public."tblhash_pkHashID_seq"
     CACHE 1;
 
 
-ALTER TABLE public."tblhash_pkHashID_seq" OWNER TO dqa_owner;
+ALTER TABLE public."tblhash_pkHashID_seq" OWNER TO postgres;
 
 --
--- Name: tblhash_pkHashID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dqa_owner
+-- Name: tblhash_pkHashID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public."tblhash_pkHashID_seq" OWNED BY public.tblhash."pkHashID";
 
 
 --
--- Name: tblmetadata; Type: TABLE; Schema: public; Owner: dqa_owner
+-- Name: tblmetadata; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.tblmetadata (
@@ -1812,10 +1812,10 @@ CREATE TABLE public.tblmetadata (
 );
 
 
-ALTER TABLE public.tblmetadata OWNER TO dqa_owner;
+ALTER TABLE public.tblmetadata OWNER TO postgres;
 
 --
--- Name: tblmetric; Type: TABLE; Schema: public; Owner: dqa_owner
+-- Name: tblmetric; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.tblmetric (
@@ -1828,10 +1828,10 @@ CREATE TABLE public.tblmetric (
 );
 
 
-ALTER TABLE public.tblmetric OWNER TO dqa_owner;
+ALTER TABLE public.tblmetric OWNER TO postgres;
 
 --
--- Name: tblmetric_pkmetricid_seq; Type: SEQUENCE; Schema: public; Owner: dqa_owner
+-- Name: tblmetric_pkmetricid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.tblmetric_pkmetricid_seq
@@ -1842,17 +1842,17 @@ CREATE SEQUENCE public.tblmetric_pkmetricid_seq
     CACHE 1;
 
 
-ALTER TABLE public.tblmetric_pkmetricid_seq OWNER TO dqa_owner;
+ALTER TABLE public.tblmetric_pkmetricid_seq OWNER TO postgres;
 
 --
--- Name: tblmetric_pkmetricid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dqa_owner
+-- Name: tblmetric_pkmetricid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.tblmetric_pkmetricid_seq OWNED BY public.tblmetric.pkmetricid;
 
 
 --
--- Name: tblmetricdata; Type: TABLE; Schema: public; Owner: dqa_owner
+-- Name: tblmetricdata; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.tblmetricdata (
@@ -1864,17 +1864,17 @@ CREATE TABLE public.tblmetricdata (
 );
 
 
-ALTER TABLE public.tblmetricdata OWNER TO dqa_owner;
+ALTER TABLE public.tblmetricdata OWNER TO postgres;
 
 --
--- Name: COLUMN tblmetricdata.date; Type: COMMENT; Schema: public; Owner: dqa_owner
+-- Name: COLUMN tblmetricdata.date; Type: COMMENT; Schema: public; Owner: postgres
 --
 
 COMMENT ON COLUMN public.tblmetricdata.date IS 'Julian date (number of days from Midnight November 4714 BC). This is based on the Gregorian proleptic Julian Day number standard and is natively supported in Postgresql.';
 
 
 --
--- Name: tblmetricstringdata; Type: TABLE; Schema: public; Owner: dqa_owner
+-- Name: tblmetricstringdata; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.tblmetricstringdata (
@@ -1886,17 +1886,17 @@ CREATE TABLE public.tblmetricstringdata (
 );
 
 
-ALTER TABLE public.tblmetricstringdata OWNER TO dqa_owner;
+ALTER TABLE public.tblmetricstringdata OWNER TO postgres;
 
 --
--- Name: COLUMN tblmetricstringdata.date; Type: COMMENT; Schema: public; Owner: dqa_owner
+-- Name: COLUMN tblmetricstringdata.date; Type: COMMENT; Schema: public; Owner: postgres
 --
 
 COMMENT ON COLUMN public.tblmetricstringdata.date IS 'Julian date (number of days from Midnight November 4714 BC). This is based on the Gregorian proleptic Julian Day number standard and is natively supported in Postgresql.';
 
 
 --
--- Name: tblscanmessage; Type: TABLE; Schema: public; Owner: dqa_owner
+-- Name: tblscanmessage; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.tblscanmessage (
@@ -1912,17 +1912,17 @@ CREATE TABLE public.tblscanmessage (
 );
 
 
-ALTER TABLE public.tblscanmessage OWNER TO dqa_owner;
+ALTER TABLE public.tblscanmessage OWNER TO postgres;
 
 --
--- Name: COLUMN tblscanmessage.location; Type: COMMENT; Schema: public; Owner: dqa_owner
+-- Name: COLUMN tblscanmessage.location; Type: COMMENT; Schema: public; Owner: postgres
 --
 
 COMMENT ON COLUMN public.tblscanmessage.location IS 'Allows for comparison metrics 00-10';
 
 
 --
--- Name: tblscanmessage_pkmessageid_seq; Type: SEQUENCE; Schema: public; Owner: dqa_owner
+-- Name: tblscanmessage_pkmessageid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.tblscanmessage_pkmessageid_seq
@@ -1933,17 +1933,17 @@ CREATE SEQUENCE public.tblscanmessage_pkmessageid_seq
     CACHE 1;
 
 
-ALTER TABLE public.tblscanmessage_pkmessageid_seq OWNER TO dqa_owner;
+ALTER TABLE public.tblscanmessage_pkmessageid_seq OWNER TO postgres;
 
 --
--- Name: tblscanmessage_pkmessageid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dqa_owner
+-- Name: tblscanmessage_pkmessageid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.tblscanmessage_pkmessageid_seq OWNED BY public.tblscanmessage.pkmessageid;
 
 
 --
--- Name: tblsensor; Type: TABLE; Schema: public; Owner: dqa_owner
+-- Name: tblsensor; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.tblsensor (
@@ -1953,10 +1953,10 @@ CREATE TABLE public.tblsensor (
 );
 
 
-ALTER TABLE public.tblsensor OWNER TO dqa_owner;
+ALTER TABLE public.tblsensor OWNER TO postgres;
 
 --
--- Name: tblsensor_pksensorid_seq; Type: SEQUENCE; Schema: public; Owner: dqa_owner
+-- Name: tblsensor_pksensorid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.tblsensor_pksensorid_seq
@@ -1967,17 +1967,17 @@ CREATE SEQUENCE public.tblsensor_pksensorid_seq
     CACHE 1;
 
 
-ALTER TABLE public.tblsensor_pksensorid_seq OWNER TO dqa_owner;
+ALTER TABLE public.tblsensor_pksensorid_seq OWNER TO postgres;
 
 --
--- Name: tblsensor_pksensorid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dqa_owner
+-- Name: tblsensor_pksensorid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.tblsensor_pksensorid_seq OWNED BY public.tblsensor.pksensorid;
 
 
 --
--- Name: tblstation_pkstationid_seq; Type: SEQUENCE; Schema: public; Owner: dqa_owner
+-- Name: tblstation_pkstationid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.tblstation_pkstationid_seq
@@ -1988,94 +1988,94 @@ CREATE SEQUENCE public.tblstation_pkstationid_seq
     CACHE 1;
 
 
-ALTER TABLE public.tblstation_pkstationid_seq OWNER TO dqa_owner;
+ALTER TABLE public.tblstation_pkstationid_seq OWNER TO postgres;
 
 --
--- Name: tblstation_pkstationid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dqa_owner
+-- Name: tblstation_pkstationid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.tblstation_pkstationid_seq OWNED BY public.tblstation.pkstationid;
 
 
 --
--- Name: tblGroup pkgroupid; Type: DEFAULT; Schema: public; Owner: dqa_owner
+-- Name: tblGroup pkgroupid; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public."tblGroup" ALTER COLUMN pkgroupid SET DEFAULT nextval('public."tblGroup_pkgroupid_seq"'::regclass);
 
 
 --
--- Name: tblGroupType pkGroupTypeID; Type: DEFAULT; Schema: public; Owner: dqa_owner
+-- Name: tblGroupType pkGroupTypeID; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public."tblGroupType" ALTER COLUMN "pkGroupTypeID" SET DEFAULT nextval('public."tblGroupType_pkGroupTypeID_seq"'::regclass);
 
 
 --
--- Name: tblcalibrationdata pkcalibrationdataid; Type: DEFAULT; Schema: public; Owner: dqa_owner
+-- Name: tblcalibrationdata pkcalibrationdataid; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblcalibrationdata ALTER COLUMN pkcalibrationdataid SET DEFAULT nextval('public.tblcalibrationdata_pkcalibrationdataid_seq'::regclass);
 
 
 --
--- Name: tblchannel pkchannelid; Type: DEFAULT; Schema: public; Owner: dqa_owner
+-- Name: tblchannel pkchannelid; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblchannel ALTER COLUMN pkchannelid SET DEFAULT nextval('public.tblchannel_pkchannelid_seq'::regclass);
 
 
 --
--- Name: tblcomputetype pkcomputetypeid; Type: DEFAULT; Schema: public; Owner: dqa_owner
+-- Name: tblcomputetype pkcomputetypeid; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblcomputetype ALTER COLUMN pkcomputetypeid SET DEFAULT nextval('public.tblcomputetype_pkcomputetypeid_seq'::regclass);
 
 
 --
--- Name: tblerrorlog pkerrorlogid; Type: DEFAULT; Schema: public; Owner: dqa_owner
+-- Name: tblerrorlog pkerrorlogid; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblerrorlog ALTER COLUMN pkerrorlogid SET DEFAULT nextval('public.tblerrorlog_pkerrorlogid_seq'::regclass);
 
 
 --
--- Name: tblhash pkHashID; Type: DEFAULT; Schema: public; Owner: dqa_owner
+-- Name: tblhash pkHashID; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblhash ALTER COLUMN "pkHashID" SET DEFAULT nextval('public."tblhash_pkHashID_seq"'::regclass);
 
 
 --
--- Name: tblmetric pkmetricid; Type: DEFAULT; Schema: public; Owner: dqa_owner
+-- Name: tblmetric pkmetricid; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblmetric ALTER COLUMN pkmetricid SET DEFAULT nextval('public.tblmetric_pkmetricid_seq'::regclass);
 
 
 --
--- Name: tblscanmessage pkmessageid; Type: DEFAULT; Schema: public; Owner: dqa_owner
+-- Name: tblscanmessage pkmessageid; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblscanmessage ALTER COLUMN pkmessageid SET DEFAULT nextval('public.tblscanmessage_pkmessageid_seq'::regclass);
 
 
 --
--- Name: tblsensor pksensorid; Type: DEFAULT; Schema: public; Owner: dqa_owner
+-- Name: tblsensor pksensorid; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblsensor ALTER COLUMN pksensorid SET DEFAULT nextval('public.tblsensor_pksensorid_seq'::regclass);
 
 
 --
--- Name: tblstation pkstationid; Type: DEFAULT; Schema: public; Owner: dqa_owner
+-- Name: tblstation pkstationid; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblstation ALTER COLUMN pkstationid SET DEFAULT nextval('public.tblstation_pkstationid_seq'::regclass);
 
 
 --
--- Data for Name: tblGroup; Type: TABLE DATA; Schema: public; Owner: dqa_owner
+-- Data for Name: tblGroup; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public."tblGroup" (pkgroupid, name, "isIgnored", "fkGroupTypeID") FROM stdin;
@@ -2085,7 +2085,7 @@ COPY public."tblGroup" (pkgroupid, name, "isIgnored", "fkGroupTypeID") FROM stdi
 
 
 --
--- Data for Name: tblGroupType; Type: TABLE DATA; Schema: public; Owner: dqa_owner
+-- Data for Name: tblGroupType; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public."tblGroupType" ("pkGroupTypeID", name) FROM stdin;
@@ -2097,7 +2097,7 @@ COPY public."tblGroupType" ("pkGroupTypeID", name) FROM stdin;
 
 
 --
--- Data for Name: tblStationGroupTie; Type: TABLE DATA; Schema: public; Owner: dqa_owner
+-- Data for Name: tblStationGroupTie; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public."tblStationGroupTie" ("fkGroupID", "fkStationID") FROM stdin;
@@ -2109,7 +2109,7 @@ COPY public."tblStationGroupTie" ("fkGroupID", "fkStationID") FROM stdin;
 
 
 --
--- Data for Name: tblcalibrationdata; Type: TABLE DATA; Schema: public; Owner: dqa_owner
+-- Data for Name: tblcalibrationdata; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.tblcalibrationdata (pkcalibrationdataid, fkchannelid, year, month, day, date, calyear, calmonth, calday, caldate, fkmetcaltypeid, value, fkmetricid) FROM stdin;
@@ -2117,7 +2117,7 @@ COPY public.tblcalibrationdata (pkcalibrationdataid, fkchannelid, year, month, d
 
 
 --
--- Data for Name: tblchannel; Type: TABLE DATA; Schema: public; Owner: dqa_owner
+-- Data for Name: tblchannel; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.tblchannel (pkchannelid, fksensorid, name, derived, "isIgnored") FROM stdin;
@@ -2250,7 +2250,7 @@ COPY public.tblchannel (pkchannelid, fksensorid, name, derived, "isIgnored") FRO
 
 
 --
--- Data for Name: tblcomputetype; Type: TABLE DATA; Schema: public; Owner: dqa_owner
+-- Data for Name: tblcomputetype; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.tblcomputetype (pkcomputetypeid, name, description, iscalibration) FROM stdin;
@@ -2265,7 +2265,7 @@ COPY public.tblcomputetype (pkcomputetypeid, name, description, iscalibration) F
 
 
 --
--- Data for Name: tbldate; Type: TABLE DATA; Schema: public; Owner: dqa_owner
+-- Data for Name: tbldate; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.tbldate (pkdateid, date) FROM stdin;
@@ -2275,7 +2275,7 @@ COPY public.tbldate (pkdateid, date) FROM stdin;
 
 
 --
--- Data for Name: tblerrorlog; Type: TABLE DATA; Schema: public; Owner: dqa_owner
+-- Data for Name: tblerrorlog; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.tblerrorlog (pkerrorlogid, errortime, errormessage) FROM stdin;
@@ -2283,7 +2283,7 @@ COPY public.tblerrorlog (pkerrorlogid, errortime, errormessage) FROM stdin;
 
 
 --
--- Data for Name: tblhash; Type: TABLE DATA; Schema: public; Owner: dqa_owner
+-- Data for Name: tblhash; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.tblhash ("pkHashID", hash) FROM stdin;
@@ -2539,7 +2539,7 @@ COPY public.tblhash ("pkHashID", hash) FROM stdin;
 
 
 --
--- Data for Name: tblmetadata; Type: TABLE DATA; Schema: public; Owner: dqa_owner
+-- Data for Name: tblmetadata; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.tblmetadata (fkchannelid, epoch, sensor_info, raw_metadata) FROM stdin;
@@ -2547,7 +2547,7 @@ COPY public.tblmetadata (fkchannelid, epoch, sensor_info, raw_metadata) FROM std
 
 
 --
--- Data for Name: tblmetric; Type: TABLE DATA; Schema: public; Owner: dqa_owner
+-- Data for Name: tblmetric; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.tblmetric (pkmetricid, name, fkparentmetricid, legend, fkcomputetypeid, displayname) FROM stdin;
@@ -2586,7 +2586,7 @@ COPY public.tblmetric (pkmetricid, name, fkparentmetricid, legend, fkcomputetype
 
 
 --
--- Data for Name: tblmetricdata; Type: TABLE DATA; Schema: public; Owner: dqa_owner
+-- Data for Name: tblmetricdata; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.tblmetricdata (fkchannelid, date, fkmetricid, value, "fkHashID") FROM stdin;
@@ -4002,7 +4002,7 @@ COPY public.tblmetricdata (fkchannelid, date, fkmetricid, value, "fkHashID") FRO
 
 
 --
--- Data for Name: tblmetricstringdata; Type: TABLE DATA; Schema: public; Owner: dqa_owner
+-- Data for Name: tblmetricstringdata; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.tblmetricstringdata (fkchannelid, date, fkmetricid, value, "fkHashID") FROM stdin;
@@ -4010,7 +4010,7 @@ COPY public.tblmetricstringdata (fkchannelid, date, fkmetricid, value, "fkHashID
 
 
 --
--- Data for Name: tblscan; Type: TABLE DATA; Schema: public; Owner: dqa_owner
+-- Data for Name: tblscan; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.tblscan (pkscanid, fkparentscan, lastupdate, metricfilter, networkfilter, stationfilter, channelfilter, startdate, enddate, priority, deleteexisting, scheduledrun, finished, taken, locationfilter) FROM stdin;
@@ -4018,7 +4018,7 @@ COPY public.tblscan (pkscanid, fkparentscan, lastupdate, metricfilter, networkfi
 
 
 --
--- Data for Name: tblscanmessage; Type: TABLE DATA; Schema: public; Owner: dqa_owner
+-- Data for Name: tblscanmessage; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.tblscanmessage (pkmessageid, fkscanid, network, location, station, channel, "timestamp", metric, message) FROM stdin;
@@ -4026,7 +4026,7 @@ COPY public.tblscanmessage (pkmessageid, fkscanid, network, location, station, c
 
 
 --
--- Data for Name: tblsensor; Type: TABLE DATA; Schema: public; Owner: dqa_owner
+-- Data for Name: tblsensor; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.tblsensor (pksensorid, fkstationid, location) FROM stdin;
@@ -4066,7 +4066,7 @@ COPY public.tblsensor (pksensorid, fkstationid, location) FROM stdin;
 
 
 --
--- Data for Name: tblstation; Type: TABLE DATA; Schema: public; Owner: dqa_owner
+-- Data for Name: tblstation; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.tblstation (pkstationid, fknetworkid, name) FROM stdin;
@@ -4078,84 +4078,84 @@ COPY public.tblstation (pkstationid, fknetworkid, name) FROM stdin;
 
 
 --
--- Name: tblGroupType_pkGroupTypeID_seq; Type: SEQUENCE SET; Schema: public; Owner: dqa_owner
+-- Name: tblGroupType_pkGroupTypeID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public."tblGroupType_pkGroupTypeID_seq"', 1, false);
 
 
 --
--- Name: tblGroup_pkgroupid_seq; Type: SEQUENCE SET; Schema: public; Owner: dqa_owner
+-- Name: tblGroup_pkgroupid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public."tblGroup_pkgroupid_seq"', 684, true);
 
 
 --
--- Name: tblcalibrationdata_pkcalibrationdataid_seq; Type: SEQUENCE SET; Schema: public; Owner: dqa_owner
+-- Name: tblcalibrationdata_pkcalibrationdataid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.tblcalibrationdata_pkcalibrationdataid_seq', 1, false);
 
 
 --
--- Name: tblchannel_pkchannelid_seq; Type: SEQUENCE SET; Schema: public; Owner: dqa_owner
+-- Name: tblchannel_pkchannelid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.tblchannel_pkchannelid_seq', 23766, true);
 
 
 --
--- Name: tblcomputetype_pkcomputetypeid_seq; Type: SEQUENCE SET; Schema: public; Owner: dqa_owner
+-- Name: tblcomputetype_pkcomputetypeid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.tblcomputetype_pkcomputetypeid_seq', 1, false);
 
 
 --
--- Name: tblerrorlog_pkerrorlogid_seq; Type: SEQUENCE SET; Schema: public; Owner: dqa_owner
+-- Name: tblerrorlog_pkerrorlogid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.tblerrorlog_pkerrorlogid_seq', 3322959, true);
 
 
 --
--- Name: tblhash_pkHashID_seq; Type: SEQUENCE SET; Schema: public; Owner: dqa_owner
+-- Name: tblhash_pkHashID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public."tblhash_pkHashID_seq"', 32662795, true);
 
 
 --
--- Name: tblmetric_pkmetricid_seq; Type: SEQUENCE SET; Schema: public; Owner: dqa_owner
+-- Name: tblmetric_pkmetricid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.tblmetric_pkmetricid_seq', 32, true);
 
 
 --
--- Name: tblscanmessage_pkmessageid_seq; Type: SEQUENCE SET; Schema: public; Owner: dqa_owner
+-- Name: tblscanmessage_pkmessageid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.tblscanmessage_pkmessageid_seq', 1231228, true);
 
 
 --
--- Name: tblsensor_pksensorid_seq; Type: SEQUENCE SET; Schema: public; Owner: dqa_owner
+-- Name: tblsensor_pksensorid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.tblsensor_pksensorid_seq', 2492, true);
 
 
 --
--- Name: tblstation_pkstationid_seq; Type: SEQUENCE SET; Schema: public; Owner: dqa_owner
+-- Name: tblstation_pkstationid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.tblstation_pkstationid_seq', 583, true);
 
 
 --
--- Name: tblStationGroupTie Primary_tblstationGrouptie; Type: CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblStationGroupTie Primary_tblstationGrouptie; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public."tblStationGroupTie"
@@ -4163,7 +4163,7 @@ ALTER TABLE ONLY public."tblStationGroupTie"
 
 
 --
--- Name: tblhash pkTblHash; Type: CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblhash pkTblHash; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblhash
@@ -4171,7 +4171,7 @@ ALTER TABLE ONLY public.tblhash
 
 
 --
--- Name: tblmetricdata pk_metric_date_channel; Type: CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblmetricdata pk_metric_date_channel; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblmetricdata
@@ -4179,7 +4179,7 @@ ALTER TABLE ONLY public.tblmetricdata
 
 
 --
--- Name: tblscan pk_tblScan; Type: CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblscan pk_tblScan; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblscan
@@ -4187,7 +4187,7 @@ ALTER TABLE ONLY public.tblscan
 
 
 --
--- Name: tblmetricstringdata pkstring_metric_date_channel; Type: CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblmetricstringdata pkstring_metric_date_channel; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblmetricstringdata
@@ -4195,7 +4195,7 @@ ALTER TABLE ONLY public.tblmetricstringdata
 
 
 --
--- Name: tblGroupType primary_tblGroupType; Type: CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblGroupType primary_tblGroupType; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public."tblGroupType"
@@ -4203,7 +4203,7 @@ ALTER TABLE ONLY public."tblGroupType"
 
 
 --
--- Name: tblcalibrationdata tblcalibrationdata_fkchannelid_fkmetcaltypeid_calday_calmon_key; Type: CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblcalibrationdata tblcalibrationdata_fkchannelid_fkmetcaltypeid_calday_calmon_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblcalibrationdata
@@ -4211,7 +4211,7 @@ ALTER TABLE ONLY public.tblcalibrationdata
 
 
 --
--- Name: tblcalibrationdata tblcalibrationdata_pkey; Type: CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblcalibrationdata tblcalibrationdata_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblcalibrationdata
@@ -4219,7 +4219,7 @@ ALTER TABLE ONLY public.tblcalibrationdata
 
 
 --
--- Name: tblchannel tblchannel_fksensorid_name_key; Type: CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblchannel tblchannel_fksensorid_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblchannel
@@ -4227,7 +4227,7 @@ ALTER TABLE ONLY public.tblchannel
 
 
 --
--- Name: tblchannel tblchannel_pkey; Type: CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblchannel tblchannel_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblchannel
@@ -4235,7 +4235,7 @@ ALTER TABLE ONLY public.tblchannel
 
 
 --
--- Name: tblcomputetype tblcomputetype_name_key; Type: CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblcomputetype tblcomputetype_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblcomputetype
@@ -4243,7 +4243,7 @@ ALTER TABLE ONLY public.tblcomputetype
 
 
 --
--- Name: tblcomputetype tblcomputetype_pkey; Type: CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblcomputetype tblcomputetype_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblcomputetype
@@ -4251,7 +4251,7 @@ ALTER TABLE ONLY public.tblcomputetype
 
 
 --
--- Name: tbldate tbldate_date_key; Type: CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tbldate tbldate_date_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tbldate
@@ -4259,7 +4259,7 @@ ALTER TABLE ONLY public.tbldate
 
 
 --
--- Name: tbldate tbldate_pkey; Type: CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tbldate tbldate_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tbldate
@@ -4267,7 +4267,7 @@ ALTER TABLE ONLY public.tbldate
 
 
 --
--- Name: tblerrorlog tblerrorlog_pkey; Type: CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblerrorlog tblerrorlog_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblerrorlog
@@ -4275,7 +4275,7 @@ ALTER TABLE ONLY public.tblerrorlog
 
 
 --
--- Name: tblmetadata tblmetadata_fkchannelid_epoch_key; Type: CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblmetadata tblmetadata_fkchannelid_epoch_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblmetadata
@@ -4283,7 +4283,7 @@ ALTER TABLE ONLY public.tblmetadata
 
 
 --
--- Name: tblmetric tblmetric_pkey; Type: CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblmetric tblmetric_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblmetric
@@ -4291,7 +4291,7 @@ ALTER TABLE ONLY public.tblmetric
 
 
 --
--- Name: tblGroup tblnetwork_pkey; Type: CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblGroup tblnetwork_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public."tblGroup"
@@ -4299,7 +4299,7 @@ ALTER TABLE ONLY public."tblGroup"
 
 
 --
--- Name: tblscanmessage tblscanmessage_pkey; Type: CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblscanmessage tblscanmessage_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblscanmessage
@@ -4307,7 +4307,7 @@ ALTER TABLE ONLY public.tblscanmessage
 
 
 --
--- Name: tblsensor tblsensor_fkstationid_location_key; Type: CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblsensor tblsensor_fkstationid_location_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblsensor
@@ -4315,7 +4315,7 @@ ALTER TABLE ONLY public.tblsensor
 
 
 --
--- Name: tblsensor tblsensor_pkey; Type: CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblsensor tblsensor_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblsensor
@@ -4323,7 +4323,7 @@ ALTER TABLE ONLY public.tblsensor
 
 
 --
--- Name: tblstation tblstation_fknetworkid_name_key; Type: CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblstation tblstation_fknetworkid_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblstation
@@ -4331,7 +4331,7 @@ ALTER TABLE ONLY public.tblstation
 
 
 --
--- Name: tblstation tblstation_pkey; Type: CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblstation tblstation_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblstation
@@ -4339,7 +4339,7 @@ ALTER TABLE ONLY public.tblstation
 
 
 --
--- Name: tblGroupType un_name; Type: CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblGroupType un_name; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public."tblGroupType"
@@ -4347,7 +4347,7 @@ ALTER TABLE ONLY public."tblGroupType"
 
 
 --
--- Name: tblGroup un_name_fkGroupType; Type: CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblGroup un_name_fkGroupType; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public."tblGroup"
@@ -4355,7 +4355,7 @@ ALTER TABLE ONLY public."tblGroup"
 
 
 --
--- Name: tblhash un_tblHash_hash; Type: CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblhash un_tblHash_hash; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblhash
@@ -4363,7 +4363,7 @@ ALTER TABLE ONLY public.tblhash
 
 
 --
--- Name: tblmetric un_tblMetric_name; Type: CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblmetric un_tblMetric_name; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblmetric
@@ -4371,7 +4371,7 @@ ALTER TABLE ONLY public.tblmetric
 
 
 --
--- Name: tblchannel_pkchannelid_fksensorid_isIgnored_idx; Type: INDEX; Schema: public; Owner: dqa_owner
+-- Name: tblchannel_pkchannelid_fksensorid_isIgnored_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
 CREATE INDEX "tblchannel_pkchannelid_fksensorid_isIgnored_idx" ON public.tblchannel USING btree (pkchannelid, fksensorid, "isIgnored");
@@ -4380,7 +4380,7 @@ ALTER TABLE public.tblchannel CLUSTER ON "tblchannel_pkchannelid_fksensorid_isIg
 
 
 --
--- Name: tbldate_pkdateid_date_idx; Type: INDEX; Schema: public; Owner: dqa_owner
+-- Name: tbldate_pkdateid_date_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
 CREATE INDEX tbldate_pkdateid_date_idx ON public.tbldate USING btree (pkdateid, date);
@@ -4389,7 +4389,7 @@ ALTER TABLE public.tbldate CLUSTER ON tbldate_pkdateid_date_idx;
 
 
 --
--- Name: tblhash_pkHashID_hash_idx; Type: INDEX; Schema: public; Owner: dqa_owner
+-- Name: tblhash_pkHashID_hash_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
 CREATE INDEX "tblhash_pkHashID_hash_idx" ON public.tblhash USING btree ("pkHashID", hash);
@@ -4398,7 +4398,7 @@ ALTER TABLE public.tblhash CLUSTER ON "tblhash_pkHashID_hash_idx";
 
 
 --
--- Name: tblmetricdata_fkmetricid_date_fkchannelid_value_idx; Type: INDEX; Schema: public; Owner: dqa_owner
+-- Name: tblmetricdata_fkmetricid_date_fkchannelid_value_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
 CREATE INDEX tblmetricdata_fkmetricid_date_fkchannelid_value_idx ON public.tblmetricdata USING btree (fkmetricid, date, fkchannelid, value);
@@ -4407,14 +4407,14 @@ ALTER TABLE public.tblmetricdata CLUSTER ON tblmetricdata_fkmetricid_date_fkchan
 
 
 --
--- Name: tblmetricstringdata_fkmetricid_date_fkchannelid_value_idx; Type: INDEX; Schema: public; Owner: dqa_owner
+-- Name: tblmetricstringdata_fkmetricid_date_fkchannelid_value_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
 CREATE INDEX tblmetricstringdata_fkmetricid_date_fkchannelid_value_idx ON public.tblmetricstringdata USING btree (fkmetricid, date, fkchannelid, value);
 
 
 --
--- Name: tblsensor_pksensorid_fkstationid_idx; Type: INDEX; Schema: public; Owner: dqa_owner
+-- Name: tblsensor_pksensorid_fkstationid_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
 CREATE INDEX tblsensor_pksensorid_fkstationid_idx ON public.tblsensor USING btree (pksensorid, fkstationid);
@@ -4423,7 +4423,7 @@ ALTER TABLE public.tblsensor CLUSTER ON tblsensor_pksensorid_fkstationid_idx;
 
 
 --
--- Name: tblstation_pkstationid_fknetworkid_idx; Type: INDEX; Schema: public; Owner: dqa_owner
+-- Name: tblstation_pkstationid_fknetworkid_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
 CREATE INDEX tblstation_pkstationid_fknetworkid_idx ON public.tblstation USING btree (pkstationid, fknetworkid);
@@ -4432,7 +4432,7 @@ ALTER TABLE public.tblstation CLUSTER ON tblstation_pkstationid_fknetworkid_idx;
 
 
 --
--- Name: tblStationGroupTie fkStationTieTblGroup; Type: FK CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblStationGroupTie fkStationTieTblGroup; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public."tblStationGroupTie"
@@ -4440,7 +4440,7 @@ ALTER TABLE ONLY public."tblStationGroupTie"
 
 
 --
--- Name: tblStationGroupTie fkStationTieTblStation; Type: FK CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblStationGroupTie fkStationTieTblStation; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public."tblStationGroupTie"
@@ -4448,7 +4448,7 @@ ALTER TABLE ONLY public."tblStationGroupTie"
 
 
 --
--- Name: tblcalibrationdata fk_tblCalibrationData_tblChannel; Type: FK CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblcalibrationdata fk_tblCalibrationData_tblChannel; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblcalibrationdata
@@ -4456,7 +4456,7 @@ ALTER TABLE ONLY public.tblcalibrationdata
 
 
 --
--- Name: tblcalibrationdata fk_tblCalibrationData_tblMetric; Type: FK CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblcalibrationdata fk_tblCalibrationData_tblMetric; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblcalibrationdata
@@ -4464,7 +4464,7 @@ ALTER TABLE ONLY public.tblcalibrationdata
 
 
 --
--- Name: tblmetricdata fk_tblChannel; Type: FK CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblmetricdata fk_tblChannel; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblmetricdata
@@ -4472,7 +4472,7 @@ ALTER TABLE ONLY public.tblmetricdata
 
 
 --
--- Name: tblmetric fk_tblComputeType; Type: FK CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblmetric fk_tblComputeType; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblmetric
@@ -4480,7 +4480,7 @@ ALTER TABLE ONLY public.tblmetric
 
 
 --
--- Name: tblmetricdata fk_tblMetric; Type: FK CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblmetricdata fk_tblMetric; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblmetricdata
@@ -4488,7 +4488,7 @@ ALTER TABLE ONLY public.tblmetricdata
 
 
 --
--- Name: tblstation fk_tblNetwork; Type: FK CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblstation fk_tblNetwork; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblstation
@@ -4496,7 +4496,7 @@ ALTER TABLE ONLY public.tblstation
 
 
 --
--- Name: tblchannel fk_tblSensor; Type: FK CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblchannel fk_tblSensor; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblchannel
@@ -4504,7 +4504,7 @@ ALTER TABLE ONLY public.tblchannel
 
 
 --
--- Name: tblsensor fk_tblStation; Type: FK CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblsensor fk_tblStation; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblsensor
@@ -4512,7 +4512,7 @@ ALTER TABLE ONLY public.tblsensor
 
 
 --
--- Name: tblGroup fk_tblgrouptype; Type: FK CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblGroup fk_tblgrouptype; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public."tblGroup"
@@ -4520,7 +4520,7 @@ ALTER TABLE ONLY public."tblGroup"
 
 
 --
--- Name: tblmetricstringdata fkstring_tblChannel; Type: FK CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblmetricstringdata fkstring_tblChannel; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblmetricstringdata
@@ -4528,7 +4528,7 @@ ALTER TABLE ONLY public.tblmetricstringdata
 
 
 --
--- Name: tblmetricstringdata fkstring_tblMetric; Type: FK CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblmetricstringdata fkstring_tblMetric; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblmetricstringdata
@@ -4536,7 +4536,7 @@ ALTER TABLE ONLY public.tblmetricstringdata
 
 
 --
--- Name: tblscan tblScan_fkparentscan_fkey; Type: FK CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblscan tblScan_fkparentscan_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblscan
@@ -4544,7 +4544,7 @@ ALTER TABLE ONLY public.tblscan
 
 
 --
--- Name: tblscanmessage tblscanmessage_fkscanid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: dqa_owner
+-- Name: tblscanmessage tblscanmessage_fkscanid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.tblscanmessage
@@ -4555,526 +4555,526 @@ ALTER TABLE ONLY public.tblscanmessage
 -- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
 --
 
-GRANT USAGE ON SCHEMA public TO dqa_read;
+GRANT USAGE ON SCHEMA public TO postgres;
 
 
 --
--- Name: FUNCTION fnfinishscan(scanid uuid); Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: FUNCTION fnfinishscan(scanid uuid); Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON FUNCTION public.fnfinishscan(scanid uuid) TO dqa_write;
-GRANT ALL ON FUNCTION public.fnfinishscan(scanid uuid) TO dqa_read;
+GRANT ALL ON FUNCTION public.fnfinishscan(scanid uuid) TO postgres;
+GRANT ALL ON FUNCTION public.fnfinishscan(scanid uuid) TO postgres;
 
 
 --
--- Name: FUNCTION fnsclgetchanneldata(integer[], integer, date, date); Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: FUNCTION fnsclgetchanneldata(integer[], integer, date, date); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.fnsclgetchanneldata(integer[], integer, date, date) TO dqa_write;
-GRANT ALL ON FUNCTION public.fnsclgetchanneldata(integer[], integer, date, date) TO dqa_read;
+GRANT ALL ON FUNCTION public.fnsclgetchanneldata(integer[], integer, date, date) TO postgres;
 
 
 --
--- Name: FUNCTION fnsclgetchannelplotdata(integer, integer, date, date); Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: FUNCTION fnsclgetchannelplotdata(integer, integer, date, date); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.fnsclgetchannelplotdata(integer, integer, date, date) TO dqa_write;
-GRANT ALL ON FUNCTION public.fnsclgetchannelplotdata(integer, integer, date, date) TO dqa_read;
+GRANT ALL ON FUNCTION public.fnsclgetchannelplotdata(integer, integer, date, date) TO postgres;
 
 
 --
--- Name: FUNCTION fnsclgetchannels(integer[]); Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: FUNCTION fnsclgetchannels(integer[]); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.fnsclgetchannels(integer[]) TO dqa_write;
-GRANT ALL ON FUNCTION public.fnsclgetchannels(integer[]) TO dqa_read;
+GRANT ALL ON FUNCTION public.fnsclgetchannels(integer[]) TO postgres;
 
 
 --
--- Name: FUNCTION fnsclgetdates(); Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: FUNCTION fnsclgetdates(); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.fnsclgetdates() TO dqa_write;
-GRANT ALL ON FUNCTION public.fnsclgetdates() TO dqa_read;
+GRANT ALL ON FUNCTION public.fnsclgetdates() TO postgres;
 
 
 --
--- Name: FUNCTION fnsclgetgroups(); Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: FUNCTION fnsclgetgroups(); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.fnsclgetgroups() TO dqa_write;
-GRANT ALL ON FUNCTION public.fnsclgetgroups() TO dqa_read;
+GRANT ALL ON FUNCTION public.fnsclgetgroups() TO postgres;
 
 
 --
--- Name: FUNCTION fnsclgetgrouptypes(); Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: FUNCTION fnsclgetgrouptypes(); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.fnsclgetgrouptypes() TO dqa_write;
-GRANT ALL ON FUNCTION public.fnsclgetgrouptypes() TO dqa_read;
+GRANT ALL ON FUNCTION public.fnsclgetgrouptypes() TO postgres;
 
 
 --
--- Name: FUNCTION fnsclgetmetrics(); Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: FUNCTION fnsclgetmetrics(); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.fnsclgetmetrics() TO dqa_write;
-GRANT ALL ON FUNCTION public.fnsclgetmetrics() TO dqa_read;
+GRANT ALL ON FUNCTION public.fnsclgetmetrics() TO postgres;
 
 
 --
--- Name: FUNCTION fnsclgetpercentage(double precision, character varying); Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: FUNCTION fnsclgetpercentage(double precision, character varying); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.fnsclgetpercentage(double precision, character varying) TO dqa_write;
-GRANT ALL ON FUNCTION public.fnsclgetpercentage(double precision, character varying) TO dqa_read;
+GRANT ALL ON FUNCTION public.fnsclgetpercentage(double precision, character varying) TO postgres;
 
 
 --
--- Name: FUNCTION fnsclgetstationdata(integer[], integer, date, date); Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: FUNCTION fnsclgetstationdata(integer[], integer, date, date); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.fnsclgetstationdata(integer[], integer, date, date) TO dqa_write;
-GRANT ALL ON FUNCTION public.fnsclgetstationdata(integer[], integer, date, date) TO dqa_read;
+GRANT ALL ON FUNCTION public.fnsclgetstationdata(integer[], integer, date, date) TO postgres;
 
 
 --
--- Name: FUNCTION fnsclgetstationplotdata(integer, integer, date, date); Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: FUNCTION fnsclgetstationplotdata(integer, integer, date, date); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.fnsclgetstationplotdata(integer, integer, date, date) TO dqa_write;
-GRANT ALL ON FUNCTION public.fnsclgetstationplotdata(integer, integer, date, date) TO dqa_read;
+GRANT ALL ON FUNCTION public.fnsclgetstationplotdata(integer, integer, date, date) TO postgres;
 
 
 --
--- Name: FUNCTION fnsclgetstations(); Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: FUNCTION fnsclgetstations(); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.fnsclgetstations() TO dqa_write;
-GRANT ALL ON FUNCTION public.fnsclgetstations() TO dqa_read;
+GRANT ALL ON FUNCTION public.fnsclgetstations() TO postgres;
 
 
 --
--- Name: FUNCTION fnsclisnumeric("inputText" text); Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: FUNCTION fnsclisnumeric("inputText" text); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.fnsclisnumeric("inputText" text) TO dqa_write;
-GRANT ALL ON FUNCTION public.fnsclisnumeric("inputText" text) TO dqa_read;
+GRANT ALL ON FUNCTION public.fnsclisnumeric("inputText" text) TO postgres;
 
 
 --
--- Name: FUNCTION uuid_generate_v1mc(); Type: ACL; Schema: public; Owner: dwitte
+-- Name: FUNCTION uuid_generate_v1mc(); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.uuid_generate_v1mc() TO dqa_write;
-GRANT ALL ON FUNCTION public.uuid_generate_v1mc() TO dqa_read;
+GRANT ALL ON FUNCTION public.uuid_generate_v1mc() TO postgres;
 
 
 --
--- Name: TABLE tblscan; Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: TABLE tblscan; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT,REFERENCES ON TABLE public.tblscan TO PUBLIC;
 GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblscan TO dqa_write;
-GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblscan TO dqa_read;
+GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblscan TO postgres;
 
 
 --
--- Name: FUNCTION fntakenextscan(); Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: FUNCTION fntakenextscan(); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.fntakenextscan() TO dqa_write;
-GRANT ALL ON FUNCTION public.fntakenextscan() TO dqa_read;
+GRANT ALL ON FUNCTION public.fntakenextscan() TO postgres;
 
 
 --
--- Name: FUNCTION spcomparehash(date, character varying, character varying, character varying, character varying, character varying, bytea); Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: FUNCTION spcomparehash(date, character varying, character varying, character varying, character varying, character varying, bytea); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.spcomparehash(date, character varying, character varying, character varying, character varying, character varying, bytea) TO dqa_write;
-GRANT ALL ON FUNCTION public.spcomparehash(date, character varying, character varying, character varying, character varying, character varying, bytea) TO dqa_read;
+GRANT ALL ON FUNCTION public.spcomparehash(date, character varying, character varying, character varying, character varying, character varying, bytea) TO postgres;
 
 
 --
--- Name: FUNCTION spgetmetricvalue(date, character varying, character varying, character varying, character varying, character varying); Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: FUNCTION spgetmetricvalue(date, character varying, character varying, character varying, character varying, character varying); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.spgetmetricvalue(date, character varying, character varying, character varying, character varying, character varying) TO dqa_write;
-GRANT ALL ON FUNCTION public.spgetmetricvalue(date, character varying, character varying, character varying, character varying, character varying) TO dqa_read;
+GRANT ALL ON FUNCTION public.spgetmetricvalue(date, character varying, character varying, character varying, character varying, character varying) TO postgres;
 
 
 --
--- Name: FUNCTION spgetmetricvaluedigest(date, character varying, character varying, character varying, character varying, character varying, OUT bytea); Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: FUNCTION spgetmetricvaluedigest(date, character varying, character varying, character varying, character varying, character varying, OUT bytea); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.spgetmetricvaluedigest(date, character varying, character varying, character varying, character varying, character varying, OUT bytea) TO dqa_write;
-GRANT ALL ON FUNCTION public.spgetmetricvaluedigest(date, character varying, character varying, character varying, character varying, character varying, OUT bytea) TO dqa_read;
+GRANT ALL ON FUNCTION public.spgetmetricvaluedigest(date, character varying, character varying, character varying, character varying, character varying, OUT bytea) TO postgres;
 
 
 --
--- Name: FUNCTION spinsertmetricdata(date, character varying, character varying, character varying, character varying, character varying, double precision, bytea); Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: FUNCTION spinsertmetricdata(date, character varying, character varying, character varying, character varying, character varying, double precision, bytea); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.spinsertmetricdata(date, character varying, character varying, character varying, character varying, character varying, double precision, bytea) TO dqa_write;
-GRANT ALL ON FUNCTION public.spinsertmetricdata(date, character varying, character varying, character varying, character varying, character varying, double precision, bytea) TO dqa_read;
+GRANT ALL ON FUNCTION public.spinsertmetricdata(date, character varying, character varying, character varying, character varying, character varying, double precision, bytea) TO postgres;
 
 
 --
--- Name: FUNCTION spinsertmetricdata(date, character varying, character varying, character varying, character varying, character varying, text, bytea); Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: FUNCTION spinsertmetricdata(date, character varying, character varying, character varying, character varying, character varying, text, bytea); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.spinsertmetricdata(date, character varying, character varying, character varying, character varying, character varying, text, bytea) TO dqa_write;
-GRANT ALL ON FUNCTION public.spinsertmetricdata(date, character varying, character varying, character varying, character varying, character varying, text, bytea) TO dqa_read;
+GRANT ALL ON FUNCTION public.spinsertmetricdata(date, character varying, character varying, character varying, character varying, character varying, text, bytea) TO postgres;
 
 
 --
--- Name: FUNCTION spinsertmetricstringdata(date, character varying, character varying, character varying, character varying, character varying, text, bytea); Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: FUNCTION spinsertmetricstringdata(date, character varying, character varying, character varying, character varying, character varying, text, bytea); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.spinsertmetricstringdata(date, character varying, character varying, character varying, character varying, character varying, text, bytea) TO dqa_write;
-GRANT ALL ON FUNCTION public.spinsertmetricstringdata(date, character varying, character varying, character varying, character varying, character varying, text, bytea) TO dqa_read;
+GRANT ALL ON FUNCTION public.spinsertmetricstringdata(date, character varying, character varying, character varying, character varying, character varying, text, bytea) TO postgres;
 
 
 --
--- Name: FUNCTION uuid_generate_v1(); Type: ACL; Schema: public; Owner: dwitte
+-- Name: FUNCTION uuid_generate_v1(); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.uuid_generate_v1() TO dqa_write;
-GRANT ALL ON FUNCTION public.uuid_generate_v1() TO dqa_read;
+GRANT ALL ON FUNCTION public.uuid_generate_v1() TO postgres;
 
 
 --
--- Name: FUNCTION uuid_generate_v3(namespace uuid, name text); Type: ACL; Schema: public; Owner: dwitte
+-- Name: FUNCTION uuid_generate_v3(namespace uuid, name text); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.uuid_generate_v3(namespace uuid, name text) TO dqa_write;
-GRANT ALL ON FUNCTION public.uuid_generate_v3(namespace uuid, name text) TO dqa_read;
+GRANT ALL ON FUNCTION public.uuid_generate_v3(namespace uuid, name text) TO postgres;
 
 
 --
--- Name: FUNCTION uuid_generate_v4(); Type: ACL; Schema: public; Owner: dwitte
+-- Name: FUNCTION uuid_generate_v4(); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.uuid_generate_v4() TO dqa_write;
-GRANT ALL ON FUNCTION public.uuid_generate_v4() TO dqa_read;
+GRANT ALL ON FUNCTION public.uuid_generate_v4() TO postgres;
 
 
 --
--- Name: FUNCTION uuid_generate_v5(namespace uuid, name text); Type: ACL; Schema: public; Owner: dwitte
+-- Name: FUNCTION uuid_generate_v5(namespace uuid, name text); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.uuid_generate_v5(namespace uuid, name text) TO dqa_write;
-GRANT ALL ON FUNCTION public.uuid_generate_v5(namespace uuid, name text) TO dqa_read;
+GRANT ALL ON FUNCTION public.uuid_generate_v5(namespace uuid, name text) TO postgres;
 
 
 --
--- Name: FUNCTION uuid_nil(); Type: ACL; Schema: public; Owner: dwitte
+-- Name: FUNCTION uuid_nil(); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.uuid_nil() TO dqa_write;
-GRANT ALL ON FUNCTION public.uuid_nil() TO dqa_read;
+GRANT ALL ON FUNCTION public.uuid_nil() TO postgres;
 
 
 --
--- Name: FUNCTION uuid_ns_dns(); Type: ACL; Schema: public; Owner: dwitte
+-- Name: FUNCTION uuid_ns_dns(); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.uuid_ns_dns() TO dqa_write;
-GRANT ALL ON FUNCTION public.uuid_ns_dns() TO dqa_read;
+GRANT ALL ON FUNCTION public.uuid_ns_dns() TO postgres;
 
 
 --
--- Name: FUNCTION uuid_ns_oid(); Type: ACL; Schema: public; Owner: dwitte
+-- Name: FUNCTION uuid_ns_oid(); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.uuid_ns_oid() TO dqa_write;
-GRANT ALL ON FUNCTION public.uuid_ns_oid() TO dqa_read;
+GRANT ALL ON FUNCTION public.uuid_ns_oid() TO postgres;
 
 
 --
--- Name: FUNCTION uuid_ns_url(); Type: ACL; Schema: public; Owner: dwitte
+-- Name: FUNCTION uuid_ns_url(); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.uuid_ns_url() TO dqa_write;
-GRANT ALL ON FUNCTION public.uuid_ns_url() TO dqa_read;
+GRANT ALL ON FUNCTION public.uuid_ns_url() TO postgres;
 
 
 --
--- Name: FUNCTION uuid_ns_x500(); Type: ACL; Schema: public; Owner: dwitte
+-- Name: FUNCTION uuid_ns_x500(); Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON FUNCTION public.uuid_ns_x500() TO dqa_write;
-GRANT ALL ON FUNCTION public.uuid_ns_x500() TO dqa_read;
+GRANT ALL ON FUNCTION public.uuid_ns_x500() TO postgres;
 
 
 --
--- Name: TABLE "tblGroup"; Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: TABLE "tblGroup"; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT,REFERENCES ON TABLE public."tblGroup" TO PUBLIC;
 GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public."tblGroup" TO dqa_write;
-GRANT SELECT,REFERENCES,TRIGGER ON TABLE public."tblGroup" TO dqa_read;
+GRANT SELECT,REFERENCES,TRIGGER ON TABLE public."tblGroup" TO postgres;
 
 
 --
--- Name: TABLE "tblGroupType"; Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: TABLE "tblGroupType"; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT,REFERENCES ON TABLE public."tblGroupType" TO PUBLIC;
 GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public."tblGroupType" TO dqa_write;
-GRANT SELECT,REFERENCES,TRIGGER ON TABLE public."tblGroupType" TO dqa_read;
+GRANT SELECT,REFERENCES,TRIGGER ON TABLE public."tblGroupType" TO postgres;
 
 
 --
--- Name: TABLE grouptypeview; Type: ACL; Schema: public; Owner: jholland
+-- Name: TABLE grouptypeview; Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT SELECT ON TABLE public.grouptypeview TO dqa_read;
-GRANT ALL ON TABLE public.grouptypeview TO dqa_owner;
+GRANT SELECT ON TABLE public.grouptypeview TO postgres;
+GRANT ALL ON TABLE public.grouptypeview TO postgres;
 GRANT ALL ON TABLE public.grouptypeview TO dqa_write;
 
 
 --
--- Name: TABLE groupview; Type: ACL; Schema: public; Owner: jholland
+-- Name: TABLE groupview; Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT SELECT ON TABLE public.groupview TO dqa_read;
-GRANT ALL ON TABLE public.groupview TO dqa_owner;
+GRANT SELECT ON TABLE public.groupview TO postgres;
+GRANT ALL ON TABLE public.groupview TO postgres;
 GRANT ALL ON TABLE public.groupview TO dqa_write;
 
 
 --
--- Name: TABLE "tblStationGroupTie"; Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: TABLE "tblStationGroupTie"; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT,REFERENCES ON TABLE public."tblStationGroupTie" TO PUBLIC;
 GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public."tblStationGroupTie" TO dqa_write;
-GRANT SELECT,REFERENCES,TRIGGER ON TABLE public."tblStationGroupTie" TO dqa_read;
+GRANT SELECT,REFERENCES,TRIGGER ON TABLE public."tblStationGroupTie" TO postgres;
 
 
 --
--- Name: TABLE tblstation; Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: TABLE tblstation; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT,REFERENCES ON TABLE public.tblstation TO PUBLIC;
 GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblstation TO dqa_write;
-GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblstation TO dqa_read;
+GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblstation TO postgres;
 
 
 --
--- Name: TABLE stationview; Type: ACL; Schema: public; Owner: jholland
+-- Name: TABLE stationview; Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT SELECT ON TABLE public.stationview TO dqa_read;
-GRANT ALL ON TABLE public.stationview TO dqa_owner;
+GRANT SELECT ON TABLE public.stationview TO postgres;
+GRANT ALL ON TABLE public.stationview TO postgres;
 GRANT ALL ON TABLE public.stationview TO dqa_write;
 
 
 --
--- Name: SEQUENCE "tblGroupType_pkGroupTypeID_seq"; Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: SEQUENCE "tblGroupType_pkGroupTypeID_seq"; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT ON SEQUENCE public."tblGroupType_pkGroupTypeID_seq" TO PUBLIC;
 GRANT ALL ON SEQUENCE public."tblGroupType_pkGroupTypeID_seq" TO dqa_write;
-GRANT SELECT,USAGE ON SEQUENCE public."tblGroupType_pkGroupTypeID_seq" TO dqa_read;
+GRANT SELECT,USAGE ON SEQUENCE public."tblGroupType_pkGroupTypeID_seq" TO postgres;
 
 
 --
--- Name: SEQUENCE "tblGroup_pkgroupid_seq"; Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: SEQUENCE "tblGroup_pkgroupid_seq"; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT ON SEQUENCE public."tblGroup_pkgroupid_seq" TO PUBLIC;
 GRANT ALL ON SEQUENCE public."tblGroup_pkgroupid_seq" TO dqa_write;
-GRANT SELECT,USAGE ON SEQUENCE public."tblGroup_pkgroupid_seq" TO dqa_read;
+GRANT SELECT,USAGE ON SEQUENCE public."tblGroup_pkgroupid_seq" TO postgres;
 
 
 --
--- Name: TABLE tblcalibrationdata; Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: TABLE tblcalibrationdata; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT,REFERENCES ON TABLE public.tblcalibrationdata TO PUBLIC;
 GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblcalibrationdata TO dqa_write;
-GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblcalibrationdata TO dqa_read;
+GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblcalibrationdata TO postgres;
 
 
 --
--- Name: SEQUENCE tblcalibrationdata_pkcalibrationdataid_seq; Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: SEQUENCE tblcalibrationdata_pkcalibrationdataid_seq; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT ON SEQUENCE public.tblcalibrationdata_pkcalibrationdataid_seq TO PUBLIC;
 GRANT ALL ON SEQUENCE public.tblcalibrationdata_pkcalibrationdataid_seq TO dqa_write;
-GRANT SELECT,USAGE ON SEQUENCE public.tblcalibrationdata_pkcalibrationdataid_seq TO dqa_read;
+GRANT SELECT,USAGE ON SEQUENCE public.tblcalibrationdata_pkcalibrationdataid_seq TO postgres;
 
 
 --
--- Name: TABLE tblchannel; Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: TABLE tblchannel; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT,REFERENCES ON TABLE public.tblchannel TO PUBLIC;
 GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblchannel TO dqa_write;
-GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblchannel TO dqa_read;
+GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblchannel TO postgres;
 
 
 --
--- Name: SEQUENCE tblchannel_pkchannelid_seq; Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: SEQUENCE tblchannel_pkchannelid_seq; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT ON SEQUENCE public.tblchannel_pkchannelid_seq TO PUBLIC;
 GRANT ALL ON SEQUENCE public.tblchannel_pkchannelid_seq TO dqa_write;
-GRANT SELECT,USAGE ON SEQUENCE public.tblchannel_pkchannelid_seq TO dqa_read;
+GRANT SELECT,USAGE ON SEQUENCE public.tblchannel_pkchannelid_seq TO postgres;
 
 
 --
--- Name: TABLE tblcomputetype; Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: TABLE tblcomputetype; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT,REFERENCES ON TABLE public.tblcomputetype TO PUBLIC;
 GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblcomputetype TO dqa_write;
-GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblcomputetype TO dqa_read;
+GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblcomputetype TO postgres;
 
 
 --
--- Name: SEQUENCE tblcomputetype_pkcomputetypeid_seq; Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: SEQUENCE tblcomputetype_pkcomputetypeid_seq; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT ON SEQUENCE public.tblcomputetype_pkcomputetypeid_seq TO PUBLIC;
 GRANT ALL ON SEQUENCE public.tblcomputetype_pkcomputetypeid_seq TO dqa_write;
-GRANT SELECT,USAGE ON SEQUENCE public.tblcomputetype_pkcomputetypeid_seq TO dqa_read;
+GRANT SELECT,USAGE ON SEQUENCE public.tblcomputetype_pkcomputetypeid_seq TO postgres;
 
 
 --
--- Name: TABLE tbldate; Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: TABLE tbldate; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT,REFERENCES ON TABLE public.tbldate TO PUBLIC;
 GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tbldate TO dqa_write;
-GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tbldate TO dqa_read;
+GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tbldate TO postgres;
 
 
 --
--- Name: TABLE tblerrorlog; Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: TABLE tblerrorlog; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT,REFERENCES ON TABLE public.tblerrorlog TO PUBLIC;
 GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblerrorlog TO dqa_write;
-GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblerrorlog TO dqa_read;
+GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblerrorlog TO postgres;
 
 
 --
--- Name: SEQUENCE tblerrorlog_pkerrorlogid_seq; Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: SEQUENCE tblerrorlog_pkerrorlogid_seq; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT ON SEQUENCE public.tblerrorlog_pkerrorlogid_seq TO PUBLIC;
 GRANT ALL ON SEQUENCE public.tblerrorlog_pkerrorlogid_seq TO dqa_write;
-GRANT SELECT,USAGE ON SEQUENCE public.tblerrorlog_pkerrorlogid_seq TO dqa_read;
+GRANT SELECT,USAGE ON SEQUENCE public.tblerrorlog_pkerrorlogid_seq TO postgres;
 
 
 --
--- Name: TABLE tblhash; Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: TABLE tblhash; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT,REFERENCES ON TABLE public.tblhash TO PUBLIC;
 GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblhash TO dqa_write;
-GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblhash TO dqa_read;
+GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblhash TO postgres;
 
 
 --
--- Name: SEQUENCE "tblhash_pkHashID_seq"; Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: SEQUENCE "tblhash_pkHashID_seq"; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT ON SEQUENCE public."tblhash_pkHashID_seq" TO PUBLIC;
 GRANT ALL ON SEQUENCE public."tblhash_pkHashID_seq" TO dqa_write;
-GRANT SELECT,USAGE ON SEQUENCE public."tblhash_pkHashID_seq" TO dqa_read;
+GRANT SELECT,USAGE ON SEQUENCE public."tblhash_pkHashID_seq" TO postgres;
 
 
 --
--- Name: TABLE tblmetadata; Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: TABLE tblmetadata; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT,REFERENCES ON TABLE public.tblmetadata TO PUBLIC;
 GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblmetadata TO dqa_write;
-GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblmetadata TO dqa_read;
+GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblmetadata TO postgres;
 
 
 --
--- Name: TABLE tblmetric; Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: TABLE tblmetric; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT,REFERENCES ON TABLE public.tblmetric TO PUBLIC;
 GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblmetric TO dqa_write;
-GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblmetric TO dqa_read;
+GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblmetric TO postgres;
 
 
 --
--- Name: SEQUENCE tblmetric_pkmetricid_seq; Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: SEQUENCE tblmetric_pkmetricid_seq; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT ON SEQUENCE public.tblmetric_pkmetricid_seq TO PUBLIC;
 GRANT ALL ON SEQUENCE public.tblmetric_pkmetricid_seq TO dqa_write;
-GRANT SELECT,USAGE ON SEQUENCE public.tblmetric_pkmetricid_seq TO dqa_read;
+GRANT SELECT,USAGE ON SEQUENCE public.tblmetric_pkmetricid_seq TO postgres;
 
 
 --
--- Name: TABLE tblmetricdata; Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: TABLE tblmetricdata; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT,REFERENCES ON TABLE public.tblmetricdata TO PUBLIC;
 GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblmetricdata TO dqa_write;
-GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblmetricdata TO dqa_read;
+GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblmetricdata TO postgres;
 
 
 --
--- Name: TABLE tblmetricstringdata; Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: TABLE tblmetricstringdata; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT,REFERENCES ON TABLE public.tblmetricstringdata TO PUBLIC;
 GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblmetricstringdata TO dqa_write;
-GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblmetricstringdata TO dqa_read;
+GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblmetricstringdata TO postgres;
 
 
 --
--- Name: TABLE tblscanmessage; Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: TABLE tblscanmessage; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT,REFERENCES ON TABLE public.tblscanmessage TO PUBLIC;
 GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblscanmessage TO dqa_write;
-GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblscanmessage TO dqa_read;
+GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblscanmessage TO postgres;
 
 
 --
--- Name: SEQUENCE tblscanmessage_pkmessageid_seq; Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: SEQUENCE tblscanmessage_pkmessageid_seq; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT ON SEQUENCE public.tblscanmessage_pkmessageid_seq TO PUBLIC;
 GRANT ALL ON SEQUENCE public.tblscanmessage_pkmessageid_seq TO dqa_write;
-GRANT SELECT,USAGE ON SEQUENCE public.tblscanmessage_pkmessageid_seq TO dqa_read;
+GRANT SELECT,USAGE ON SEQUENCE public.tblscanmessage_pkmessageid_seq TO postgres;
 
 
 --
--- Name: TABLE tblsensor; Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: TABLE tblsensor; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT,REFERENCES ON TABLE public.tblsensor TO PUBLIC;
 GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE public.tblsensor TO dqa_write;
-GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblsensor TO dqa_read;
+GRANT SELECT,REFERENCES,TRIGGER ON TABLE public.tblsensor TO postgres;
 
 
 --
--- Name: SEQUENCE tblsensor_pksensorid_seq; Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: SEQUENCE tblsensor_pksensorid_seq; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT ON SEQUENCE public.tblsensor_pksensorid_seq TO PUBLIC;
 GRANT ALL ON SEQUENCE public.tblsensor_pksensorid_seq TO dqa_write;
-GRANT SELECT,USAGE ON SEQUENCE public.tblsensor_pksensorid_seq TO dqa_read;
+GRANT SELECT,USAGE ON SEQUENCE public.tblsensor_pksensorid_seq TO postgres;
 
 
 --
--- Name: SEQUENCE tblstation_pkstationid_seq; Type: ACL; Schema: public; Owner: dqa_owner
+-- Name: SEQUENCE tblstation_pkstationid_seq; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT SELECT ON SEQUENCE public.tblstation_pkstationid_seq TO PUBLIC;
 GRANT ALL ON SEQUENCE public.tblstation_pkstationid_seq TO dqa_write;
-GRANT SELECT,USAGE ON SEQUENCE public.tblstation_pkstationid_seq TO dqa_read;
+GRANT SELECT,USAGE ON SEQUENCE public.tblstation_pkstationid_seq TO postgres;
 
 
 --
