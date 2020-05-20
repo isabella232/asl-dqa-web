@@ -4,7 +4,7 @@ Django settings for dqa test build.
 
 from .settings import *
 
-ECRET_KEY = 'uwh)=eqffff)f%u%pf^0z)h=7s&cf1_r$bsn!vyz4bmxzo0)77'
+SECRET_KEY = 'uwh)=eqffff)f%u%pf^0z)h=7s&cf1_r$bsn!vyz4bmxzo0)77'
 
 ALLOWED_HOSTS = ['vmdevwb.cr.usgs.gov',
                  'igskgacgvmdevwb.cr.usgs.gov',
