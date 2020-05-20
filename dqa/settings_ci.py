@@ -16,3 +16,5 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+EXCLUDE_FROM_DEFAULT_GROUPS = []
