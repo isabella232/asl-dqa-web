@@ -84,6 +84,9 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+TEST_RUNNER = 'dqa.tests.runner.DBRunner'
+TEST_RESOURCES = os.path.join(BASE_DIR, 'dqa/tests/resources')
+
 try:
     from .local_settings import *
 except ImportError:

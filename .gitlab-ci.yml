@@ -1,0 +1,30 @@
+variables:
+  POSTGRES_HOST_AUTH_METHOD: trust
+
+# This folder is cached between builds
+# http://docs.gitlab.com/ce/ci/yaml/README.html#cache
+cache:
+  paths:
+    - ~/.cache/pip/
+
+
+before_script:
+  - ./setup.bash
+  - source venv/bin/activate
+  - python -V
+
+test:1804:
+  image: asl:1804
+  services:
+    - postgres:12.2-alpine
+  script:
+    - source venv/bin/activate
+    - python manage.py test --settings dqa.settings_ci
+
+test:latest:
+  image: asl:latest
+  services:
+    - postgres:latest
+  script:
+    - source venv/bin/activate
+    - python manage.py test --settings dqa.settings_ci
