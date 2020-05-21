@@ -24,7 +24,7 @@ var plots = {};
 var plotdata = {};
 var pageType = undefined; //Allows rest of functions to check page type without passing type around. It is only changed in getSetupData.
 
-var version = "v2.0.0";
+var version = "v2.1.0";
 
 $(document).ready(function(){
     //Detect which type of page we are loading. If a stationID was passed in the query string it is station.
