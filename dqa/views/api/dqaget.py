@@ -4,7 +4,7 @@ import json
 import datetime
 
 from django.http import HttpResponse
-from django.db import connection
+from django.db import connections
 
 
 def dqaget(request):
@@ -35,7 +35,7 @@ def dqaget(request):
     elif 'json' in output_format:
         content_type = 'application/json'
 
-    with connection.cursor() as cursor:
+    with connections['metricsold'].cursor() as cursor:
         if command == "metrics":
             sql = """
             SELECT name

@@ -5,6 +5,8 @@ from django.urls import reverse
 
 class Testmetrics(TestCase):
 
+    databases = ['metricsold', 'default']
+
     @classmethod
     def setUpClass(cls):
         super(Testmetrics, cls).setUpClass()

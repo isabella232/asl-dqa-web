@@ -2,7 +2,7 @@
 import re
 
 from django.http import HttpResponse
-from django.db import connection
+from django.db import connections
 from django.conf import settings
 
 
@@ -21,7 +21,7 @@ def metrics(request):
         return HttpResponse("Error: No command string")
     cmd_parts = cmd.lower().split('_')
 
-    with connection.cursor() as cursor:
+    with connections['metricsold'].cursor() as cursor:
         output = []
         if param is not None:
             if param == '':

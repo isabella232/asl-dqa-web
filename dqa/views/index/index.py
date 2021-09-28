@@ -1,12 +1,12 @@
 
 from django.shortcuts import render
 from django.conf import settings
-from django.db import connection
+from django.db import connections
 from django.urls import reverse
 
 
 def index(request):
-    with connection.cursor() as cursor:
+    with connections['metricsold'].cursor() as cursor:
         sql = """SELECT pkgroupid, name, "fkGroupTypeID" FROM groupview"""
         cursor.execute(sql)
         groups = []
