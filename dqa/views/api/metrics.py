@@ -5,6 +5,8 @@ from django.http import HttpResponse
 from django.db import connections
 from django.conf import settings
 
+from metrics.models import Metric
+
 
 def metrics(request):
     """
@@ -85,8 +87,14 @@ def metrics(request):
             cursor.execute('SELECT fnsclGetDates()')
             output.append(cursor.fetchone()[0])
         if "metrics" in cmd_parts:
-            cursor.execute('SELECT fnsclGetMetrics()')
-            output.append(cursor.fetchone()[0])
+            metric_list = []
+            for m in Metric.objects.all():
+                short = m.description_short.replace('"', '""')
+                long = m.description_long.replace('"', '""')
+                metric_list.append(f'M,{m.id},{m.display_name},"{short}","{long}"')
+            output.append("\n".join(metric_list))
+            # cursor.execute('SELECT fnsclGetMetrics()')
+            # output.append(cursor.fetchone()[0])
         if "groups" in cmd_parts:
             sql = """SELECT pkgroupid, name, "fkGroupTypeID" FROM groupview"""
             cursor.execute(sql)

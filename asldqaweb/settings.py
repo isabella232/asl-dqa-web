@@ -24,7 +24,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'dqa'
+    'dqa',
+    'metrics'
 ]
 
 MIDDLEWARE = [
@@ -57,6 +58,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'asldqaweb.wsgi.application'
 
+DATABASE_ROUTERS = ['asldqaweb.routers.MetricsRouter']
+
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
@@ -83,6 +86,10 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
+
+LOGIN_REDIRECT_URL = 'summary_nogroup'
+LOGIN_URL = 'login'
+LOGOUT_REDIRECT_URL = 'login'
 
 TEST_RUNNER = 'dqa.tests.runner.DBRunner'
 TEST_RESOURCES = os.path.join(BASE_DIR, 'dqa/tests/resources')

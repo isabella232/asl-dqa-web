@@ -122,6 +122,7 @@ function buildTable(){
             }
         }
     }
+
 }
 
 //Adds a filtering method that removes empty rows
@@ -160,6 +161,17 @@ function initializeTable(){
     });
     if (pageType == "summary"){
         dTable.fnSetColumnVis(2, false);
+    }
+    if(userColumns.length > 0) {
+        $.each(dTable.fnSettings().aoColumns, function (c) {
+            if(c < 3)
+                return true;
+            if (!userColumns.includes(mapMNametoMID[dTable.fnSettings().aoColumns[c].sTitle])) {
+                // dTable.columns(c).visible(false);
+                dTable.fnSetColumnVis(c, false);
+                // dTable.fnSettings().aoColumns[c].bVisible = false;
+            }
+        });
     }
     dTable.fnSort([
         [0, 'asc'],
@@ -210,7 +222,7 @@ function fillTable(){
                                 dTable.fnDraw();
                             }
                         },
-                        url: metrics_url,
+                        url: metricsold_url,
                         data: {cmd: "stationgrid", param: "station."+rowIDs+
                             "_metric."+metricID+"_dates."+dates}
                     });
@@ -241,7 +253,7 @@ function fillTable(){
                                 dTable.fnDraw();
                             }
                         },
-                        url: metrics_url,
+                        url: metricsold_url,
                         data: {cmd: "channelgrid", param: "channel."+rowIDs+
                             "_metric."+metricID+"_dates."+dates}
                     });

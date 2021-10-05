@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+<head>
+    <title>DQA - Login</title>
+    <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/dataTables.jqueryui.min.js' %}"></script>
+
+    <link href="{% static 'css/dataTables.jqueryui.css' %}" rel="stylesheet">
+    <link href="{% static 'css/jquery-ui.min.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div style="width: 100%; margin: 0 auto;">
+    <div style="text-align: center;">
+        <h1 style="margin-bottom: 50px; margin-top: 50px;">Welcome to DQA, please login</h1>
+
+        <div class="ui-widget ui-corner-all">
+            {% if form.errors %}
+            <p style="font-weight:bold; color: red;">Your username and password didn't match. Please try again.</p>
+            {% endif %}
+
+            {% if next %}
+                {% if user.is_authenticated %}
+                <p>Your account doesn't have access to this page. To proceed,
+                please login with an account that has access.</p>
+                {% else %}
+                <p>Please login to see this page.</p>
+                {% endif %}
+            {% endif %}
+
+            <form id="auth" method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+
+                <table class="ui-button ui-widget ui-corner-all">
+                    <tr>
+                        <td>{{ form.username.label_tag }}</td>
+                        <td>{{ form.username|default:"guest" }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ form.password.label_tag }}</td>
+                        <td>{{ form.password|default:"password" }}</td>
+                    </tr>
+                </table>
+
+                <div>
+                  <input type="submit" value="Login" class="ui-button ui-widget ui-corner-all" style="margin-top:20px; margin-bottom: 50px;"/>
+                  <input type="hidden" name="next" value="{{ next }}" />
+                    <p><a href="#" onclick="loginAsGuest();">Log in as Guest</a></p>
+                </div>
+            </form>
+
+            {# Assumes you setup the password_reset view in your URLconf #}
+            <p><a href="{% url 'password_reset' %}">Forgot your Password?</a></p>
+        </div>
+    </div>
+</div>
+<script>
+    function loginAsGuest(){
+        $('#id_username').val('dwitte');
+        $('#id_password').val('test1234');
+        $('#auth').submit();
+    }
+</script>
+</body>
+</html>

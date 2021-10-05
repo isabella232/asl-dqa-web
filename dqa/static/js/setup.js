@@ -25,6 +25,7 @@ var groups = new Array();
 var plots = {};
 var plotdata = {};
 var pageType = undefined; //Allows rest of functions to check page type without passing type around. It is only changed in getSetupData.
+var userColumns = Array(); // User selected metrics column
 
 var version = "v2.2.0";
 
@@ -52,11 +53,15 @@ $(document).ajaxStop(function(){ //This may compete with ajaxStop trigger in pro
 });
 
 function getSetupData(){
+    // Get metrics info
+    $.getJSON( metrics_url, {model: 'metric', usersettings: true}, function(data){
+        setupMetrics(data);
+    });
     if (pageType == "station"){
         var station = getQueryString("station");
         var network = getQueryString( "network");
         network = (network != null) ? "_network." + network : ''
-        $.get(metrics_url,
+        $.get(metricsold_url,
             {cmd: "groups_dates_stations_metrics_channels", param: "station." + station + network},
             function(data){
                 parseSetupResponse(data);
@@ -71,7 +76,7 @@ function getSetupData(){
         ); 
     }
     else if (pageType == "summary"){
-        $.get(metrics_url,
+        $.get(metricsold_url,
             {cmd: "groups_dates_stations_metrics"},
             function(data){
                 parseSetupResponse(data);
@@ -136,14 +141,27 @@ function parseSetupResponse(response){
                 mapCNametoCID[parts[2]] = parts[1];
                 mapCIDtoLoc[parts[1]] = parts[3];
                 break;
-            case 'M': //M, MetricID, MetricName
-                var mparts = $.csv.toArray(rows[i]);
-                mapMIDtoMName[mparts[1]]=mparts[2];
-                mapMNametoMID[mparts[2]]=mparts[1];
-                mapMNametoMShort[mparts[2]]=mparts[3];
-                mapMNametoMLong[mparts[2]]=mparts[4];
-                break;
+            // case 'M': //M, MetricID, MetricName
+            //     var mparts = $.csv.toArray(rows[i]);
+            //     mapMIDtoMName[mparts[1]]=mparts[2];
+            //     mapMNametoMID[mparts[2]]=mparts[1];
+            //     mapMNametoMShort[mparts[2]]=mparts[3];
+            //     mapMNametoMLong[mparts[2]]=mparts[4];
+            //     break;
         }
     }
 }
 
+function setupMetrics(data){
+    // console.log(data);
+    data['metrics']['data'].forEach(function(metric) {
+        // console.log(metric)
+        mapMIDtoMName[metric['id']] = metric['display_name'];
+        mapMNametoMID[metric['display_name']] = metric['id'];
+        mapMNametoMShort[metric['display_name']] = metric['description_short'];
+        mapMNametoMLong[metric['display_name']] = metric['description_long'];
+    });
+    if('user_settings' in data && 'metric_columns' in data['user_settings']){
+        userColumns = data['user_settings']['metric_columns'];
+    }
+}

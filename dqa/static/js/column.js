@@ -27,7 +27,7 @@ function setupColumnTab(jTab){
             curCol++;
             columns.push($("<div style=\"display:table; border-spacing:10px;\"></div>"));
         }
-        if(metrics[curMetric].bVisible){  //If the column is hidden by default we don't want to let users view it. This applies to the groups column which is used for filtering.
+        if(metrics[curMetric].sTitle != 'Groups'){  //If the column is hidden by default we don't want to let users view it. This applies to the groups column which is used for filtering.
             columns[curCol].append(createColumnCheckbox(metrics[curMetric], curMetric));
             usedMetrics++;
         }
@@ -45,12 +45,18 @@ function setupColumnTab(jTab){
     eTab.append(
         "<button type='button' id='btnUnCheckAll'>Hide All</button>"
     );
+    eTab.append(
+        "<button type='button' id='btnSaveColumns'>Save State</button>"
+    );
     bindColumnTab();
 }
 
 function createColumnCheckbox(metricCol, colID){
+    var checked = '';
+    if(metricCol.bVisible)
+        checked = "checked='checked'";
     var cbdiv = $("<div id='metricCB"+colID+"'/>");
-    cbdiv.append($("<input type='checkbox' checked='checked'/>"));
+    cbdiv.append($("<input type='checkbox' " + checked + "/>"));
     cbdiv.append($("<label>"+metricCol.sTitle+"</label>"));
     return cbdiv;
 }
@@ -73,14 +79,37 @@ function bindColumnTab(){
         });
     });
     $("#btnUnCheckAll").on("click",function(){
-        $("div[id^=metricCB]").find("input[type=checkbox]").each(function(){
-            $(this).prop("checked", false);
-            setColVis(this);
+        $("div[id^=metricCB]").each(function(){
+            var label_element = $(this).children("label").eq(0);
+            if(label_element.text() == 'Network' || label_element.text() == 'Station')
+                return true
+            var input_element = $(this).children("input").eq(0);
+            input_element.prop("checked", false);
+            setColVis(input_element);
         });
+    });
+    $("#btnSaveColumns").on("click",function(){
+        saveColumnsState();
     });
 }
 
 function setColVis(checkbox){
     var colID = $(checkbox).parent().prop("id").slice(8);
     dTable.fnSetColumnVis(colID, $(checkbox).prop("checked"));
+}
+
+function saveColumnsState(){
+    var column_list = Array();
+    $("div[id^=metricCB]").each(function(){
+            var label_element = $(this).children("label").eq(0);
+            var input_element = $(this).children("input").eq(0);
+            if(input_element.prop("checked") == true){
+                column_list.push(label_element.text());
+            }
+    });
+    var output = {model: 'custom', type: 'columns', data: column_list}
+    $.post(metrics_url, JSON.stringify(output),
+     function(returnedData){
+        }, 'json');
+
 }

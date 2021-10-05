@@ -1,8 +1,10 @@
 
 from django.shortcuts import render
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
 
+@login_required()
 def summary(request, group=''):
     exclude_from_default = ''
     for grp in settings.EXCLUDE_FROM_DEFAULT_GROUPS:

@@ -13,10 +13,12 @@
     </head>
     <body>
         <script>
-            <!-- metrics_url is used in the static javascript files to determine the location of the metrics api view -->
-            var metrics_url = "{% url 'metrics' %}" + {% if group %}"?group=" + "{{ group }}"{% else %}""{% endif %};
-            <!-- summary_url links back to summary page, special case if group in URL -->
+            // metricsold_url is used in the static javascript files to determine the location of the metrics api view
+            var metricsold_url = "{% url 'oldmetrics' %}" + {% if group %}"?group=" + "{{ group }}"{% else %}""{% endif %};
+            // summary_url links back to summary page, special case if group in URL
             {% if group %} var summary_url = "{% url 'summary' group %}"; {% else %} var summary_url = "{% url 'summary_nogroup' %}";{% endif %}
+            // metrics is the new url for Django section
+            var metrics_url = "{%  url 'metrics' %}";
         </script>
         <div id="legend" title="Metrics Legend" class="ui-widget ui-corner-all">
             <table id="legendtable" class="legendtable">

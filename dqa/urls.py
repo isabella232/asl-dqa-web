@@ -8,7 +8,7 @@ from dqa.views.index import index
 from dqa.views.summary import summary
 
 urlpatterns = [
-    url(r'api/metrics', metrics.metrics, name="metrics"),
+    url(r'api/metrics', metrics.metrics, name="oldmetrics"),
     url(r'cgi-bin/dqaget.py', dqaget.dqaget, name="dqaget"),
     url(r'index.html', index.index, name="index"),
     url(r'(?P<group>[^/]+)/summary/$', summary.summary, name="summary"),

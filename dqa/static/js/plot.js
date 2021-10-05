@@ -146,7 +146,7 @@ function bindPlot(pid, title){
 function getPlotData(ids, pid, title){
     var daterange = getQueryDates();
     if (pageType == "station"){
-        $.get(metrics_url,
+        $.get(metricsold_url,
             {cmd: "channelplot", param: "channel."+ids[2]+"_metric."+ids[1]+"_dates."+daterange},
             function(data){
                 parsePlotReturn(data, pid);
@@ -157,7 +157,7 @@ function getPlotData(ids, pid, title){
 
     }
     else if (pageType == "summary"){
-        $.get(metrics_url,
+        $.get(metricsold_url,
             {cmd: "stationplot", param: "station."+ids[2]+"_metric."+ids[1]+"_dates."+daterange},
             function(data){
                 parsePlotReturn(data, pid);
