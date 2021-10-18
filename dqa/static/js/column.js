@@ -5,7 +5,6 @@ column.js contains functions for column hiding and showing.
 License: Public Domain
 */
 
-var colVis;
 function setupColumnTab(jTab){
     var eTab = $("<div id='tColumn' style=\"font-size: 12px\"></div>");
     jTab.find("ul").append('<li><a href="#tColumn">Columns</a></li>');
@@ -45,9 +44,6 @@ function setupColumnTab(jTab){
     eTab.append(
         "<button type='button' id='btnUnCheckAll'>Hide All</button>"
     );
-    eTab.append(
-        "<button type='button' id='btnSaveColumns'>Save State</button>"
-    );
     bindColumnTab();
 }
 
@@ -67,9 +63,11 @@ function bindColumnTab(){
             var checkbox = $(this).siblings("input[type=checkbox]");
             $(checkbox).prop("checked", !checkbox.prop("checked"));
             setColVis(checkbox);
+            refreshTable();
         });
         $(this).find("input[type=checkbox]").on("click",function(){
             setColVis(this);
+            refreshTable();
         });
     });
     $("#btnCheckAll").on("click",function(){
@@ -81,15 +79,12 @@ function bindColumnTab(){
     $("#btnUnCheckAll").on("click",function(){
         $("div[id^=metricCB]").each(function(){
             var label_element = $(this).children("label").eq(0);
-            if(label_element.text() == 'Network' || label_element.text() == 'Station')
+            if(fixedColumns.includes(label_element.text()))
                 return true
             var input_element = $(this).children("input").eq(0);
             input_element.prop("checked", false);
             setColVis(input_element);
         });
-    });
-    $("#btnSaveColumns").on("click",function(){
-        saveColumnsState();
     });
 }
 
@@ -98,18 +93,15 @@ function setColVis(checkbox){
     dTable.fnSetColumnVis(colID, $(checkbox).prop("checked"));
 }
 
-function saveColumnsState(){
-    var column_list = Array();
+function updateCheckboxes(){
     $("div[id^=metricCB]").each(function(){
-            var label_element = $(this).children("label").eq(0);
-            var input_element = $(this).children("input").eq(0);
-            if(input_element.prop("checked") == true){
-                column_list.push(label_element.text());
-            }
+        var label_element = $(this).children("label").eq(0);
+        var state = false;
+        if(userColumns.includes(label_element.text()) || fixedColumns.includes(label_element.text())){
+            state = true;
+        }
+        var input_element = $(this).children("input").eq(0);
+        input_element.prop("checked", state);
+        setColVis(input_element);
     });
-    var output = {model: 'custom', type: 'columns', data: column_list}
-    $.post(metrics_url, JSON.stringify(output),
-     function(returnedData){
-        }, 'json');
-
 }

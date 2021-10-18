@@ -209,3 +209,9 @@ function getEndDate(complex){
 function getDateType(){
     return $("[id^=dpFormat]").val();  
 }
+
+function updateSettingsDate(){
+    var date_object = $('#dpFormatheader');
+    date_object.val(userDateFormat);
+    date_object.change();
+}

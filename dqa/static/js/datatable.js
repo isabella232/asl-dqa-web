@@ -147,7 +147,6 @@ $.fn.dataTableExt.afnFiltering.push(
 
 //Basic initialization and setup for datatable
 function initializeTable(){
-
     dTable = $('#grid').dataTable({
         "bJQueryUI": true,
         "bPaginate": false
@@ -163,13 +162,9 @@ function initializeTable(){
         dTable.fnSetColumnVis(2, false);
     }
     if(userColumns.length > 0) {
-        $.each(dTable.fnSettings().aoColumns, function (c) {
-            if(c < 3)
-                return true;
-            if (!userColumns.includes(mapMNametoMID[dTable.fnSettings().aoColumns[c].sTitle])) {
-                // dTable.columns(c).visible(false);
+        $.each(dTable.fnSettings().aoColumns, function (c, value) {
+            if (!userColumns.includes(value.sTitle)) {
                 dTable.fnSetColumnVis(c, false);
-                // dTable.fnSettings().aoColumns[c].bVisible = false;
             }
         });
     }

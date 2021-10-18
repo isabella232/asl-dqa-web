@@ -14,7 +14,7 @@ test:1804:
     - postgres:12.2-alpine
   script:
     - source venv/bin/activate
-    - python manage.py test --settings dqa.settings_ci
+    - python manage.py test --settings asldqaweb.settings_ci
 
 test:latest:
   image: code.chs.usgs.gov:5001/asl/asl-main/asl:latest
@@ -22,7 +22,7 @@ test:latest:
     - postgres:latest
   script:
     - source venv/bin/activate
-    - python manage.py test --settings dqa.settings_ci
+    - python manage.py test --settings asldqaweb.settings_ci
 
 test:safety:
   image: code.chs.usgs.gov:5001/asl/asl-main/asl:latest

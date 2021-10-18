@@ -13,7 +13,7 @@ print('Start')
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "asldqaweb.settings")
 django.setup()
 
-from metrics.models import ComputeType, Metric
+from metrics.models import Metric
 
 base_write_url = 'http://localhost:8000//metrics'
 

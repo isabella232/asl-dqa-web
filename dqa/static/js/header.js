@@ -21,6 +21,24 @@ function setupHeader(){
         modal: true
     });
 
+    $("#useriddiv").dialog({
+        autoOpen: false,
+        height: 200,
+        width: 400,
+        modal: true,
+        buttons: {
+            "Login": function() {
+                var userid = $('#userid').val();
+                getUserSettings(userid, loginCallback);
+                $("#btnLogin").button( "option", "label", "Save" );
+                $("#useriddiv").dialog("close");
+            },
+            Cancel: function () {
+                $("#useriddiv").dialog("close");
+            }
+        }
+    });
+
     if(pageType == "station"){
         header.append(
             "<button type='button' id='btnSummary'>Summary</button>"
@@ -51,8 +69,20 @@ function setupHeader(){
     $("#btnRefresh").on("click",function(){
         refreshTable();
     });
+    if(allow_user_settings){
+        var buttonText = (username.length > 0) ? 'Save' : 'Login';
+        rightSide.append("<button type='button' id='btnLogin'>" + buttonText + "</button>");
+        $("#btnLogin").on("click", function(){
+            loginOrSave(this);
+        });
+    }
     //Adds the actual jqueryui datepicker controls and theme
     bindDateRangeSpan("header");
+}
+
+function loginCallback(){
+    updateUserSettings();
+    refreshTable();
 }
 
 //Must be called after setup data is parsed to get the station name
@@ -69,4 +99,67 @@ function buildLegend(){
     for (var i=0; i<sorted_keys.length; i++){
         $("#legendtable tbody").append('<tr><td>' + sorted_keys[i] + '</td><td>' + mapMNametoMLong[sorted_keys[i]] + '</td></tr>')
     }
+}
+
+function loginOrSave(buttonObject){
+    var loginObject = $(buttonObject);
+    if(loginObject.text() == 'Login'){
+        $("#useriddiv").dialog( "open" );
+    }
+    else {
+        saveUserSettings();
+    }
+}
+
+function getUserSettings(userid, callback){
+    $.get(settings_url + '?username=' + userid, function (returnedData) {
+        userColumns = returnedData['user_settings']['columns'];
+        userWeights = returnedData['user_settings']['weights'];
+        userDateFormat = returnedData['user_settings']['date_format'];
+        callback();
+    });
+}
+
+function updateUserSettings(){
+    if(userColumns.length > 0){
+        $.each(dTable.fnSettings().aoColumns, function(c, value) {
+            if(userColumns.includes(value.sTitle) || fixedColumns.includes(value.sTitle)){
+                dTable.fnSetColumnVis(c, true);
+            }
+            else{
+                dTable.fnSetColumnVis(c, false);
+            }
+        });
+        updateCheckboxes();
+    }
+    if(Object.keys(userWeights).length > 0){
+        for (const [key, value] of Object.entries(userWeights)) {
+            weights[mapMNametoMID[key]] = value;
+        }
+        updateWeights();
+    }
+    if(Object.keys(userDateFormat) != ''){
+        updateSettingsDate();
+    }
+}
+
+function saveUserSettings() {
+    var column_list = Array();
+    $("div[id^=metricCB]").each(function () {
+        var label_element = $(this).children("label").eq(0);
+        var input_element = $(this).children("input").eq(0);
+        if (input_element.prop("checked") == true) {
+            column_list.push(label_element.text());
+        }
+    });
+    var weight_list = {};
+    for (var key in weights) {
+        weight_list[mapMIDtoMName[key]] = weights[key]
+    }
+    var date_format = $("#dpFormatheader option:selected").val();
+
+    var output = {user_settings: {columns: column_list, weights: weight_list, date_format: date_format}}
+    $.post(settings_url, JSON.stringify(output),
+    function (returnedData) {
+    }, 'json');
 }

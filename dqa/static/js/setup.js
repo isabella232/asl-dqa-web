@@ -26,6 +26,9 @@ var plots = {};
 var plotdata = {};
 var pageType = undefined; //Allows rest of functions to check page type without passing type around. It is only changed in getSetupData.
 var userColumns = Array(); // User selected metrics column
+var fixedColumns = new Array('Network', 'Station', 'Location', 'Channel', 'Aggregate')  // Columns always displayed
+var userWeights = {};  // User set weighting values
+var userDateFormat = '';
 
 var version = "v2.2.0";
 
@@ -45,16 +48,19 @@ $(document).ready(function(){
 $(document).ajaxStop(function(){ //This may compete with ajaxStop trigger in progressbar.js
     $(this).unbind("ajaxStop"); //Prevents ajaxStop from being called in the future. We only need it on initial load.
     setupTabs();
-    resetWeights();
-    processAllAggr();
     //Make all buttons jqueryui buttons
     $("button").button();
+    resetWeights();
     setupDateType(); //Sets it to ordinal date if they were on ordinal date before.
+    if(username != ''){
+        updateUserSettings();
+    }
+    processAllAggr();
 });
 
 function getSetupData(){
     // Get metrics info
-    $.getJSON( metrics_url, {model: 'metric', usersettings: true}, function(data){
+    $.getJSON( metrics_url, function(data){
         setupMetrics(data);
     });
     if (pageType == "station"){
@@ -68,10 +74,12 @@ function getSetupData(){
                 setStationTitle(); //Sets the Title in the header like so "IU-ANMO" and changes document title to "DQA IU-ANMO"
                 buildTable();
                 initializeTable();
-                clearTable(); //Clears 1.01 values before populating with proper values
-                fillTable();
-                bindTableActions();
-                buildLegend();
+                if(username != ''){
+                    getUserSettings(username, setupCallback);
+                }
+                else{
+                    setupCallback();
+                }
             }
         ); 
     }
@@ -83,13 +91,23 @@ function getSetupData(){
                 //populateGroups(); //We need to implement tabbing for this now
                 buildTable();
                 initializeTable();
-                clearTable(); //Clears 1.01 values before populating with real values
-                fillTable();
-                bindTableActions();
-                buildLegend();
+                if(username != ''){
+                    getUserSettings(username, setupCallback);
+                }
+                else{
+                    setupCallback();
+                }
             }
         );
     }
+}
+
+function setupCallback(){
+    updateUserSettings();
+    clearTable(); //Clears 1.01 values before populating with real values
+    fillTable();
+    bindTableActions();
+    buildLegend();
 }
 
 function parseSetupResponse(response){
@@ -153,15 +171,10 @@ function parseSetupResponse(response){
 }
 
 function setupMetrics(data){
-    // console.log(data);
     data['metrics']['data'].forEach(function(metric) {
-        // console.log(metric)
         mapMIDtoMName[metric['id']] = metric['display_name'];
         mapMNametoMID[metric['display_name']] = metric['id'];
         mapMNametoMShort[metric['display_name']] = metric['description_short'];
         mapMNametoMLong[metric['display_name']] = metric['description_long'];
     });
-    if('user_settings' in data && 'metric_columns' in data['user_settings']){
-        userColumns = data['user_settings']['metric_columns'];
-    }
 }

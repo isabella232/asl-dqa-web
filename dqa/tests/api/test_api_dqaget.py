@@ -5,7 +5,7 @@ from django.urls import reverse
 
 class Testdqaget(TestCase):
 
-    databases = ['metricsold', 'default']
+    databases = ['metrics', 'metricsold', 'default']
 
     @classmethod
     def setUpClass(cls):

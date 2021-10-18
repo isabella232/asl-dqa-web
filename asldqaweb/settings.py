@@ -87,12 +87,11 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-LOGIN_REDIRECT_URL = 'summary_nogroup'
-LOGIN_URL = 'login'
-LOGOUT_REDIRECT_URL = 'login'
-
 TEST_RUNNER = 'dqa.tests.runner.DBRunner'
 TEST_RESOURCES = os.path.join(BASE_DIR, 'dqa/tests/resources')
+
+# Required in Django 3.2+
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 
 try:
     from .local_settings import *

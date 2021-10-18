@@ -90,6 +90,7 @@ function setupWeightTab(jTab){
     wTab.append(   
         "<button type='button' id='btnWeightProcessAggr'>Recompute Aggregrate</button>"
     );
+
 jTab.find("ul").append('<li><a href="#tWeight">Weights</a></li>');
     jTab.append(wTab);
     bindWeightTab();
@@ -208,7 +209,7 @@ function calcAggr(rowID){
     if(weightSum == 0){ //Means either all Metrics are weighted to 0, initial load, or no weighted metric data exists
         return 0;
     }
-    for (var metric in percents[rowID] ){ //
+    for (var metric in percents[rowID] ){
         if(percents[rowID].hasOwnProperty(metric)){
             //Doesn't need to be multiplied by 100 because the weight already is
             //trueWeight is the ratio of the user selected weight to the weightSum otherwise percentages will be greater/less than 100%
@@ -255,4 +256,11 @@ function setAggregateClass(cell, value){
 //We need to do this when we update the datatable.
 function resetPercents(){
     percents = {};
+}
+
+function updateWeights(){
+    for (const [key, value] of Object.entries(weights)) {
+            var sp = $('#spin' + key)
+            sp.spinner("value", value);
+        }
 }
