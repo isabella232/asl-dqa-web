@@ -60,6 +60,10 @@ WSGI_APPLICATION = 'asldqaweb.wsgi.application'
 
 DATABASE_ROUTERS = ['asldqaweb.routers.MetricsRouter']
 
+LOGIN_REDIRECT_URL = 'index'
+LOGIN_URL = 'login'
+LOGOUT_REDIRECT_URL = 'login'
+
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
@@ -92,6 +96,8 @@ TEST_RESOURCES = os.path.join(BASE_DIR, 'dqa/tests/resources')
 
 # Required in Django 3.2+
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'
+
+VERSION = '2.2.0'
 
 try:
     from .local_settings import *

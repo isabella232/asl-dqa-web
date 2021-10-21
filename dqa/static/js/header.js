@@ -55,7 +55,7 @@ function setupHeader(){
         header.append("<span class='headerTitle'>Station Summary</span>");
 
     }
-    header.append("<span class='headerVersion'>" + version + "</span>");
+    header.append("<span class='headerVersion'>v" + version + "</span>");
     //Adding span for dateRange now, but the dates and their controls will be added in the dateselection code.
     var rightSide = $("<span class='right'></span>");
     if(pageType == "summary"){
@@ -70,11 +70,19 @@ function setupHeader(){
         refreshTable();
     });
     if(allow_user_settings){
-        var buttonText = (username.length > 0) ? 'Save' : 'Login';
+        var buttonText = (username.length > 0) ? 'Logout' : 'Login';
         rightSide.append("<button type='button' id='btnLogin'>" + buttonText + "</button>");
         $("#btnLogin").on("click", function(){
-            loginOrSave(this);
+            loginOrOut(this);
         });
+        rightSide.append("<button type='button' id='btnSave'>Save Settings</button>");
+        if(buttonText == 'Login'){
+            $("#btnSave").hide();
+        }
+        $("#btnSave").on("click", function(){
+            saveUserSettings();
+        });
+        rightSide.append("<span id='username'>" + username + "</span>");
     }
     //Adds the actual jqueryui datepicker controls and theme
     bindDateRangeSpan("header");
@@ -101,13 +109,13 @@ function buildLegend(){
     }
 }
 
-function loginOrSave(buttonObject){
+function loginOrOut(buttonObject){
     var loginObject = $(buttonObject);
     if(loginObject.text() == 'Login'){
-        $("#useriddiv").dialog( "open" );
+        window.location.href = login_url;
     }
     else {
-        saveUserSettings();
+        window.location.href = logout_url;
     }
 }
 

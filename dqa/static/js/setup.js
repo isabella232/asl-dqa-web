@@ -30,8 +30,6 @@ var fixedColumns = new Array('Network', 'Station', 'Location', 'Channel', 'Aggre
 var userWeights = {};  // User set weighting values
 var userDateFormat = '';
 
-var version = "v2.2.0";
-
 $(document).ready(function(){
     //Detect which type of page we are loading. If a stationID was passed in the query string it is station.
     var stationID;
