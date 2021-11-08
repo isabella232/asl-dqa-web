@@ -67,7 +67,7 @@ class Custom(models.Model):
     user_id = models.CharField('User_id', max_length=40)
     columns = models.ManyToManyField('Metric', related_name='custom_columns')
     weights = models.ManyToManyField('Metric', related_name='custom_weight', through='CustomWeight')
-    date_format = models.CharField('DateFormat', max_length=10, null=True)
+    date_format = models.CharField('DateFormat', max_length=10, default='yy-mm-dd')
 
 
 class CustomWeight(models.Model):
