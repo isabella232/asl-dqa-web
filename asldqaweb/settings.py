@@ -62,7 +62,7 @@ DATABASE_ROUTERS = ['asldqaweb.routers.MetricsRouter']
 
 LOGIN_REDIRECT_URL = 'index'
 LOGIN_URL = 'login'
-LOGOUT_REDIRECT_URL = 'login'
+LOGOUT_REDIRECT_URL = 'index'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
