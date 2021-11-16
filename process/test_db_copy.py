@@ -17,7 +17,7 @@ from metrics.models import Date, ErrorLog, Scan, ScanMessage
 
 print('Start')
 
-base_read_url = 'http://localhost:8000//metrics'
+base_read_url = ''
 
 with connections['prodclone'].cursor() as cursor:
 
