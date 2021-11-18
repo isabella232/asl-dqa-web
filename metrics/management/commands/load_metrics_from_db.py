@@ -60,7 +60,7 @@ class Command(BaseCommand):
         output = {'model': 'metric', 'count': len(metrics_output), 'data': metrics_output}
         data_json = json.dumps(output)
         r = request.urlopen(req, data=data_json.encode())
-        content = r.read()
+        content = json.loads(r.read().decode('utf-8'))
         if 'status' not in content or content['status'] != 'ok':
             print(f'Error in pushing data to api: {content}')
 
