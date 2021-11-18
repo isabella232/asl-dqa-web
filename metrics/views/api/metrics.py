@@ -15,7 +15,14 @@ class metrics(APIView):
     def get(self, request):
         metrics = []
         for metric_object in Metric.objects.all():
-            metrics.append({'id': metric_object.id, 'name': metric_object.name, 'display_name': metric_object.display_name, 'description_short': metric_object.description_short, 'description_long': metric_object.description_long, 'compute_type': metric_object.compute_type.name, 'parent': metric_object.parent.name if metric_object.parent else None})
+            metrics.append({'id': metric_object.id,
+                            'name': metric_object.name,
+                            'display_name': metric_object.display_name,
+                            'description_short': metric_object.description_short,
+                            'description_long': metric_object.description_long,
+                            'compute_type': metric_object.compute_type.name,
+                            'parent': metric_object.parent.name if metric_object.parent else None,
+                            'units': metric_object.units})
         output = {'metrics': {'data': metrics, 'count': len(metrics)}}
         return Response(output)
 
@@ -23,5 +30,12 @@ class metrics(APIView):
         if ComputeType.objects.all().count() < 1:
             return JsonResponse({'status': 'error', 'message': 'Metrics require compute type'})
         for value in request.data['data']:
-            m_object, _ = Metric.objects.get_or_create(id=value['id'], name=value['name'], display_name=value['display_name'], description_short=value['description_short'], description_long=value['description_long'], compute_type=ComputeType.objects.get(name=value['compute_type']))
+            m_object, _ = Metric.objects.get_or_create(id=value['id'],
+                                                       name=value['name'],
+                                                       display_name=value['display_name'],
+                                                       description_short=value['description_short'],
+                                                       description_long=value['description_long'],
+                                                       compute_type=ComputeType.objects.get(name=value['compute_type']),
+                                                       units=value['units']
+                                                       )
         return Response({'status': 'ok', 'message': 'Metrics loaded'})

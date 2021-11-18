@@ -28,6 +28,7 @@ class Metric(models.Model):
     display_name = models.CharField('Display Name', max_length=64, blank=True)
     description_short = models.CharField("Short Description", max_length=128, blank=True)
     description_long = models.TextField("Long Description", blank=True)
+    units = models.CharField('Units', max_length=64, blank=True)
 
     def __str__(self):
         return f'{self.name}'

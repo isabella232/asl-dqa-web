@@ -26,9 +26,11 @@ function createDialog(id){
     var ids = id.split("_");
     var pid = ids[1]+"_"+ids[2]; //removes the "d_" from the front of the id
     var title = undefined;
+    var units = undefined;
 
     if (pageType == "summary"){
         title = mapGIDtoGName[mapSIDtoNID[ids[2]]]+"-"+mapSIDtoSName[ids[2]]+" "+mapMIDtoMName[ids[1]];
+        units = mapMNametoMUnit[mapMIDtoMName[ids[1]]];
     }
     else if (pageType == "station"){
         var stationID = getQueryString("station");
@@ -43,10 +45,10 @@ function createDialog(id){
     //If we do try to implement this, there is a bug. When the last dialog is closed, the first disapears, but doesn't get removed. Same with Second to last and second.
     if($("#dia"+pid).length) //If dialog exists, close it.
         $("#dia"+pid).dialog("close");
-    getPlotData(ids, pid, title);
+    getPlotData(ids, pid, title, units);
 }
 
-function bindPlot(pid, title){
+function bindPlot(pid, title, units){
     if (plotdata[pid].length > 0){ //Check if data was returned, if none was returned don't plot anything.
         $('#html').append(plotTemplate(pid, title));
         // If max === min then jqplot does strange scaling so force the issue by getting the max and min and manually setting max and min
@@ -119,7 +121,9 @@ function bindPlot(pid, title){
                     },
                     pad: 1.05,
                     min: ymin,
-                    max: ymax
+                    max: ymax,
+                    label: units,
+                    labelRenderer: $.jqplot.CanvasAxisLabelRenderer
                 }
             },
             series:[
@@ -143,7 +147,7 @@ function bindPlot(pid, title){
 
 }
 
-function getPlotData(ids, pid, title){
+function getPlotData(ids, pid, title, units){
     var daterange = getQueryDates();
     if (pageType == "station"){
         $.get(metricsold_url,
@@ -152,7 +156,7 @@ function getPlotData(ids, pid, title){
                 parsePlotReturn(data, pid);
             }
         ).done(function(){
-            bindPlot(pid, title);
+            bindPlot(pid, title, units);
         });
 
     }
@@ -163,7 +167,7 @@ function getPlotData(ids, pid, title){
                 parsePlotReturn(data, pid);
             }
         ).done(function(){
-            bindPlot(pid, title);
+            bindPlot(pid, title, units);
         });
     }
 }

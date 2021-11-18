@@ -17,6 +17,7 @@ var mapMIDtoMName = {}; //MID = Metric ID, MName = Metric Name
 var mapMNametoMID = {};
 var mapMNametoMShort = {}; // Metric Name to Metric short description
 var mapMNametoMLong = {}; // Metric Name to Metric long description
+var mapMNametoMUnit = {}; // Metric Name to Metric Units
 var mapSIDtoGIDs = {};
 var mapCNametoCID = {};
 var mapCIDtoCName = {};
@@ -178,5 +179,6 @@ function setupMetrics(data){
         mapMNametoMID[metric['display_name']] = metric['id'];
         mapMNametoMShort[metric['display_name']] = metric['description_short'];
         mapMNametoMLong[metric['display_name']] = metric['description_long'];
+        mapMNametoMUnit[metric['display_name']] = metric['units'];
     });
 }
