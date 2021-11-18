@@ -58,9 +58,13 @@ $(document).ajaxStop(function(){ //This may compete with ajaxStop trigger in pro
 
 function getSetupData(){
     // Get metrics info
-    $.getJSON( metrics_url, function(data){
+    $.getJSON(metrics_url, function (data) {
         setupMetrics(data);
+        getSetupDataCallback();
     });
+}
+
+function getSetupDataCallback(){
     if (pageType == "station"){
         var station = getQueryString("station");
         var network = getQueryString( "network");
