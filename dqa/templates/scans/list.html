@@ -1,0 +1,79 @@
+
+{% extends 'base.html' %}
+
+{% block title %}DQA Scan List{% endblock %}
+
+{% block body_block %}
+    <div><h2>Scans List: {% if parentid %}Parent = {{ parentid }}{% else %}Parents{% endif %}</h2></div>
+    <div><h3>{% if parentid %}<a href="{% url 'scans' %}">Parent List</a>{% else %}<a href="{% url 'addscan' %}">Add Scan</a>{% endif %}</h3></div>
+    <table id="scans" class="display">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Child Count</th>
+            <th>Status</th>
+            <th>Network</th>
+            <th>Station</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Priority</th>
+            <th>Updated</th>
+            <th>Message</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+            <th>Id</th>
+            <th>Child Count</th>
+            <th>Status</th>
+            <th>Network</th>
+            <th>Station</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Priority</th>
+            <th>Updated</th>
+            <th>Message</th>
+        </tr>
+        </tfoot>
+    </table>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var datatable = $('#scans').DataTable({
+                "fixedHeader": true,
+                "serverSide": false,
+                "order": [[1, "desc"], [2, "asc"], [3, "asc"]],
+                "paging": false,
+                "columns": [
+                    { "data": "id", "className": "dt-center"},
+                    { "data": "child_count", "className": "dt-center"},
+                    { "data": "status", "className": "dt-center"},
+                    { "data": "network_filter", "className": "dt-center"},
+                    { "data": "station_filter", "className": "dt-center"},
+                    { "data": "start_date", "className": "dt-center"},
+                    { "data": "end_date", "className": "dt-center"},
+                    { "data": "priority", "className": "dt-center"},
+                    { "data": "last_updated", "className": "dt-center"},
+                    { "data": "message", "className": "dt-center"}
+                ],
+                "ajax": "{%  url 'scansapi' %}{% if parentid %}?parentid={{ parentid }}{% endif %}",
+                "rowCallback": function( row, data, index ) {
+                    column = {% if parentid %}1{% else %}2{% endif %};
+                    if ( data['status'] == "running" )
+                    {
+                       $(row).find('td:eq(' + column + ')').css('background-color', 'orange');
+                    }
+                    else if ( data['status'] == "finished" )
+                    {
+                       $(row).find('td:eq(' + column + ')').css('background-color', 'green');
+                    }
+                    else if ( data['status'] == "error" )
+                    {
+                       $(row).find('td:eq(' + column + ')').css('background-color', 'red');
+                    }
+                }
+            });
+            {% if parentid %}datatable.column(1).visible(false);{% endif %}
+        });
+    </script>
+
+{% endblock %}

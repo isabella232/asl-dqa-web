@@ -1,0 +1,51 @@
+
+{% extends 'base.html' %}
+
+{% block body_block %}
+
+<div>
+    <h2>Add Scan</h2>
+</div>
+
+<form action="{{ request.path }}" method="post">
+    {% csrf_token %}
+    <table class="ui-widget ui-corner-all" style="margin-bottom:15px">
+    {% for field in form %}
+        <div>
+            <tr>
+                <td>{{ field.label_tag }}</td>
+                <td>
+                  {% if field.errors %}
+                      <ul class="errorlist">
+                      {% for error in field.errors %}
+                          <li>{{ error }}</li>
+                      {% endfor %}
+                      </ul>
+                  {% endif %}
+                  {{ field }}
+                  {% if field.help_text %}
+                      <span class="helptext">{{ field.help_text }}</span>
+                  {% endif %}
+                </td>
+            </tr>
+        </div>
+    {% endfor %}
+    </table>
+    {% for error in form.non_field_errors %}
+    <div class="alert alert-danger">
+        <strong>{{ error|escape }}</strong>
+    </div>
+    {% endfor %}
+    <input type="submit" value="Save" class="ui-widget ui-corner-all ui-button"/>
+    <a href="{{ next_url }}" class="ui-widget ui-corner-all ui-button">Cancel</a>
+</form>
+
+<script>
+    $(document).ready(function () {
+        $('#id_start_date').datepicker()
+        $('#id_end_date').datepicker()
+        // $('#id_scheduled_run').datepicker()
+    });
+</script>
+
+{% endblock %}

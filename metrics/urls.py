@@ -1,7 +1,6 @@
 """metrics URL Configuration"""
 
 from django.conf.urls import url
-from django.views.generic import RedirectView
 
 from rest_framework.authtoken.views import obtain_auth_token
 from metrics.views.api import usersettings

@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta charset="utf-8">
+
+    <link rel="shortcut icon" href="{% static "favicon.ico" %}">
+    <script type="text/javascript" src="{% static "js/jquery-3.2.1.min.js"%}"></script>
+    <script type="text/javascript" src="{% static "js/jquery-ui.min.js"%}"></script>
+    <script type="text/javascript" src="{% static "js/jquery.dataTables.min.js"%}"></script>
+    <script type="text/javascript" src="{% static "js/dataTables.jqueryui.min.js"%}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static "css/jquery-ui.css"%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dataq.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/dataTables.jqueryui.css"%}">
+</head>
+
+<body>{% block body_block %}Default body_block{% endblock %}</body>
+
+</html>
