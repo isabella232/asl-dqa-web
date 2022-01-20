@@ -13,8 +13,7 @@ from rest_framework import status
 
 class scans(APIView):
 
-    # permission_classes = (IsAuthenticatedOrReadOnly,)
-    permission_classes = ()
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     parser_classes = [JSONParser]
 
     def get(self, request):

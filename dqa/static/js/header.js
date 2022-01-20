@@ -58,9 +58,11 @@ function setupHeader(){
         modal: true
     });
 
-    header.append(
-        "<button type='button' id='btnScans' onclick=\"location.href=scans_url;\">Scans</button>"
-    );
+    if(allow_user_settings){
+        header.append(
+            "<button type='button' id='btnScans' onclick=\"location.href=scans_url;\">Scans</button>"
+        );
+    }
 
     //Adding span for dateRange now, but the dates and their controls will be added in the dateselection code.
     var rightSide = $("<span class='right'></span>");
