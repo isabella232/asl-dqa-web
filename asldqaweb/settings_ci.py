@@ -36,3 +36,6 @@ DATABASES = {
 }
 
 EXCLUDE_FROM_DEFAULT_GROUPS = []
+
+# Tests require static url set
+STATIC_URL = '/static/dqa/'

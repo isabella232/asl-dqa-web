@@ -1,7 +1,6 @@
 
 from django.contrib.auth.models import User
 from django.test import TestCase
-from rest_framework.authtoken.models import Token
 
 
 class TestLogin(TestCase):
@@ -13,7 +12,6 @@ class TestLogin(TestCase):
         super(TestLogin, cls).setUpClass()
         cls.test_user1 = User.objects.create_user(username='testuser1', password='12345')
         cls.test_user1.save()
-        Token.objects.create(user=cls.test_user1, key=Token.generate_key())
 
     def do_login(self):
         login = self.client.login(username='testuser1', password='12345')
