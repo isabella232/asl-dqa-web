@@ -83,7 +83,7 @@ class scans(APIView):
         with connections['metricsold'].cursor() as cursor:
             data = request.data
             scan_uuid = uuid.uuid4()
-            sql = f"INSERT INTO public.tblscan(pkscanid, fkparentscan, lastupdate, metricfilter, networkfilter, stationfilter, channelfilter, startdate, enddate, priority, deleteexisting, scheduledrun, finished, taken, locationfilter) VALUES ('{scan_uuid}', null, '{data['lastupdated']}', null, '{data['network_filter']}', '{data['station_filter']}', null, '{data['start_date']}', '{data['end_date']}', {data['priority']}, false, null, false, false, null);"
+            sql = f"INSERT INTO public.tblscan(pkscanid, fkparentscan, lastupdate, metricfilter, networkfilter, stationfilter, channelfilter, startdate, enddate, priority, deleteexisting, scheduledrun, finished, taken, locationfilter) VALUES ('{scan_uuid}', null, '{data['last_updated']}', null, '{data['network_filter']}', '{data['station_filter']}', null, '{data['start_date']}', '{data['end_date']}', {data['priority']}, false, null, false, false, null);"
             cursor.execute(sql)
         return Response(status=status.HTTP_201_CREATED)
 
