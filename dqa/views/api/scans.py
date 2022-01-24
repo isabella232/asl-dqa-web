@@ -29,7 +29,7 @@ class scans(APIView):
        sc.networkfilter, sc.stationfilter,
        sc.startdate, sc.enddate,
        sc.priority, sc.deleteexisting, sc.scheduledrun, sc.finished, sc.taken,
-       count(sc_child.child_count) as child_count,
+       sum(sc_child.child_count) as child_count,
        sum(sc_finished_count.finished_count) as finished_child_count,
        STRING_AGG(scm.message, '\n' ORDER BY scm."timestamp") as parent_messages,
        STRING_AGG(sc_child.child_messages, '\n') as child_messages
