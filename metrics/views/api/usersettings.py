@@ -2,15 +2,13 @@
 import json
 
 from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.contrib.auth import login
 
-from metrics.models import Metric, ComputeType, Custom, CustomWeight
+from metrics.models import Metric, Custom, CustomWeight
 
 
-@csrf_exempt
 def usersettings(request):
     """
     Process user settings

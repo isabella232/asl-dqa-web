@@ -175,7 +175,14 @@ function saveUserSettings() {
     var date_format = $("#dpFormatheader option:selected").val();
 
     var output = {user_settings: {columns: column_list, weights: weight_list, date_format: date_format}}
-    $.post(settings_url, JSON.stringify(output),
-    function (returnedData) {
-    }, 'json');
+    // Must grab cookie csrftoken value right before ajax as can change from page load
+    csrftoken = getCSRFTokenFromCookie();
+    $.ajax({
+        url: settings_url,
+        type: 'post',
+        data: JSON.stringify(output),
+        headers: {"X-CSRFToken": csrftoken},
+        dataType: 'json',
+        success: function (data) {}
+    });
 }

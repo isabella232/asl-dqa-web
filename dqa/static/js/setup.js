@@ -57,6 +57,21 @@ $(document).ajaxStop(function(){ //This may compete with ajaxStop trigger in pro
     processAllAggr();
 });
 
+function getCSRFTokenFromCookie() {
+    let csrfValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, 10) === ('csrftoken=')) {
+                csrfValue = decodeURIComponent(cookie.substring(10));
+                break;
+            }
+        }
+    }
+    return csrfValue;
+}
+
 function getSetupData(){
     // Get metrics info
     $.getJSON(metrics_url, function (data) {
