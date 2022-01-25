@@ -2,7 +2,7 @@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-SECRET_KEY = ''
+SECRET_KEY = 'uwh)=eq2y6t)f%u%pf^0z)h=7s&cf1_r$bsn!vyz4bmxzo0)n*'
 
 # Add server hosts
 ALLOWED_HOSTS = []
