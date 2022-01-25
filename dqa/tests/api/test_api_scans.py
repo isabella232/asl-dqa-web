@@ -31,7 +31,8 @@ class Testmetrics(TestCase):
                   'priority': 47,
                   'network_filter': 'IU',
                   'station_filter': 'OMNA',
-                  'last_updated': '2022-01-20 01:01'
+                  'last_updated': '2022-01-20 01:01',
+                  'ordering': '4:47:2022-01-15'
                   }
         # requires auth
         apiclient = APIClient()
@@ -49,4 +50,4 @@ class Testmetrics(TestCase):
         del resp_data['child_count']
         del resp_data['status']
         del resp_data['message']
-        self.assertTrue(output == resp_data, msg="Scan read, return not same as saved")
+        self.assertEqual(output, resp_data, msg="Scan read, return not same as saved")
