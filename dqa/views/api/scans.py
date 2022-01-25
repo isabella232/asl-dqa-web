@@ -32,14 +32,15 @@ class scans(APIView):
        sum(sc_child.child_count) as child_count,
        sum(sc_finished_count.finished_count) as finished_child_count,
        STRING_AGG(scm.message, '\n' ORDER BY scm."timestamp") as parent_messages,
-       STRING_AGG(sc_child.child_messages, '\n') as child_messages
-      
+       STRING_AGG(sc_child.child_messages, '\n') as child_messages,
+       MAX(sc_child.child_last_update) as child_last_update
     FROM public.tblscan sc
     LEFT OUTER JOIN tblscanmessage scm ON sc.pkscanid = scm.fkscanid
     LEFT OUTER JOIN (
         SELECT fkparentscan,
             STRING_AGG(scm_child.message, '\n' ORDER BY scm_child."timestamp") as child_messages,
-            count(sc2.*) as child_count
+            count(sc2.*) as child_count,
+            MAX(sc2.lastupdate) as child_last_update
         FROM tblscan sc2
         LEFT OUTER JOIN tblscanmessage scm_child ON sc2.pkscanid = scm_child.fkscanid
         WHERE fkparentscan IS NOT NULL
@@ -51,14 +52,13 @@ class scans(APIView):
         WHERE finished = true AND fkparentscan IS NOT NULL
         GROUP BY fkparentscan
         ) sc_finished_count ON sc.pkscanid = sc_finished_count.fkparentscan
-    {where} 
-    GROUP BY sc.pkscanid
-    ORDER BY parent_messages DESC"""
+    {where}
+    GROUP BY sc.pkscanid"""
             # sql = f"SELECT pkscanid,fkparentscan,networkfilter,stationfilter,startdate,enddate,priority,lastupdate,taken,finished FROM tblscan sc {where}"
             cursor.execute(sql)
             data_out = []
             for item in cursor.fetchall():
-                if parent_id is None and item[1] is None and item[12] > 0:
+                if parent_id is None and item[1] is None and item[12] is not None:
                     id_link = f"<a href=\"{reverse('scans')}?parentid={str(item[0])}\">{str(item[0])}</a>"
                     message = f"Scan Date:{item[14].split('Scan Date:')[1]}" if item[14] else ''
                 else:
@@ -70,11 +70,16 @@ class scans(APIView):
                         message = f"Scan Date:{item[15].split('Scan Date:')[1]}" if item[15] else ''
                 # message = f'<span title="{item[9]}">{item[9][0:40]}</span>' if item[9] else ''
                 # data_out.append({'id': id_link, 'child_count': children[str(item[0])] if str(item[0]) in children else 0, 'network_filter': item[2] if item[2] is not None else 'All', 'station_filter': item[3] if item[3] is not None else 'All', 'start_date': item[4], 'end_date': item[5], 'priority': item[6], 'last_updated': item[7].strftime('%Y-%m-%d %H:%M'), 'timestamp': item[8].strftime('%Y-%m-%d %H:%M') if item[8] is not None else '', 'message': message})
-                data_out.append({'id': id_link, 'child_count': item[12],
+                data_out.append({'id': id_link,
+                                 'child_count': item[12],
                                  'network_filter': item[3] if item[3] is not None else 'All',
-                                 'station_filter': item[4] if item[4] is not None else 'All', 'start_date': item[5],
-                                 'end_date': item[6], 'priority': item[7], 'last_updated': item[2].strftime('%Y-%m-%d %H:%M'),
-                                 'status': scan_status(item[10], item[11], len(message)), 'message': f'<span title="{message}">{message[0:50] + " ... " if len(message) > 50 else message}</span>'
+                                 'station_filter': item[4] if item[4] is not None else 'All',
+                                 'start_date': item[5], 'end_date': item[6],
+                                 'priority': item[7],
+                                 'last_updated': item[16].strftime('%Y-%m-%d %H:%M') if item[16] is not None else item[2].strftime('%Y-%m-%d %H:%M'),
+                                 'status': scan_status(item[10], item[11], len(message), item[12], item[13]),
+                                 'message': f'<span title="{message}">{message[0:50] + " ... " if len(message) > 50 else message}</span>',
+                                 'ordering': scan_order(item[10], item[11], len(message), item[7], item[6])
                                  })
 
         return Response({'data': data_out})
@@ -88,19 +93,50 @@ class scans(APIView):
         return Response(status=status.HTTP_201_CREATED)
 
 
-def scan_status(finished, taken, message):
+def scan_status(finished, taken, message, child_count, finished_child_count):
     """
     Scan status
     :param taken:
     :param finished:
+    :param message:
+    :param child_count:
+    :param finished_child_count:
     :return:
     """
     # Pending not taken, not finished
-    status = 'pending'
+    status_message = f'Pending'
+    child_status = ""
+    if finished_child_count is not None and child_count is not None:
+        child_status = f": {100*finished_child_count/child_count:.1f}%"
+
     if taken and not finished and message:
-        status = 'error'
+        status_message = f'Error{child_status}'
     elif taken and not finished and not message:
-        status = 'running'
+        status_message = f'Running{child_status}'
     elif finished:
-        status = 'finished'
-    return status
+        status_message = 'Complete'
+    return status_message
+
+
+def scan_order(finished, taken, message, priority, end_date):
+    """
+    Scan Order
+    :param taken:
+    :param finished:
+    :param message:
+    :param priority:
+    :param end_date:
+    :return:
+    """
+    # Pending not taken, not finished
+    order = '4'
+    if taken and not finished and message:
+        # Error
+        order = '9'
+    elif taken and not finished and not message:
+        # Running
+        order = '7'
+    elif finished:
+        # Complete
+        order = '0'
+    return f'{order}:{priority}:{end_date}'
