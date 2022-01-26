@@ -54,7 +54,6 @@ class scans(APIView):
         ) sc_finished_count ON sc.pkscanid = sc_finished_count.fkparentscan
     {where}
     GROUP BY sc.pkscanid"""
-            # sql = f"SELECT pkscanid,fkparentscan,networkfilter,stationfilter,startdate,enddate,priority,lastupdate,taken,finished FROM tblscan sc {where}"
             cursor.execute(sql)
             data_out = []
             for item in cursor.fetchall():
@@ -68,10 +67,7 @@ class scans(APIView):
                     else:
                         id_link = str(item[0])
                         message = f"Scan Date:{item[15].split('Scan Date:')[1]}" if item[15] else ''
-                # message = f'<span title="{item[9]}">{item[9][0:40]}</span>' if item[9] else ''
-                # data_out.append({'id': id_link, 'child_count': children[str(item[0])] if str(item[0]) in children else 0, 'network_filter': item[2] if item[2] is not None else 'All', 'station_filter': item[3] if item[3] is not None else 'All', 'start_date': item[4], 'end_date': item[5], 'priority': item[6], 'last_updated': item[7].strftime('%Y-%m-%d %H:%M'), 'timestamp': item[8].strftime('%Y-%m-%d %H:%M') if item[8] is not None else '', 'message': message})
                 data_out.append({'id': id_link,
-                                 'child_count': item[12],
                                  'network_filter': item[3] if item[3] is not None else 'All',
                                  'station_filter': item[4] if item[4] is not None else 'All',
                                  'start_date': item[5], 'end_date': item[6],
@@ -85,12 +81,24 @@ class scans(APIView):
         return Response({'data': data_out})
 
     def post(self, request):
+        status = scan_post_update(request.data)
+        return Response(status=status)
+
+
+def scan_post_update(data):
+    """
+    Update the database scan table with scan add data from form or API
+    :param data: dict of data
+    :return: status
+    """
+    try:
         with connections['metricsold'].cursor() as cursor:
-            data = request.data
             scan_uuid = uuid.uuid4()
             sql = f"INSERT INTO public.tblscan(pkscanid, fkparentscan, lastupdate, metricfilter, networkfilter, stationfilter, channelfilter, startdate, enddate, priority, deleteexisting, scheduledrun, finished, taken, locationfilter) VALUES ('{scan_uuid}', null, '{data['last_updated']}', null, '{data['network_filter']}', '{data['station_filter']}', null, '{data['start_date']}', '{data['end_date']}', {data['priority']}, false, null, false, false, null);"
             cursor.execute(sql)
-        return Response(status=status.HTTP_201_CREATED)
+    except Exception as e:
+        return str(e)
+    return status.HTTP_201_CREATED
 
 
 def scan_status(finished, taken, message, child_count, finished_child_count):

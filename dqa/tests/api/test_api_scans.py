@@ -47,7 +47,6 @@ class Testmetrics(TestCase):
         self.assertEqual(resp.status_code, 200)
         resp_data = resp.data['data'][0]
         del resp_data['id']
-        del resp_data['child_count']
         del resp_data['status']
         del resp_data['message']
         self.assertEqual(output, resp_data, msg="Scan read, return not same as saved")
