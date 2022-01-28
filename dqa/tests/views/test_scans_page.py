@@ -18,12 +18,6 @@ class TestLogin(TestLogin):
               'last_updated': '2022-01-20 01:01'
               }
 
-    def test_scan_login_redirect(self):
-        self.redirect_without_login(reverse('scans'))
-
-    def test_scan_valid_login(self):
-        self.page_accessible_on_login(reverse('scans'))
-
     def test_scan_form_login_redirect(self):
         self.redirect_without_login(reverse('addscan'))
 

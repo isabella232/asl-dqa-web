@@ -5,7 +5,7 @@ from django.conf import settings
 from asldqaweb.decorators.auth import dqa_login_required
 
 
-@dqa_login_required(required=True)
+@dqa_login_required(required=False)
 def scans(request):
     parent_id = request.GET.get('parentid')
     group = request.GET.get('group', '')
