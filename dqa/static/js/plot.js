@@ -26,11 +26,10 @@ function createDialog(id){
     var ids = id.split("_");
     var pid = ids[1]+"_"+ids[2]; //removes the "d_" from the front of the id
     var title = undefined;
-    var units = undefined;
+    var units = mapMNametoMUnit[mapMIDtoMName[ids[1]]];
 
     if (pageType == "summary"){
         title = mapGIDtoGName[mapSIDtoNID[ids[2]]]+"-"+mapSIDtoSName[ids[2]]+" "+mapMIDtoMName[ids[1]];
-        units = mapMNametoMUnit[mapMIDtoMName[ids[1]]];
     }
     else if (pageType == "station"){
         var stationID = getQueryString("station");
