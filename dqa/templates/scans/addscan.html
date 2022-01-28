@@ -41,10 +41,19 @@
 
 <script>
     $(document).ready(function () {
-        $('#id_start_date').datepicker()
-        $('#id_end_date').datepicker()
-        // $('#id_scheduled_run').datepicker()
-    });
+        $("#id_start_date").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: "yy-mm-dd",
+            yearRange: "1940:2100",
+        });
+        $("#id_end_date").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: "yy-mm-dd",
+            yearRange: "1940:2100",
+        });
+    })
 </script>
 
 {% endblock %}
