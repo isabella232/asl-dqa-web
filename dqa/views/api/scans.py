@@ -18,6 +18,8 @@ class scans(APIView):
 
     def get(self, request):
         parent_id = request.GET.get('parentid', None)
+        group = request.GET.get('group', None)
+        group_param = f'&group={group}' if group is not None else ''
 
         with connections['metricsold'].cursor() as cursor:
             if parent_id is not None:
@@ -58,7 +60,7 @@ class scans(APIView):
             data_out = []
             for item in cursor.fetchall():
                 if parent_id is None and item[1] is None and item[12] is not None:
-                    id_link = f"<a href=\"{reverse('scans')}?parentid={str(item[0])}\">{str(item[0])}</a>"
+                    id_link = f"<a href=\"{reverse('scans')}?parentid={str(item[0])}{group_param}\">{str(item[0])}</a>"
                     message = f"Scan Date:{item[14].split('Scan Date:')[1]}" if item[14] else ''
                 else:
                     if str(item[0]) == parent_id:

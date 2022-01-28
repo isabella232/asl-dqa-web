@@ -2,10 +2,13 @@
 {% extends 'base.html' %}
 
 {% block title %}DQA Scan List{% endblock %}
-
+{% block header_title %}Scans List: {% if parentid %}Parent = {{ parentid }}{% else %}Parents{% endif %}{% endblock %}
+{% block header_buttons %}
+    {% if parentid %}<button type='button' id='btnParentScan' onclick="window.location.href='{% url 'scans' %}{% if group %}?group={{ group }}{% endif %}'">Parent List</button>{% endif %}
+    {% if not parentid %}<button type='button' id='btnAddScan' onclick="window.location.href='{% url 'addscan' %}{% if group %}?group={{ group }}{% endif %}'">Add Scan</button>{% endif %}
+    <button type='button' id='btnSummary' onclick="window.location.href='{% if group %}{% url 'summary' group %}{% else %}{% url 'summary_nogroup' %}{% endif %}'">Summary</button>
+{% endblock %}
 {% block body_block %}
-    <div><h2>Scans List: {% if parentid %}Parent = {{ parentid }}{% else %}Parents{% endif %}</h2></div>
-    <div><h3>{% if parentid %}<a href="{% url 'scans' %}">Parent List</a>{% else %}<a href="{% url 'addscan' %}">Add Scan</a>{% endif %}</h3></div>
     <table id="scans" class="display">
         <thead>
         <tr>
@@ -42,7 +45,7 @@
                     { "data": "message", "className": "dt-center"},
                     { "data": "ordering", "className": "dt-center", "visible": false }
                 ],
-                "ajax": "{%  url 'scansapi' %}{% if parentid %}?parentid={{ parentid }}{% endif %}",
+                "ajax": "{%  url 'scansapi' %}{% if parentid %}?parentid={{ parentid }}{% if group %}&group={{ group }}{% endif %}{% elif group %}?group={{ group }}{% endif %}",
                 "rowCallback": function( row, data, index ) {
                     const column = 1;
                     if ( data['status'].indexOf("Running") >= 0)
@@ -59,6 +62,7 @@
                     }
                 }
             });
+            $("button").button();
         });
     </script>
 

@@ -18,8 +18,21 @@
     <link rel="stylesheet" type="text/css" href="{% static "css/jquery-ui.css"%}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/dataq.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static "css/dataTables.jqueryui.css"%}">
+
+    <div id='top' class='ui-widget-header ui-corner-all'>
+        <div id='header' class='headerMain'>
+            <span class='headerTitle'>{% block header_title %}{% endblock %}</span>
+            <span class='headerVersion'>v{{ version }}</span>
+            {% block header_buttons %}{% endblock %}
+            <span class='right'><span id='username'>{{ username }}</span></span>
+        </div>
+    </div>
+    <br>
 </head>
 
-<body>{% block body_block %}Default body_block{% endblock %}</body>
+<body>
+{% block body_block %}Default body_block{% endblock %}
+
+</body>
 
 </html>

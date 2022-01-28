@@ -20,7 +20,7 @@
             // metrics is the new url for Django section
             var metrics_url = "{%  url 'metrics' %}";
             var settings_url = "{% url 'settings' %}";
-            var scans_url = "{% url 'scans' %}";
+            var scans_url = {% if group %}"{% url 'scans' %}?group={{ group }}"{% else %}"{% url 'scans' %}"{% endif %};
             var username = "{{  username }}";
             var allow_user_settings = ("{{ allow_user_settings }}" === "True");
             var login_url = "{%  url 'login' %}?next={{ request.path }}";
