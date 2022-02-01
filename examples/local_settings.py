@@ -47,7 +47,3 @@ EXCLUDE_FROM_DEFAULT_GROUPS = []
 
 # Allow users to login and retain settings like columns, metric weighting, time format
 ALLOW_USER_SETTINGS = True
-
-# API parameters
-API_BASE_URL = ''
-API_AUTHORIZATION_TOKEN = ''

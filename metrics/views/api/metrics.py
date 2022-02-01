@@ -28,7 +28,7 @@ class metrics(APIView):
 
     def post(self, request):
         if ComputeType.objects.all().count() < 1:
-            return JsonResponse({'status': 'error', 'message': 'Metrics require compute type'})
+            return Response({'status': 'error', 'message': 'Metrics require compute type'})
         for value in request.data['data']:
             m_object, _ = Metric.objects.get_or_create(id=value['id'],
                                                        name=value['name'],

@@ -1,12 +1,8 @@
 
-from urllib import request
-import json
-
 from django.core.management import BaseCommand
 from django.db import connections
-from django.conf import settings
 
-from metrics.models import Metric
+from metrics.models import Metric, ComputeType
 
 
 class Command(BaseCommand):
@@ -25,9 +21,6 @@ class Command(BaseCommand):
 
         print('Start')
 
-        base_write_url = settings.API_BASE_URL
-        authorization_token = settings.API_AUTHORIZATION_TOKEN
-
         compute_type = {}
         metrics = []
         base_metrics = set()
@@ -35,7 +28,6 @@ class Command(BaseCommand):
             sql = "SELECT * from tblcomputetype"
             cursor.execute(sql)
             for ct in cursor.fetchall():
-                # print(ct)
                 compute_type[ct[0]] = ct[1]
 
             sql = "SELECT pkmetricid,name,fkparentmetricid,fkcomputetypeid,displayname,descriptionshort,descriptionlong,unittype from tblmetric"
@@ -49,21 +41,17 @@ class Command(BaseCommand):
         print(f'Read {len(base_metrics)} metrics from DB')
 
         print('Loading new DB')
-        req = request.Request(base_write_url, method="POST",
-                              headers={'Authorization': f'Token {authorization_token}', 'User-Agent': 'XYZ/3.0',
-                                       'Content-Type': 'application/json'})
-        metrics_output = []
         for values in metrics:
-            metrics_output.append(
-                {'id': values[0], 'name': values[1], 'display_name': values[4], 'description_short': values[5],
-                 'description_long': values[6], 'compute_type': compute_type[values[3]], 'units': values[7]})
-        output = {'model': 'metric', 'count': len(metrics_output), 'data': metrics_output}
-        data_json = json.dumps(output)
-        r = request.urlopen(req, data=data_json.encode())
-        content = json.loads(r.read().decode('utf-8'))
-        if 'status' not in content or content['status'] != 'ok':
-            print(f'Error in pushing data to api: {content}')
+            m_object, _ = Metric.objects.get_or_create(id=values[0],
+                                                       name=values[1],
+                                                       display_name=values[4],
+                                                       description_short=values[5],
+                                                       description_long=values[6],
+                                                       compute_type=ComputeType.objects.get(name=compute_type[values[3]]),
+                                                       units=values[7]
+                                                       )
 
+        print('Verify')
         test_metrics = set()
         for metric_object in Metric.objects.all():
             test_metrics.add((metric_object.pk, metric_object.name, metric_object.parent,
