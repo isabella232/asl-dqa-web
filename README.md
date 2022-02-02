@@ -22,12 +22,12 @@ This is the frontend that displays data found in a DQA database.
 ##### Apache
 
 1. Log into server as root ```sudo su -```
-2. Run script apacheConf.bash under /data/www/dqa to install Apache conf and restart service.  Note: this installs production version, you must add dqa_dev.conf manually to install dev version.  
-3. DQA should now be accessible under ```hostname/dqa```  
+2. In apacheConf.bash script set the proper config to load, either dqa_dev or dqa_prod
+3. Run script apacheConf.bash under /data/www/dqa to install Apache conf and restart service.  Note: this installs production version, you must add dqa_dev.conf manually to install dev version.  
+4. DQA should now be accessible under ```hostname/dqa```  
 
 ### Project Update only
 
 1. log into server as asluser ```sudo su - asluser```
 2. Execute updateServer.bash located in /data/www/dqa directory.
 3. Restart the Apache server `sudo apachectl restart`.
-
