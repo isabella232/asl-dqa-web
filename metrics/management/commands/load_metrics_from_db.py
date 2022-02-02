@@ -19,7 +19,7 @@ class Command(BaseCommand):
 
         """
 
-        print('Start')
+        print('Update Metrics table from previous DB')
 
         compute_type = {}
         metrics = []
@@ -33,14 +33,10 @@ class Command(BaseCommand):
             sql = "SELECT pkmetricid,name,fkparentmetricid,fkcomputetypeid,displayname,descriptionshort,descriptionlong,unittype from tblmetric"
             cursor.execute(sql)
             for metric in cursor.fetchall():
-                print(metric)
                 metrics.append(metric)
                 base_metrics.add(
                     (metric[0], metric[1], metric[2], compute_type[metric[3]], metric[4], metric[5], metric[6], metric[7]))
 
-        print(f'Read {len(base_metrics)} metrics from DB')
-
-        print('Loading new DB')
         for values in metrics:
             m_object, _ = Metric.objects.get_or_create(id=values[0],
                                                        name=values[1],
@@ -51,7 +47,6 @@ class Command(BaseCommand):
                                                        units=values[7]
                                                        )
 
-        print('Verify')
         test_metrics = set()
         for metric_object in Metric.objects.all():
             test_metrics.add((metric_object.pk, metric_object.name, metric_object.parent,
@@ -59,13 +54,8 @@ class Command(BaseCommand):
                               metric_object.description_short, metric_object.description_long,
                               metric_object.units))
 
-        print(f'Read {len(test_metrics)} metrics from new DB')
-
         delta = test_metrics.symmetric_difference(base_metrics)
         if delta:
-            print('**** Mismatch ****')
-            print(delta)
+            print(f'*** Error copying metrics: {delta}')
         else:
-            print('Verified OK')
-
-        print('Done')
+            print(f'Copied {len(test_metrics)} metrics: verified OK')
