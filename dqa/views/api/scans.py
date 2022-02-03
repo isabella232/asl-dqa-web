@@ -96,7 +96,7 @@ def scan_post_update(data):
     try:
         with connections['metricsold'].cursor() as cursor:
             scan_uuid = uuid.uuid4()
-            sql = f"INSERT INTO public.tblscan(pkscanid, fkparentscan, lastupdate, metricfilter, networkfilter, stationfilter, channelfilter, startdate, enddate, priority, deleteexisting, scheduledrun, finished, taken, locationfilter) VALUES ('{scan_uuid}', null, '{data['last_updated']}', null, '{data['network_filter']}', '{data['station_filter']}', null, '{data['start_date']}', '{data['end_date']}', {data['priority']}, false, null, false, false, null);"
+            sql = f"INSERT INTO public.tblscan(pkscanid, fkparentscan, lastupdate, metricfilter, networkfilter, stationfilter, channelfilter, startdate, enddate, priority, deleteexisting, scheduledrun, finished, taken, locationfilter) VALUES ('{scan_uuid}', null, '{data['last_updated']}', null, {data['network_filter']}, {data['station_filter']}, null, '{data['start_date']}', '{data['end_date']}', {data['priority']}, false, null, false, false, null);"
             cursor.execute(sql)
     except Exception as e:
         return str(e)
