@@ -21,8 +21,8 @@ def scanadd(request):
             output = {'start_date': form.data['start_date'],
                       'end_date': form.data['end_date'],
                       'priority': form.data['priority'],
-                      'network_filter': f"'{form.data['network_filter']}'" if form.data['network_filter'] else "null",
-                      'station_filter': f"'{form.data['station_filter']}'" if form.data['station_filter'] else "null",
+                      'network_filter': form.data['network_filter'],
+                      'station_filter': form.data['station_filter'],
                       'last_updated': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
                       }
             status = scan_post_update(output)

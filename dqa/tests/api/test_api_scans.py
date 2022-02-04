@@ -39,7 +39,7 @@ class Testmetrics(TestCase):
         self.clean_scan_tables()
         output = {}
         status = scan_post_update(data=output)
-        self.assertEqual("'last_updated'", status)
+        self.assertTrue(status.startswith('KeyError:'))
         output = {'start_date': datetime.date(2021, 1, 1),
                   'end_date': datetime.date(2021, 1, 15),
                   'priority': 55,
