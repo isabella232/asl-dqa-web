@@ -96,10 +96,10 @@ def scan_post_update(data):
     try:
         with connections['metricsold'].cursor() as cursor:
             scan_uuid = uuid.uuid4()
-            network_filter = f"\'{data['network_filter']}\'" if data['network_filter'] else 'null'
-            station_filter = f"\'{data['station_filter']}\'" if data['station_filter'] else 'null'
-            sql = f"INSERT INTO public.tblscan(pkscanid, fkparentscan, lastupdate, metricfilter, networkfilter, stationfilter, channelfilter, startdate, enddate, priority, deleteexisting, scheduledrun, finished, taken, locationfilter) VALUES ('{scan_uuid}', null, '{data['last_updated']}', null, {network_filter}, {station_filter}, null, '{data['start_date']}', '{data['end_date']}', {data['priority']}, false, null, false, false, null);"
-            cursor.execute(sql)
+            network_filter = data['network_filter'] if data['network_filter'] else None
+            station_filter = data['station_filter'] if data['station_filter'] else None
+            sql = "INSERT INTO public.tblscan(pkscanid, fkparentscan, lastupdate, metricfilter, networkfilter, stationfilter, channelfilter, startdate, enddate, priority, deleteexisting, scheduledrun, finished, taken, locationfilter) VALUES (%s, null, %s, null, %s, %s, null, %s, %s, %s, false, null, false, false, null);"
+            cursor.execute(sql, (scan_uuid, data['last_updated'], network_filter, station_filter, data['start_date'], data['end_date'], data['priority']))
     except KeyError as e:
         return f"KeyError: {str(e)}"
     except Exception as e:
