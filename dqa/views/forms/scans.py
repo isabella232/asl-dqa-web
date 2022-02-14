@@ -23,6 +23,7 @@ def scanadd(request):
                       'priority': form.data['priority'],
                       'network_filter': form.data['network_filter'],
                       'station_filter': form.data['station_filter'],
+                      'location_filter': form.data['location_filter'],
                       'last_updated': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
                       }
             status = scan_post_update(output)

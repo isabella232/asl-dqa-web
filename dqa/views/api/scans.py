@@ -1,5 +1,6 @@
 
 import uuid
+from collections import namedtuple
 
 from django.db import connections
 from django.urls import reverse
@@ -15,6 +16,10 @@ class scans(APIView):
 
     permission_classes = (IsAuthenticatedOrReadOnly,)
     parser_classes = [JSONParser]
+    ScanItem = namedtuple('ScanItem', 'id parent_id last_updated network_filter station_filter location_filter '\
+                                      'start_date end_date priority delete_existing scheduled_run finished '\
+                                      'taken child_count finished_child_count parent_messages '\
+                                      'child_messages child_last_updated')
 
     def get(self, request):
         parent_id = request.GET.get('parentid', None)
@@ -28,7 +33,7 @@ class scans(APIView):
                 where = 'WHERE sc.fkparentscan is null'
             # sql = f"-- SELECT DISTINCT sc.pkscanid,sc.fkparentscan,sc.networkfilter,sc.stationfilter,sc.startdate,sc.enddate,sc.priority,sc.lastupdate,scm.timestamp,scm.message FROM tblscan sc JOIN tblscanmessage scm ON scm.fkscanid=sc.pkscanid {where} "
             sql = f"""SELECT sc.pkscanid, sc.fkparentscan, sc.lastupdate,
-       sc.networkfilter, sc.stationfilter,
+       sc.networkfilter, sc.stationfilter, sc.locationfilter,
        sc.startdate, sc.enddate,
        sc.priority, sc.deleteexisting, sc.scheduledrun, sc.finished, sc.taken,
        sum(sc_child.child_count) as child_count,
@@ -59,25 +64,28 @@ class scans(APIView):
             cursor.execute(sql)
             data_out = []
             for item in cursor.fetchall():
-                if parent_id is None and item[1] is None and item[12] is not None:
-                    id_link = f"<a href=\"{reverse('scans')}?parentid={str(item[0])}{group_param}\">{str(item[0])}</a>"
-                    message = f"Scan Date:{item[14].split('Scan Date:')[1]}" if item[14] else ''
+                scan_item = self.ScanItem(*item)
+                if parent_id is None and scan_item.parent_id is None and scan_item.child_count is not None:
+                    id_link = f"<a href=\"{reverse('scans')}?parentid={str(scan_item.id)}{group_param}\">{str(scan_item.id)}</a>"
+                    message = f"Scan Date:{scan_item.parent_messages.split('Scan Date:')[1]}" if scan_item.parent_messages else ''
                 else:
-                    if str(item[0]) == parent_id:
-                        id_link = f'{str(item[0])} (parent)'
-                        message = f"Scan Date:{item[14].split('Scan Date:')[1]}" if item[14] else ''
+                    if str(scan_item.id) == parent_id:
+                        id_link = f'{str(scan_item.id)} (parent)'
+                        message = f"Scan Date:{scan_item.child_messages.split('Scan Date:')[1]}" if scan_item.child_messages else ''
                     else:
-                        id_link = str(item[0])
-                        message = f"Scan Date:{item[15].split('Scan Date:')[1]}" if item[15] else ''
+                        id_link = str(scan_item.id)
+                        message = f"Scan Date:{scan_item.parent_messages.split('Scan Date:')[1]}" if scan_item.parent_messages else ''
                 data_out.append({'id': id_link,
-                                 'network_filter': item[3] if item[3] is not None else 'All',
-                                 'station_filter': item[4] if item[4] is not None else 'All',
-                                 'start_date': item[5], 'end_date': item[6],
-                                 'priority': item[7],
-                                 'last_updated': item[16].strftime('%Y-%m-%d %H:%M') if item[16] is not None else item[2].strftime('%Y-%m-%d %H:%M'),
-                                 'status': scan_status(item[10], item[11], len(message), item[12], item[13]),
+                                 'network_filter': scan_item.network_filter if scan_item.network_filter is not None and len(scan_item.network_filter) > 0 else 'All',
+                                 'station_filter': scan_item.station_filter if scan_item.station_filter is not None  and len(scan_item.station_filter) else 'All',
+                                 'location_filter': scan_item.location_filter if scan_item.location_filter is not None  and len(scan_item.location_filter) else 'All',
+                                 'start_date': scan_item.start_date,
+                                 'end_date': scan_item.end_date,
+                                 'priority': scan_item.priority,
+                                 'last_updated': scan_item.child_last_updated.strftime('%Y-%m-%d %H:%M') if scan_item.child_last_updated is not None else scan_item.last_updated.strftime('%Y-%m-%d %H:%M'),
+                                 'status': scan_status(scan_item.finished, scan_item.taken, len(message), scan_item.child_count, scan_item.finished_child_count),
                                  'message': f'<span title="{message}">{message[0:50] + " ... " if len(message) > 50 else message}</span>',
-                                 'ordering': scan_order(item[10], item[11], len(message), item[7], item[6])
+                                 'ordering': scan_order(scan_item.finished, scan_item.taken, len(message), scan_item.priority, scan_item.end_date)
                                  })
 
         return Response({'data': data_out})
@@ -98,8 +106,9 @@ def scan_post_update(data):
             scan_uuid = uuid.uuid4()
             network_filter = data['network_filter'] if data['network_filter'] else None
             station_filter = data['station_filter'] if data['station_filter'] else None
-            sql = "INSERT INTO public.tblscan(pkscanid, fkparentscan, lastupdate, metricfilter, networkfilter, stationfilter, channelfilter, startdate, enddate, priority, deleteexisting, scheduledrun, finished, taken, locationfilter) VALUES (%s, null, %s, null, %s, %s, null, %s, %s, %s, false, null, false, false, null);"
-            cursor.execute(sql, (scan_uuid, data['last_updated'], network_filter, station_filter, data['start_date'], data['end_date'], data['priority']))
+            location_filter = data['location_filter'] if data['location_filter'] else None
+            sql = "INSERT INTO public.tblscan(pkscanid, fkparentscan, lastupdate, metricfilter, networkfilter, stationfilter, locationfilter, channelfilter, startdate, enddate, priority, deleteexisting, scheduledrun, finished, taken) VALUES (%s, null, %s, null, %s, %s, %s, null, %s, %s, %s, false, null, false, false);"
+            cursor.execute(sql, (scan_uuid, data['last_updated'], network_filter, station_filter, location_filter, data['start_date'], data['end_date'], data['priority']))
     except KeyError as e:
         return f"KeyError: {str(e)}"
     except Exception as e:
