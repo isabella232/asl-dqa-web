@@ -45,6 +45,7 @@ class Testmetrics(TestCase):
                   'priority': 55,
                   'network_filter': 'IU',
                   'station_filter': 'AAAA',
+                  'location_filter': '00',
                   'last_updated': '2021-01-20 01:01',
                   'ordering': '4:55:2021-01-15'
                   }
@@ -67,6 +68,7 @@ class Testmetrics(TestCase):
                   'priority': 47,
                   'network_filter': 'IU',
                   'station_filter': 'OMNA',
+                  'location_filter': '00,10',
                   'last_updated': '2022-01-20 01:01',
                   'ordering': '4:47:2022-01-15'
                   }

@@ -104,9 +104,9 @@ def scan_post_update(data):
     try:
         with connections['metricsold'].cursor() as cursor:
             scan_uuid = uuid.uuid4()
-            network_filter = data['network_filter'] if data['network_filter'] else None
-            station_filter = data['station_filter'] if data['station_filter'] else None
-            location_filter = data['location_filter'] if data['location_filter'] else None
+            network_filter = data['network_filter'] if 'network_filter' in data and data['network_filter'] else None
+            station_filter = data['station_filter'] if 'station_filter' in data and data['station_filter'] else None
+            location_filter = data['location_filter'] if 'location_filter' in data and data['location_filter'] else None
             sql = "INSERT INTO public.tblscan(pkscanid, fkparentscan, lastupdate, metricfilter, networkfilter, stationfilter, locationfilter, channelfilter, startdate, enddate, priority, deleteexisting, scheduledrun, finished, taken) VALUES (%s, null, %s, null, %s, %s, %s, null, %s, %s, %s, false, null, false, false);"
             cursor.execute(sql, (scan_uuid, data['last_updated'], network_filter, station_filter, location_filter, data['start_date'], data['end_date'], data['priority']))
     except KeyError as e:
