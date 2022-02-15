@@ -1,5 +1,6 @@
 
 from django import forms
+from django.core.validators import RegexValidator
 
 
 class ScanAddForm(forms.Form):
@@ -8,7 +9,10 @@ class ScanAddForm(forms.Form):
     end_date = forms.DateField(help_text="Scan ends on this date", widget=forms.TextInput(attrs={'placeholder': 'Click to enter date', 'autocomplete': "off"}))
     network_filter = forms.CharField(max_length=4, required=False, help_text="Limit scan to this network")
     station_filter = forms.CharField(max_length=8, required=False, help_text="Limit scan to this station")
-    location_filter = forms.CharField(max_length=4, required=False, help_text="Limit scan to this location")
+    location_filter = forms.CharField(max_length=20, required=False,
+                                      help_text="Limit scan to this location, accepts comma separated list",
+                                      validators=[RegexValidator(regex='^[0-9,]+$', message='invalid location')]
+                                      )
     # channel_filter = forms.CharField(max_length=8, required=False, help_text="Limit scan to this channel")
     # metric_filter = forms.CharField(max_length=20, required=False, help_text="Limit scan to this metric")
     priority = forms.IntegerField(initial=49, min_value=0, max_value=100, help_text="Scan priority, 0-100, 100 = highest")
