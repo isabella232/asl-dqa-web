@@ -67,14 +67,19 @@ class scans(APIView):
                 scan_item = self.ScanItem(*item)
                 if parent_id is None and scan_item.parent_id is None and scan_item.child_count is not None:
                     id_link = f"<a href=\"{reverse('scans')}?parentid={str(scan_item.id)}{group_param}\">{str(scan_item.id)}</a>"
-                    message = f"Scan Date:{scan_item.parent_messages.split('Scan Date:')[1]}" if scan_item.parent_messages else ''
                 else:
                     if str(scan_item.id) == parent_id:
                         id_link = f'{str(scan_item.id)} (parent)'
-                        message = f"Scan Date:{scan_item.child_messages.split('Scan Date:')[1]}" if scan_item.child_messages else ''
                     else:
                         id_link = str(scan_item.id)
-                        message = f"Scan Date:{scan_item.parent_messages.split('Scan Date:')[1]}" if scan_item.parent_messages else ''
+
+                if scan_item.parent_messages:
+                    message = f"Scan Date:{scan_item.parent_messages.split('Scan Date:')[1]}" if scan_item.parent_messages else ''
+                elif scan_item.child_messages:
+                    message = f"Scan Date:{scan_item.child_messages.split('Scan Date:')[1]}" if scan_item.child_messages else ''
+                else:
+                    message = ''
+
                 data_out.append({'id': id_link,
                                  'network_filter': scan_item.network_filter if scan_item.network_filter is not None and len(scan_item.network_filter) > 0 else 'All',
                                  'station_filter': scan_item.station_filter if scan_item.station_filter is not None  and len(scan_item.station_filter) else 'All',
@@ -132,7 +137,7 @@ def scan_status(finished, taken, message, child_count, finished_child_count):
     if finished_child_count is not None and child_count is not None:
         child_status = f": {100*finished_child_count/child_count:.1f}%"
 
-    if taken and not finished and message:
+    if not finished and message:
         status_message = f'Error{child_status}'
     elif taken and not finished and not message:
         status_message = f'Running{child_status}'
