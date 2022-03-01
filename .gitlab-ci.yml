@@ -34,5 +34,4 @@ test:safety:
     # Need to install outside the venv to prevent this install patching actual issues.
     - pip install safety
     # Fix certifi certs so updated insecurity DB can be downloaded.
-    - /bin/updatePythonCert.bash
     - safety check -r pip_freeze.txt
