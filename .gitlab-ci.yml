@@ -25,7 +25,7 @@ test:latest:
     - python manage.py test --settings asldqaweb.settings_ci
 
 test:safety:
-  image: code.chs.usgs.gov:5001/asl/asl-main/asl:latest
+  image: code.chs.usgs.gov:5001/asl/asl-main/asl:1804
   
   script:
     - source venv/bin/activate
