@@ -32,7 +32,7 @@ test:safety:
     - pip freeze > pip_freeze.txt
     - deactivate
     # Need to install outside the venv to prevent this install patching actual issues.
-    - bin/safety_check_venv.bash
+    - /bin/safety_check_venv.bash
     - source safety_venv
     - pip install safety
 
