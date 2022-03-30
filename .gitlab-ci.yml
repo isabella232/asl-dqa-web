@@ -33,7 +33,7 @@ test:safety:
     - deactivate
     # Need to install outside the venv to prevent this install patching actual issues.
     - /bin/safety_check_venv.bash
-    - source safety_venv
+    - source safety_venv/bin/activate
     - pip install safety
 
     - safety check -r pip_freeze.txt
