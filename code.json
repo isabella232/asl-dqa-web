@@ -3,7 +3,7 @@
     "name": "asl-dqa-web",
     "organization": "U.S. Geological Survey",
     "description": "The Data Quality Analyzer (DQA) characterizes and displays seismic station data quality in a quantitative manner",
-    "version": "2.2.1",
+    "version": "2.2.2",
     "status": "Production",
     "permissions": {
       "usageType": "openSource",

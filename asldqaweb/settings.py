@@ -103,7 +103,7 @@ TEST_RESOURCES = os.path.join(BASE_DIR, 'dqa/tests/resources')
 # Required in Django 3.2+
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 
-VERSION = '2.2.1'
+VERSION = '2.2.2'
 
 try:
     from .local_settings import *
